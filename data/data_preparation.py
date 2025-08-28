@@ -18,7 +18,7 @@ def prepare_data() -> str:
         "/projects/plywood",
     ]
 
-    xml_path = str(Path("dataset/content-pages.xml"))
+    xml_path = str(Path("dataset/input/content-pages.xml"))
     matching_urls = get_matching_loc_values(xml_path, contents)
 
     pages: List[Page] = []
