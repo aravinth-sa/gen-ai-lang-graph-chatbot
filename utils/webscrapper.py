@@ -4,6 +4,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 from typing import List, Optional
+import re
 from utils.page_data import Page
 
 
@@ -36,6 +37,11 @@ def extract_headings_and_paragraphs(html_content: str) -> dict[str, list[str]]:
         _normalize("Are you with PlaceMakers Trade? Click the icon above to check your trade price."),
         _normalize("Check your Trade Price"),
         _normalize("Alternative Products (0)"),
+        _normalize("These items are specifically sourced for you, and cannot be returned unless faulty,read more."),
+        _normalize("Here's what we'll do for you:"),
+        _normalize("These products are ordered directly from the supplier or another branch for you. Our branch team will call you to confirm if we can source the product and let you know delivery time frames and costs (if any)."),
+        _normalize("Once you accept this you will be provided a payment link to complete your purchase."),
+        _normalize("Why are products marked Direct from Supplier or POA?")
     }
 
     h1_elements: list[str] = []
@@ -118,7 +124,15 @@ def extract_content(html_source: str) -> Page:
             sku = item.select_one(".carousel__item--code")
             name = item.select_one(".carousel__item--name")
             brand = item.select_one(".carousel__item-manufacturer")
-            sku_text = sku.get_text(strip=True) if sku else ""
+            # Remove nested div.partCode and strip 'SKU:' label (case-insensitive)
+            if sku:
+                nested_part = sku.select_one("div.partCode")
+                if nested_part is not None:
+                    nested_part.extract()
+                sku_text = sku.get_text(strip=True)
+                sku_text = re.sub(r"(?i)^sku\s*:\s*", "", sku_text).strip()
+            else:
+                sku_text = ""
             name_text = name.get_text(strip=True) if name else ""
             brand_text = brand.get_text(strip=True) if brand else ""
             if any([sku_text, name_text, brand_text]):
