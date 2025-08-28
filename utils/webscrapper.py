@@ -110,13 +110,31 @@ def extract_content(html_source: str) -> Page:
 
     page_id, page_name = _derive_page_identity(html_source, h1_list, page_title_text)
 
+    # Extract products from carousel component
+    products_list: list[dict] = []
+    carousel = soup_for_title.select_one("div.carousel__component")
+    if carousel is not None:
+        for item in carousel.select("div.carousel__item"):
+            sku = item.select_one(".carousel__item--code")
+            name = item.select_one(".carousel__item--name")
+            brand = item.select_one(".carousel__item-manufacturer")
+            sku_text = sku.get_text(strip=True) if sku else ""
+            name_text = name.get_text(strip=True) if name else ""
+            brand_text = brand.get_text(strip=True) if brand else ""
+            if any([sku_text, name_text, brand_text]):
+                products_list.append({
+                    "sku": sku_text,
+                    "name": name_text,
+                    "brand": brand_text,
+                })
+
     return Page(
         page_id=page_id,
         page_name=page_name,
         heading=h1_list[0] if h1_list else "",
         sub_headings=headings_list,
         paragraphs=paragraphs_list,
-        products=[],
+        products=products_list,
         tags=[],
         projects=[],
         url=html_source,

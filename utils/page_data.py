@@ -8,7 +8,7 @@ class Page:
     heading: str
     sub_headings: List[str]
     paragraphs: List[str]
-    products: List[str]
+    products: List[dict]
     tags: List[str]
-    projects: List[str]
+    projects: List[dict]
     url: str

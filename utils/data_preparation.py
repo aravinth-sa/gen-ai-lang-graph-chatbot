@@ -3,7 +3,7 @@ from typing import List
 
 from utils.websource import get_page_urls
 from utils.webscrapper import extract_content
-from utils.data_transformation import to_csv
+from utils.data_transformation import to_json
 from utils.page_data import Page
 
 
@@ -26,8 +26,8 @@ def prepare_data() -> str:
         page = extract_content(url)
         pages.append(page)
 
-    output_csv = str(Path("dataset/output/pages.csv"))
-    to_csv(pages, output_csv)
-    return output_csv
+    output_json = str(Path("dataset/output/output-raw-page.json"))
+    to_json(pages, output_json)
+    return output_json
 
 
