@@ -1,0 +1,8 @@
+langgraph
+langchain
+langsmith
+python-dotenv
+langchain-groq 
+langchain_tavily
+beautifulsoup4==4.12.3
+lxml==5.2.2
