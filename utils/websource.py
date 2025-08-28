@@ -34,7 +34,7 @@ def get_loc_values(xml_file_path: str) -> list[str]:
     return loc_values
 
 
-def get_matching_loc_values(xml_file_path: str, contents: list[str]) -> list[str]:
+def get_page_urls(xml_file_path: str, contents: list[str]) -> list[str]:
     matches: list[str] = []
     for value in get_loc_values(xml_file_path):
         if any(fragment in value for fragment in contents):

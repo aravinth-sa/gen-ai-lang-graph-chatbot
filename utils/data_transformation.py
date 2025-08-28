@@ -1,7 +1,7 @@
 from typing import List
 import csv
 from pathlib import Path
-from data.page_data import Page
+from utils.page_data import Page
 
 
 def to_csv(pages: List[Page], output_path: str) -> None:

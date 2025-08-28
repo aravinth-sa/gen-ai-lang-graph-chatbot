@@ -3,8 +3,8 @@ from pathlib import Path
 import sys
 import requests
 from bs4 import BeautifulSoup
-from typing import List
-from data.page_data import Page
+from typing import List, Optional
+from utils.page_data import Page
 
 
 def extract_headings_and_paragraphs(html_content: str) -> dict[str, list[str]]:
@@ -66,11 +66,17 @@ def extract_headings_and_paragraphs(html_content: str) -> dict[str, list[str]]:
         "paragraphs": paragraph_elements,
     }
 
-def _derive_page_identity(url_or_path: str, h1_list: List[str]) -> tuple[str, str]:
+def _derive_page_identity(url_or_path: str, h1_list: List[str], page_title: Optional[str]) -> tuple[str, str]:
     # page_id from last non-empty path segment; fallback to 'index'
     segment = url_or_path.rstrip("/").split("/")[-1] or "index"
     page_id = segment.lower()
-    page_name = h1_list[0] if h1_list else page_id.replace("-", " ").title()
+    # Prefer HTML <title>, else H1, else humanized slug
+    if page_title and page_title.strip():
+        page_name = page_title.strip()
+    elif h1_list:
+        page_name = h1_list[0]
+    else:
+        page_name = page_id.replace("-", " ").title()
     return page_id, page_name
 
 
@@ -97,7 +103,12 @@ def extract_content(html_source: str) -> Page:
     headings_list = results.get("headings", [])
     paragraphs_list = results.get("paragraphs", [])
 
-    page_id, page_name = _derive_page_identity(html_source, h1_list)
+    # Extract <title> from HTML for page name if available
+    soup_for_title = BeautifulSoup(html_content, "lxml")
+    page_title_tag = soup_for_title.find("title")
+    page_title_text = page_title_tag.get_text(strip=True) if page_title_tag else None
+
+    page_id, page_name = _derive_page_identity(html_source, h1_list, page_title_text)
 
     return Page(
         page_id=page_id,

@@ -1,10 +1,10 @@
 from pathlib import Path
 from typing import List
 
-from data.websource import get_matching_loc_values
-from data.webscrapper import extract_content
-from data.data_transformation import to_csv
-from data.page_data import Page
+from utils.websource import get_page_urls
+from utils.webscrapper import extract_content
+from utils.data_transformation import to_csv
+from utils.page_data import Page
 
 
 def prepare_data() -> str:
@@ -19,7 +19,7 @@ def prepare_data() -> str:
     ]
 
     xml_path = str(Path("dataset/input/content-pages.xml"))
-    matching_urls = get_matching_loc_values(xml_path, contents)
+    matching_urls = get_page_urls(xml_path, contents)
 
     pages: List[Page] = []
     for url in matching_urls:
