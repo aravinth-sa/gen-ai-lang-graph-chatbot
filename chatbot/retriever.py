@@ -1,13 +1,92 @@
+import os
+import sys
+from typing import Any, Dict, List
+from pathlib import Path
+
+# Add parent directory to path to import config
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from config import Config
-from pinecone import Pinecone
+from pinecone import Pinecone, ServerlessSpec
+from openai import OpenAI
+from langchain_pinecone import PineconeVectorStore
+from langchain.embeddings.openai import OpenAIEmbeddings
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class PineconeRetriever:
+    """Class to handle Pinecone vector retrieval with OpenAI embeddings"""
+    
     def __init__(self):
-        self.pc = Pinecone(api_key=Config.PINECONE_API_KEY, environment=Config.PINECONE_ENVIRONMENT)
-        self.index = self.pc.Index(Config.PINECONE_INDEX_NAME)
+        """Initialize the retriever with Pinecone and OpenAI clients"""
+        try:
+            # Validate config
+            Config.validate_config()
+            self.config = Config()
+            
+            # Initialize OpenAI client for embeddings
+            self.openai_client = OpenAI(api_key=self.config.OPENAI_API_KEY)
+            
+            # Initialize Pinecone
+            self.pc = Pinecone(api_key=self.config.PINECONE_API_KEY)
+            
+            # Get index
+            self.index = self.pc.Index(self.config.PINECONE_INDEX_NAME)
+            
+            # Initialize OpenAI embeddings for LangChain
+            self.embeddings = OpenAIEmbeddings(openai_api_key=self.config.OPENAI_API_KEY)
+            
+            logger.info("PineconeRetriever initialized successfully")
+            
+        except Exception as e:
+            logger.error(f"Failed to initialize PineconeRetriever: {e}")
+            raise
+    
+    def get_embedding(self, text: str) -> List[float]:
+        """Get embedding for a text using OpenAI API"""
+        try:
+            response = self.openai_client.embeddings.create(
+                model="text-embedding-3-large",
+                input=text
+            )
+            return response.data[0].embedding
+        except Exception as e:
+            logger.error(f"Error getting embedding: {e}")
+            raise
+    
+    def get_retriever(self, search_kwargs: Dict[str, Any] = None):
+        """Get a retriever instance with the specified search parameters"""
+        try:
+            # Default search kwargs
+            if search_kwargs is None:
+                search_kwargs = {"k": 5}  # Default to top 5 results
+            
+            # Ensure we're using the correct embedding model that matches the index
+            self.embeddings = OpenAIEmbeddings(
+                model="text-embedding-3-large",
+                dimensions=3072,  # Match the index dimension
+                openai_api_key=self.config.OPENAI_API_KEY
+            )
+                
+            # Create a retriever using LangChain's PineconeVectorStore
+            vectorstore = PineconeVectorStore(
+                index=self.index,
+                embedding=self.embeddings,
+                text_key="text"  # The key in your Pinecone records that contains the text
+            )
+            
+            retriever = vectorstore.as_retriever(
+                search_kwargs=search_kwargs
+            )
+            
+            return retriever
+            
+        except Exception as e:
+            logger.error(f"Error creating retriever: {e}")
+            raise
 
-    def get_retriever(self):
-        return self.index.as_retriever()
-
-
+# Create a singleton instance
 retriever = PineconeRetriever()

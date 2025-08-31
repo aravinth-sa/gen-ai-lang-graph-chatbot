@@ -5,8 +5,8 @@ from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
-from chain import rag_chain
-from retriever import retriever
+from chatbot.chain import rag_chain
+from chatbot.retriever import retriever
 
 class AgentState(TypedDict):
     messages: List[BaseMessage]
@@ -64,65 +64,25 @@ def question_rewriter(state: AgentState):
 def question_classifier(state: AgentState):
     print("Entering question_classifier")
     system_message = SystemMessage(
-        content=""" You are a classifier that determines whether a user's question is about one of the following topics 
-    
-    
-    1. Building Manager Team  
-    2. Learning Outcomes and Objectives  
-    3. Dress Code  
-    4. Management Hierarchy  
-    5. Who Ya Gonna Call?  
-    6. Shift Scheduling  
-    7. Find a Cover/Trade  
-    8. Discipline  
-    9. Shift Reports  
-    10. Shift Change Chats  
-    11. Radio Etiquette  
-    12. Timesheet Edits Form  
-    13. The Event Schedule  
-    14. 7Point Ops  
-    15. Set Up Notes  
-    16. Determining AV Needs  
-    17. Function Housekeeper Info  
-    18. Building Rounds  
-    19. Locking Rooms  
-    20. Opening and Closing the Buildings  
-    21. Opening Checklist  
-    22. Closing Checklist  
-    23. Mandel Hall Closing  
-    24. Which Spaces Are Open to the Public  
-    25. Building Access and Double Tap  
-    26. Building Partners  
-    27. Managing Client Reservations  
-    28. Notes for RSO Events  
-    29. Notes for Departmental and External Events  
-    30. Audio Visual Equipment and Set Ups  
-    31. Loaning Out Miscellaneous Items  
-    32. Keys  
-    33. Moving Furniture  
-    34. Furniture Storage Locations  
-    35. Managing and Requesting Custodial/Maintenance Services  
-    36. Function Housekeeper  
-    37. The Mail  
-    38. Packages at Ida Noyes  
-    39. Lost and Found  
-    40. Answering the Phone(s)  
-    41. Transferring Calls  Reynolds Club  
-    42. Transferring Calls Ida Noyes Hall  
-    43. Emergency Procedures  
-    44. Troubleshooting  
-    45. Appendices  Key Lists  
-    46. General Shift Expectation Cheat Sheet  
-    47. Campus Resources
-    48. Desk Expectations 
-    49. Workday
-    50. Fire Safety
-    60. Children and Family Services
-    61. Building Manager Dress Code
-    
-    
-    If the question IS about any of these topics, respond with 'Yes'. Otherwise, respond with 'No'.
+        content=""" You are a domain-specific classifier for a building material supplier website based out of New Zealand.
+            Classify if the user’s query is related to given aspect (kitchens, bathrooms, heating-and-cooling, landscaping, cladding, insulation, plywood)
+            of building materials or supplier context, including but not limited to:
 
+            1. Building products 
+
+            2. Construction materials and supplies
+
+            3. DIY projects, renovation, or repair tasks involving these materials
+
+            4. Installation, maintenance, or usage of building products
+
+            5. Pricing, availability, or supplier services
+
+            6. Trade, delivery, or project stages involving materials
+
+            If the query is related to any of the above, answer Yes.
+            If not, answer No.
+            Do not explain. Only output Yes or No.
     """
     )
 
@@ -151,7 +111,7 @@ def on_topic_router(state: AgentState):
 
 def retrieve(state: AgentState):
     print("Entering retrieve")
-    documents = retriever.invoke(state["rephrased_question"])
+    documents = retriever.get_retriever().invoke(state["rephrased_question"])
     print(f"retrieve: Retrieved {len(documents)} documents")
     state["documents"] = documents
     return state
