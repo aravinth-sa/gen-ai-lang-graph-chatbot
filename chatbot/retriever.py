@@ -10,7 +10,7 @@ from config import Config
 from pinecone import Pinecone, ServerlessSpec
 from openai import OpenAI
 from langchain_pinecone import PineconeVectorStore
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 import logging
 
 # Set up logging
@@ -36,8 +36,12 @@ class PineconeRetriever:
             # Get index
             self.index = self.pc.Index(self.config.PINECONE_INDEX_NAME)
             
-            # Initialize OpenAI embeddings for LangChain
-            self.embeddings = OpenAIEmbeddings(openai_api_key=self.config.OPENAI_API_KEY)
+            # Initialize OpenAI embeddings for LangChain with the new package
+            self.embeddings = OpenAIEmbeddings(
+                model="text-embedding-3-large",
+                dimensions=3072,
+                openai_api_key=self.config.OPENAI_API_KEY
+            )
             
             logger.info("PineconeRetriever initialized successfully")
             
@@ -75,9 +79,11 @@ class PineconeRetriever:
             vectorstore = PineconeVectorStore(
                 index=self.index,
                 embedding=self.embeddings,
-                text_key="text"  # The key in your Pinecone records that contains the text
+                text_key="text",  # This is the key that will be used to extract text from metadata
+                namespace=""  # Make sure we're using the default namespace
             )
             
+            # Create a custom retriever that formats the results correctly
             retriever = vectorstore.as_retriever(
                 search_kwargs=search_kwargs
             )

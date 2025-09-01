@@ -203,7 +203,32 @@ def generate_answer(state: AgentState):
         {"history": history, "context": documents, "question": rephrased_question}
     )
 
+    # Get the base response
     generation = response.content.strip()
+    
+    # Add sources if available
+    if documents:
+        # Extract unique source URLs from documents
+        sources = set()
+        for doc in documents:
+            try:
+                # Debug print to see the document structure
+                print(f"Document metadata: {getattr(doc, 'metadata', {})}")
+                
+                # Try to get URL from different possible metadata fields
+                if hasattr(doc, 'metadata'):
+                    metadata = doc.metadata
+                    # Check for URL in different possible metadata fields
+                    url = metadata.get('url') or metadata.get('source')
+                    if url:
+                        sources.add(url)
+            except Exception as e:
+                print(f"Error processing document metadata: {e}")
+
+        print(f"Found sources: {sources}")
+        if sources:
+            generation += "\nSources:\n"
+            generation += "\n".join(f"- {source}" for source in sorted(sources))
 
     state["messages"].append(AIMessage(content=generation))
     print(f"generate_answer: Generated response: {generation}")

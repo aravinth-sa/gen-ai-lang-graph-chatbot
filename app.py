@@ -8,7 +8,7 @@ async def run_chatbot():
     graph = GraphConfig.create_graph({})
     
     # Prepare input data with HumanMessage
-    input_data = {"question": HumanMessage(content="tell me more about kitchen ranges?")}
+    input_data = {"question": HumanMessage(content="tell me more about Bathroom ranges?")}
     
     # Run the graph with invoke
     result = await graph.ainvoke(

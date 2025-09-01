@@ -154,7 +154,7 @@ class PineconeIndexer:
         
         return {
             'id': doc.get('page_id', f"doc_{hash(full_text)}"),
-            'text': full_text,
+            'page_content': full_text,
             'metadata': metadata
         }
     
@@ -189,13 +189,16 @@ class PineconeIndexer:
         for doc in batch:
             try:
                 # Get embedding
-                embedding = self.get_embedding(doc['text'])
+                embedding = self.get_embedding(doc['page_content'])
                 
-                # Create vector record
+                # Create vector record with text in metadata for retrieval
+                metadata = dict(doc['metadata'])
+                metadata['text'] = doc['page_content']  # Add text content to metadata
+                
                 vector_record = {
                     'id': doc['id'],
                     'values': embedding,
-                    'metadata': doc['metadata']
+                    'metadata': metadata
                 }
                 vectors.append(vector_record)
                 
