@@ -9,3 +9,4 @@ lxml==5.2.2
 pinecone
 langchain-pinecone
 openai
+streamlit

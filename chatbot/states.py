@@ -156,14 +156,16 @@ Otherwise, respond with 'No'."""
 def proceed_router(state: AgentState):
     print("Entering proceed_router")
     rephrase_count = state.get("rephrase_count", 0)
-    if state.get("proceed_to_generate", False):
+    MAX_RETRIES = 3  # Set your desired maximum retry limit
+    
+    if state.get("proceed_to_generate", False) and rephrase_count <= MAX_RETRIES:
         print("Routing to generate_answer")
         return "generate_answer"
-    elif rephrase_count >= 5:
-        print("Maximum rephrase attempts reached. Cannot find relevant documents.")
-        return "cannot_answer"
+    elif rephrase_count >= MAX_RETRIES:
+        print(f"Maximum rephrase attempts ({MAX_RETRIES}) reached. Routing to off_topic_response.")
+        return "off_topic_response"
     else:
-        print("Routing to refine_question")
+        print(f"Routing to refine_question (attempt {rephrase_count + 1}/{MAX_RETRIES})")
         return "refine_question"
     
 def refine_question(state: AgentState):
@@ -213,7 +215,7 @@ def generate_answer(state: AgentState):
         for doc in documents:
             try:
                 # Debug print to see the document structure
-                print(f"Document metadata: {getattr(doc, 'metadata', {})}")
+                # print(f"Document metadata: {getattr(doc, 'metadata', {})}")
                 
                 # Try to get URL from different possible metadata fields
                 if hasattr(doc, 'metadata'):
@@ -225,7 +227,7 @@ def generate_answer(state: AgentState):
             except Exception as e:
                 print(f"Error processing document metadata: {e}")
 
-        print(f"Found sources: {sources}")
+        #print(f"Found sources: {sources}")
         if sources:
             generation += "\nSources:\n"
             generation += "\n".join(f"- {source}" for source in sorted(sources))
@@ -250,5 +252,16 @@ def off_topic_response(state: AgentState):
     print("Entering off_topic_response")
     if "messages" not in state or state["messages"] is None:
         state["messages"] = []
-    state["messages"].append(AIMessage(content="I'm sorry! I cannot answer this question!"))
+    
+    # Initialize a chat model with higher temperature for more creative responses
+    chat = ChatOpenAI(temperature=0.7)  # Increased temperature for more creative responses
+    
+    # Generate a creative response
+    response = chat.invoke([
+        SystemMessage(content="You are a creative assistant that generates fun, engaging responses when asked off-topic questions."),
+        HumanMessage(content="I was asked this question but it's off-topic. Please generate a creative, fun response that gently guides the conversation back to the topic of Building Materials & Hardware. The original question was: " + state["question"].content)
+    ])
+    
+    # Add the AI's response to the messages
+    state["messages"].append(AIMessage(content=response.content))
     return state
