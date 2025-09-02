@@ -1,5 +1,86 @@
 [
   {
+    "page_id": "custom-wardrobes",
+    "page_name": "Wardrobe Range | PlaceMakers NZ",
+    "heading": "Wardrobe Range",
+    "sub_headings": [
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers 1800mm Wardrobe with Shelves",
+      "PlaceMakers 1800mm Wardrobe with Shelves",
+      "PlaceMakers Kids Bedroom Wardrobe",
+      "PlaceMakers Kids Bedroom Wardrobe",
+      "PlaceMakers 1800mm Wardrobe with Drawers",
+      "PlaceMakers 1800mm Wardrobe with Drawers",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers 2400mm Wardrobe",
+      "PlaceMakers 2400mm Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers 2400mm Wardrobe",
+      "PlaceMakers 2400mm Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "PlaceMakers Master Bedroom Wardrobe",
+      "View Wardrobes Catalogue",
+      "OUR 4 STEP PROCESS",
+      "MEET OUR WARDROBE CONSULTANT"
+    ],
+    "paragraphs": [
+      "Made to order wardrobes with a range of standard size configurations or created custom to your requirements. You choose the colour, configuration and wardrobe door sliders to match. We can arrange for a measure, design and installation for a wardrobe to suit your needs and space. Visit your local PlaceMakers branch for more details on how to order your customised wardrobe today.",
+      "Made to order wardrobes with a range of standard size configurations or created custom to your requirements. You choose the colour, configuration and wardrobe door sliders to match. We can arrange for a measure, design and installation for a wardrobe to suit your needs and space. Visit your local PlaceMakers branch for more details on how to order your customised wardrobe today.",
+      "Bring your dream wardrobe to life with our four simple step guide.",
+      "We want you to enjoy the process of creating your new wardrobes. Talk to our wardrobe consultant at your local store."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes"
+  },
+  {
+    "page_id": "wardrobes",
+    "page_name": "Wardrobes | PlaceMakers NZ",
+    "heading": "PLACEMAKERS WARDROBES",
+    "sub_headings": [
+      "Get organised with our wardrobe solutions",
+      "View PlaceMakers Wardrobe Range",
+      "View PlaceMakers Wardrobe Range",
+      "Book a Wardrobe Consultation",
+      "Book a Wardrobe Consultation",
+      "View Custom Wardrobes",
+      "View Custom Wardrobes",
+      "View Wire Wardrobes",
+      "View Wire Wardrobes",
+      "View Storage Boxes",
+      "View Storage Boxes",
+      "View Wardrobes Catalogue",
+      "OUR 4 STEP PROCESS",
+      "VIEW DOOR OPTIONS"
+    ],
+    "paragraphs": [
+      "Explore our extensive range of wardrobe solutions designed to suit your lifestyle and budget. From versatile free-standing modular systems and easy-to-install wire configurations to fully custom, made-to-measure options — we have the perfect fit for every space. Whatever your needs, you'll find the right wardrobe solution here.",
+      "Made to order wardrobes with a range of standard size configurations or created custom to your requirements. You choose the colour, configuration and wardrobe door sliders to match. We can arrange for a measure, design and installation for a wardrobe to suit your needs and space. Visit your local PlaceMakers branch for more details on how to order your customised wardrobe today.",
+      "Bring your dream wardrobe to life with our four simple step guide.",
+      "Each wardrobe Smooth slide door is individually made to suit your requirements."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes"
+  },
+  {
     "page_id": "decking",
     "page_name": "Decking Guide | Timber Decking Inspiration | PlaceMakers NZ",
     "heading": "DECKING",
@@ -149,6 +230,11 @@
       "View the Landscaping Catalogue"
     ],
     "products": [
+      {
+        "sku": "2331023",
+        "name": "Radiata Rough Sawn Fence Paling H3.2 CCA Treated 150 x 25mm x 1.8m",
+        "brand": ""
+      },
       {
         "sku": "2339323",
         "name": "Radiata Rough Sawn Fence Rail H3.2 CCA Treated 100 x 50mm x 4.8m",
@@ -468,18 +554,32 @@
   {
     "page_id": "landscaping",
     "page_name": "Landscaping | Outdoor Living | PlaceMakers NZ",
-    "heading": "CREATE YOUR DREAM OUTDOOR SPACE",
+    "heading": "THE PLACE FOR LANDSCAPING",
     "sub_headings": [
+      "Create dream outdoor spaces",
+      "PLACEMAKERSTRADE",
+      "EXCLUSIVE DEAL",
+      "SPEND, EARN,REDEEM",
+      "September to November",
+      "SPEND$500on Landscaping=50 Pointsto REDEEM on GEAROR EXCHANGE FOR PLUS POINTS",
+      "PLUS, BE IN TO WIN A$6K GETAWAYFOR 2",
+      "Australian Tennis Open- January 2026NRL Magic round- May 2026State of Origin- July 2026Melbourne Cup- November 2026",
       "ELEMENTS OF CREATING YOUR SPACE",
       "DECKING",
+      "Built for Living, Made to Last",
       "FENCING",
-      "OUTDOOR ROOMS",
-      "PAVING",
+      "The right fence for privacy, protection, and style",
       "RETAINING",
+      "Strong retaining solutions for lasting beauty",
+      "PAVING",
+      "Premium paving for patios, paths, and driveways",
+      "OUTDOOR ROOMS",
+      "Pergolas and translucent roofing made easy",
       "GARDEN CARE",
-      "Discover PlaceMakers Landscaping Projects",
-      "Featured Project",
-      "HERO YOUR VIEW",
+      "Simple care for a thriving outdoor space",
+      "PlaceMakers Landscaping Projects",
+      "Hobsonville, Auckland",
+      "Hero your view",
       "Explore More Projects",
       "DECORATIVE STEEL FENCE FEATURE",
       "CRYSTAL CLEAR SWIMMING POOL FENCE",
@@ -492,15 +592,15 @@
       "Landscaping Catalogue"
     ],
     "paragraphs": [
-      "Get inspired for your next landscaping project. Whether you're upgrading the deck, adding a pergola or polycarbonate roofing, maximising your space with retaining, improving access with paving, or gaining privacy with a new fence. With a comprehensive range of materials, we can help you create your dream outdoor space.",
+      "Get inspired for your next landscaping project. Whether you're upgrading the deck, adding a pergola or polycarbonate roofing, maximising your space with retaining, improving access with paving, or gaining privacy with a new\n fence. With a comprehensive range of materials, we can help you create your dream outdoor space.",
+      "With every Landscaping Point earned - You can choose from:",
       "Transform your outdoor space into a beautiful and functional area. Explore PlaceMakers range of decking, fencing, paving, outdoor rooms, and retaining options, all of which are designed to enhance the aesthetic appeal, functionality, and value of your property. Whether you want to create a relaxing outdoor retreat or add privacy and security to your home, landscaping professionals can help you achieve your desired outcomes through expert design and installation.",
       "A deck extends the living areas of your home and creates a seamless indoor-outdoor flow that Kiwis love.",
       "A comprehensive guide to fencing types and styles to compliment your home. Add privacy, protection and curb appeal.",
-      "A comprehensive guide to pergolas and translucent roofing for stylish and functional backyards.",
-      "Upgrade your outdoor space with the best paving products for your patio, pathway, and driveway projects.",
       "Retaining walls and erosion control for a beautiful and protected yard.",
+      "Upgrade your outdoor space with the best paving products for your patio, pathway, and driveway projects.",
+      "A comprehensive guide to pergolas and translucent roofing for stylish and functional backyards.",
       "Everything you need to maintain and look after your backyard or garden oasis.",
-      "From contemporary courtyards to lush gardens, see how our products have transformed real Kiwi homes.",
       "When designing the outdoor space of this new build, the homeowner wanted to hero the stunning views over the Waitematā Harbour. Featuring a terraced Kwila deck with upper level for indoor-outdoor living, and lower level with swimming pool fenced by frameless glass panels. Glass panels are made of 12mm toughened safety glass and come in standard or EnduroShield-treated options.",
       "A multi-level Kwila timber deck steps down towards the mangroves offering views to the ocean",
       "Fentec produces fences and gates to enhance the value and safety of your home. The Fentec range will enhance the appeal of your property, will preserve your privacy and protect your greatest assets.",
@@ -855,6 +955,706 @@
     "tags": [],
     "projects": [],
     "url": "https://www.placemakers.co.nz/online/projects/cladding/cladding-comparison-table"
+  },
+  {
+    "page_id": "exterior-painting",
+    "page_name": "DIY Guide | Painting Exterior Walls | PlaceMakers",
+    "heading": "Building a Concrete Block Retaining Wall",
+    "sub_headings": [
+      "The Complete How To Guide to Exterior Painting",
+      "Getting Started",
+      "In this article:",
+      "Tools you'll need",
+      "Preparation",
+      "Washing Exterior Surfaces",
+      "Check Existing Paint",
+      "Sanding and Filling",
+      "Window Frames",
+      "Roofs",
+      "Painting",
+      "Paint System",
+      "Read the Label",
+      "Painting Sequence",
+      "Tips",
+      "Painting",
+      "Masking",
+      "Popular Exterior Paints",
+      "Building a Timber Retaining Wall",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Painting the exterior of your house can take a number of weeks to complete. Because of this it is recommended that you prepare and paint only one side of the house at a time. Preparation is the key to any good paint job so no task should be overlooked when preparing your\nhouse for painting (refer to our Know How brochure Preparing to Paint).",
+      "The paint work must be in good, sound condition, with no rusty areas, peeling or flaking paint. It must be free from contaminants such as mould, lichen, mildew and any other contaminant that will affect the adhesion of the new paint.",
+      "Salt deposits from coastal environments, \n industrial fallout and aeroplane contaminants must all be treated to remove. To extend the life of your painted finish it is advisable to wash down the outside of your house on a regular basis – once a year. This removes ingrained\ncontaminants from the paint work that slowly wear away the surface coating, resulting in premature failure.",
+      "1. Tools2. Preparation",
+      "Water blasting the exterior timber is not advisable as it can damage softer timbers and force water into the fibres, resulting in the possibility of cracked and warped surfaces.",
+      "Wash the exterior surfaces with sugar soap to remove the contaminants and flush with plenty of fresh water. It is advisable to wash small areas at a time to avoid the wash solution drying which then makes it difficult to remove.",
+      "Mould can be a major issue with some houses, especially on the southern side of the house. This should be treated with the appropriate mould remover/killer prior to preparation.",
+      "Loose, flaking and cracked paint should be completely removed to avoid adhesion problems later in the paint’s life. Check all areas of the paint work for peeling. A simple test to check for adhesion is to put an X cut in the paint work with a sharp knife. Put a piece of sticky tape over the cut, sticking down well, and pull the tape off. If any paint comes off then the area will have to be stripped back to a sound surface.",
+      "A)Check to see if your old paint is in good condition by making several cuts with a sharp knife or razor blade.",
+      "B)Press a piece of strong adhesive tape across the area and peel it off.",
+      "C)If the paint comes off with the tape, the surface should be stripped, sanded or scraped back to bare wood if possible.",
+      "Sand the surface well, this helps the new paint to adhere.",
+      "Any nails that have been exposed should be punched below the surface and it is advisable to prime with an anti-corrosive metal primer to avoid rust staining. This is also advisable if you have sanded any metal soakers (timber jointers) or any other steel surfaces prone to rust. If rust is evident, wire brush to remove as much rust as possible and treat with a metal prep prior to priming with your anticorrosive metal primer. All holes should be filled with appropriate exterior filler, then sanded when dry and primed/undercoated.",
+      "If there is any possibility of the tannin timber treatment bleeding through light coloured acrylic finishes, it is advisable to prime using an oil-based wood primer.",
+      "Fibre-cement or concrete finishes should be washed with an appropriate cleaner prior to repainting with your 100% acrylic finish. A minimum of 2 coats is required.",
+      "Window frames that have had the putty dry and fall out should be reputtied. Remove all the old putty and clean the surface well so it’s free from contaminants. Prime the surface with oil-based wood primer and allow to dry. Once this has dried you can apply new putty, which should be left for approximately 3 weeks prior to painting. The reason for priming prior to applying the putty is that the oil in the putty will absorb into the woodwork, and the putty will dry out and fall out again.",
+      "Most roofs will have some corrosion to deal with. Avoid water blasting, and make sure the surface is sound with no rust present. Wash the roof down with sugar soap, covering a small area at a time, and then flush off with fresh water until all areas are clean and free from contaminants. If there is rust, sand the affected areas and treat with the appropriate kill rust primer. Prime any bare areas with Galvanised Iron Primer and once dry, apply two finish coats of roof paint (minimum 2 hours between coats at 20°C and 65% humidity).",
+      "With the amount of work involved in preparing the exterior for painting, it is recommended that you purchase the best possible product for the job to avoid disappointment later when the ‘cheaper’ paint starts to fail. Refer to our Know How brochures Selecting the Right Roller, Selecting the Right Brush and Choosing the Right Paint to help you get the best result.",
+      "Once you have chosen your final colour, purchase all the paint at the same time and box (mix) all the containers of the same colour together to eliminate the colour variation that can occur within paints.",
+      "The final topcoat that provides the perfect colour and finish is only part of a system of paints and preparations working as a team. Some paints are a simple system comprising two or three coats of the same paint. Paint intended for bare woodwork or metalwork often needs a more complex system, using paints with different qualities.",
+      "Check with your local PlaceMakers and/or consult paint manufacturer’s brochures to select the right system for your needs.",
+      "The paint can label holds vital information about how to apply the paint, as well as which undercoats and primers are compatible. Read it carefully and follow the instructions exactly. If you want clarification, ask PlaceMakers.",
+      "Before starting, check the weather. Avoid painting in both very hot (more than 27˚C) or very cold (less than 10˚C) conditions. Fog or dusty conditions should also be avoided. Plan to finish painting at least two hours before sundown. Dew fall, as well as rain, can damage the paint.",
+      "As a general rule, the parts of the house should be painted in this order:",
+      "1. Roof.Apply the necessary primers or undercoats as directed by the instructions on the can for the finishing coat. Paint all the ridge, hip and valley flashings by brush and then fill the large areas with a roller for corrugated steel. Check the paint around nail and screw heads and touch up by brush where necessary.",
+      "2. Eaves and verandah ceilings soffits.Paint all the barge and fascia boards and then the soffits. If your spouting is snapfastened PVC, removing the spouting can make painting the fascia much easier.",
+      "3. Walls.Start at the highest point and paint the full length of the wall. Work down the wall, painting in wide vertical strips making sure you brush back into the wet edge of the previous strip. Then go back to the top and lightly run over the newly painted area with your brush to ensure even coverage and a smooth finish. For weatherboards, start at the top of the wall. Paint one or two boards at a time. Paint the under edge first, then the face of the boards working across then down.",
+      "4. Windows.Either cut in around the glass with a cutting in brush, or mask the glass.",
+      "5. Doors.Paint the edges first then apply paint to the face of the door, starting at the top. If the door has a moulding, paint the moulding first then do the remainder of the panels. If the door has a threshold, do that last.",
+      "Dip no more than the first third of the brush into the paint, wiping off the excess on either side of the paint container, (not the rim) to prevent drips.",
+      "When using acrylic paint, brushes and rollers should be washed out regularly to maintain paint flow.",
+      "Apply a strip of masking tape around the perimeter of the glass, 2 or 3mm from the frame, allowing a narrow strip of painted glass to provide a weather seal.",
+      "Remove the masking tape as the paint starts to dry and it will come away without tearing the paint film.",
+      "This article has been produced with proper care, however the advice offered within is general in nature. PlaceMakers is not responsible for the application of the advice offered and takes no responsibility for the accuracy or completeness of it. PlaceMakers will also not be liable for any consequential loss howsoever arising from the use of goods sold, nor for any loss caused by defective or inadequate structures in which goods are incorporated.",
+      "In this guide, we'll take you step by step through the process of building a basic timber retaining wall, with tips and tricks to help you achieve professional results.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4064456",
+        "name": "Levene Fence Paint Low Sheen Ebony 10L",
+        "brand": "LEVENE"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/how-to-guides/painting/exterior-painting"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-1",
+    "page_name": "PlaceMakers Custom Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "Custom walk-in wardrobe",
+    "sub_headings": [
+      "From $2,532",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Multiple hanging rails, shelving and handleless drawers for a seamless look.",
+      "Finish:Melteca Oyster Linea 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-1"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-5",
+    "page_name": "PlaceMakers Custom Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "Custom sliding door wardrobe",
+    "sub_headings": [
+      "From $2,532",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Tall hanging rail with shelf above. Double hanging rails to left and right of of tower which features two slim and two deep handleless drawers. Custom Mediterranean sliding doors. Frames in anodised silver with white panels and flush pull handles.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-5"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-6",
+    "page_name": "PlaceMakers Custom Sliding Door Wardrobe | PlaceMakers NZ",
+    "heading": "Custom sliding door wardrobe",
+    "sub_headings": [
+      "From $4,585",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Excludes installation.",
+      "Double hanging rails with three-drawer tower to the right. Tall hanging rail with drawer above. Custom Mediterranean sliding frosted glass doors in anodised silver with flush pull handles.",
+      "Finish:Melteca Blackened Legno Naturale 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-6"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-3",
+    "page_name": "PlaceMakers Custom Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "Custom walk-in wardrobe",
+    "sub_headings": [
+      "From $3,058",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Multiple hanging rails, shelving and handleless drawers for a seamless look.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-3"
+  },
+  {
+    "page_id": "wardrobe-cd2-1800mm-with-shelf-tower",
+    "page_name": "PlaceMakers 1800mm Wardrobe | PlaceMakers NZ",
+    "heading": "PlaceMakers 1800mm wardrobe",
+    "sub_headings": [
+      "From $538.99",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Five shelf tower. Double hanging rail and single tall hanging rail with shelf above.",
+      "Finish:Melteca Cinnamon Ash Naturale 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/wardrobe-cd2-1800mm-with-shelf-tower"
+  },
+  {
+    "page_id": "wardrobe-cd2-1800mm-with-shelf-tower-and-drawers",
+    "page_name": "PlaceMakers 1800mm Wardrobe with drawers | PlaceMakers NZ",
+    "heading": "PlaceMakers 1800mm wardrobe with drawers",
+    "sub_headings": [
+      "From $913",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Four shelf tower with two drawers. Double hanging rail and single tall hanging rail with shelf above.",
+      "Finish:Melteca Cinnamon Ash Naturale 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/wardrobe-cd2-1800mm-with-shelf-tower-and-drawers"
+  },
+  {
+    "page_id": "kids-bedroom-wardrobes",
+    "page_name": "PlaceMakers Kids Bedroom Wardrobes | PlaceMakers NZ",
+    "heading": "PlaceMakers kids bedroom wardrobes",
+    "sub_headings": [
+      "From $1,570",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Shelving tower with one slim and two deep handleless drawers. Hanging rails either side with shelves above. Custom sliding doors in white, smoothslide door and track system.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/kids-bedroom-wardrobes"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-2",
+    "page_name": "PlaceMakers Custom Sliding Door Wardrobe | PlaceMakers NZ",
+    "heading": "PlaceMakers custom sliding door wardrobe",
+    "sub_headings": [
+      "From $4,246",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Wardrobe Organisers",
+      "Shelf/drawer towers with double and single hanging rails. Pricing from $2,577*",
+      "Finish:Melteca Aged Ash 16mm melamine",
+      "Smoothslide Doors on Double Track",
+      "Full height mirrored doors with aluminium frame and mid-rail supports. Pricing from $1,669*",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-2"
+  },
+  {
+    "page_id": "wardrobe-cd3-2400mm-with-shelf-tower",
+    "page_name": "PlaceMakers 2400mm Wardrobe | PlaceMakers NZ",
+    "heading": "PlaceMakers 2400mm wardrobe",
+    "sub_headings": [
+      "From $738",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Five shelf tower with double and single hanging rails.",
+      "Finish:Melteca Aged Ash 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/wardrobe-cd3-2400mm-with-shelf-tower"
+  },
+  {
+    "page_id": "wardrobe-cd3-2400mm-with-shelf-tower-drawers",
+    "page_name": "PlaceMakers 2400mm Wardrobe with drawers | PlaceMakers NZ",
+    "heading": "PlaceMakers 2400mm wardrobe with drawers",
+    "sub_headings": [
+      "From $1,115",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Four shelf and two drawer tower with double short and single tall hanging rails.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/wardrobe-cd3-2400mm-with-shelf-tower-drawers"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-9",
+    "page_name": "PlaceMakers Custom Sliding Door Wardrobes | PlaceMakers NZ",
+    "heading": "PlaceMakers custom sliding door wardrobe",
+    "sub_headings": [
+      "From $3,246",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Tall hanging rail on left, with two-drawer tower. Double short hanging rails with shelved tower on right.",
+      "Custom Mediterranean sliding doors. Frames in anodised silver with frosted glass and flush pull handles.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-9"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-7",
+    "page_name": "PlaceMakers L Shaped Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "PlaceMakers custom L shaped walk-in wardrobe",
+    "sub_headings": [
+      "From $2,520",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "L-shape configuration with two tall hanging sections and one larger double hanging rail. Two matching towers with shelving and two drawers for each side of the wardrobe giving optimal space and storage usage.",
+      "Finish:Melteca Charred Oak 16mm melamine",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-7"
+  },
+  {
+    "page_id": "bedroom-wardrobes",
+    "page_name": "PlaceMakers Custom Wardrobes | PlaceMakers NZ",
+    "heading": "PlaceMakers custom wardrobe organisers",
+    "sub_headings": [
+      "From $2,032",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Shelving tower with two deep drawers – no handles and hanging either side.Custom sliding doors with mirror panels, Smoothslide door and track system.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/bedroom-wardrobes"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-8",
+    "page_name": "PlaceMakers Custom Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "Custom wardrobe",
+    "sub_headings": [
+      "From $1,640",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Tall hanging with shelf above and tower to the right which features two slim and two deep handle less drawers. Double hanging along the back wall for plenty of space for a main bedroom.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-8"
+  },
+  {
+    "page_id": "master-bedroom-wardrobes-4",
+    "page_name": "PlaceMakers Custom Walk-in Wardrobe | PlaceMakers NZ",
+    "heading": "Custom walk in wardrobe",
+    "sub_headings": [
+      "From $2,532",
+      "Finish",
+      "Available finishes",
+      "Handle options",
+      "DOOR OPTIONS",
+      "BOOK A CONSULTATION"
+    ],
+    "paragraphs": [
+      "Pricing will vary depending on size and colour specifications. Excludes installation.",
+      "Custom wardrobe organiser with multiple hanging rails, shelving and handle less drawers for a seamless look.",
+      "Finish:Trade Essentials White Gloss 16mm whiteboard",
+      ".",
+      ".",
+      ".",
+      "Take a look at our wardrobe door selection",
+      "Enjoy the process of creating your dream wardrobe. Talk to us about making your wardrobe requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes/custom-wardrobes/master-bedroom-wardrobes-4"
+  },
+  {
+    "page_id": "timber-1",
+    "page_name": "Timber | PlaceMakers NZ",
+    "heading": "Timber Products",
+    "sub_headings": [],
+    "paragraphs": [
+      "PlaceMakers is one of the largest suppliers of timber in New Zealand. With our long history of supplying the trade market, PlaceMakers offers a range of quality timber second to none. PlaceMakers is committed to the sourcing of timber from legal and responsibly managed forests and where possible ensures imported and locally sourced timber carries a recognised international certification such as Forest Stewardship Council® (FSC®) or Programme for the Endorsement of Forest Certification (PEFC). Our team of buyers are regularly visiting the mills that produce the timber to ensure New Zealand Standards are being meet. If you have any questions regarding any of our timber products, please contact one of our PlaceMakers stores.",
+      "Look out for our FSC® certified products, FSC® Chain of Custody (COC) is available on request. PlaceMakers FSC® licence number: FSC-C167864"
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1"
+  },
+  {
+    "page_id": "structural-timber",
+    "page_name": "Structural Timber | PlaceMakers NZ",
+    "heading": "Structural Timber",
+    "sub_headings": [
+      "ENQUIRE NOW"
+    ],
+    "paragraphs": [
+      "PlaceMakers are the leading supplier of structural timber. We offer a comprehensive range of high-quality, sustainably sourced, rough sawn and gauged product for all structural uses.  Products can be purchased individually or by the pack.  Our staff will help you determine what product is right for your job . Don't forget to ask about PlaceMakers delivery service.",
+      "Products available include:",
+      "Talk to your local PlaceMakers store about your structural timber needs."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/structural-timber"
+  },
+  {
+    "page_id": "engineered-timber",
+    "page_name": "Engineered Timber | PlaceMakers NZ",
+    "heading": "Engineered Timber",
+    "sub_headings": [
+      "ENQUIRE NOW"
+    ],
+    "paragraphs": [
+      "PlaceMakers offers a large range of high performance engineered timber products. These products have been designed to be stronger and more stable than solid wood.  They can cost more initially but be a good choice in the long run.  We have a product for you whether it be for a residential, commercial, industrial, formwork or scaffolding application. We also have a full trade quality range of accessories to help complete your project.  Don't forget to check out the latest version of our Fastenings Catalogue for our huge range of screws, nails, nuts and bolts to do the job right.  Beams and poles can be large and heavy so don't forget to ask about our delivery service.",
+      "Products available include:",
+      "Talk to your local PlaceMakers store about your engineered timber needs."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/engineered-timber"
+  },
+  {
+    "page_id": "non-structural-timber",
+    "page_name": "Non-Structural Timber | PlaceMakers NZ",
+    "heading": "Non-Structural Timber",
+    "sub_headings": [
+      "ENQUIRE NOW"
+    ],
+    "paragraphs": [
+      "PlaceMakers has an extensive range of non-structural timber, untreated and treated. Whether it is a retaining wall or boxing for your concrete footpath, PlaceMakers can supply what you need to complete your project. We also have a full range of quality trade accessories such as posts, Dricon, fastenings and paint.  Contact your local branch for more information about specific products and ask about our delivery service.",
+      "Products available include:",
+      "Talk to your local PlaceMakers store about your non-structural timber needs."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/non-structural-timber"
+  },
+  {
+    "page_id": "mouldings",
+    "page_name": "Mouldings | PlaceMakers NZ",
+    "heading": "Mouldings",
+    "sub_headings": [
+      "ENQUIRE NOW"
+    ],
+    "paragraphs": [
+      "PlaceMakers offers a leading range of mouldings. Solid NZ Radiata pine, finger-jointed NZ Radiata pine, MDF - we have it all in treated, untreated, unprimed, preprimed and pre-coated finishes. After a custom character or designer moulding? We can source these for you too. A little extra spent on mouldings can really finish off the look of your home, taking it to the next level. Don't forget to pick up your nails and paint while you are in store or ask about our delivery service.",
+      "Products available include:",
+      "Talk to your local PlaceMakers store about your moulding needs"
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/mouldings"
+  },
+  {
+    "page_id": "frame-truss",
+    "page_name": "Frame & Truss | PlaceMakers NZ",
+    "heading": "Frame & Truss",
+    "sub_headings": [
+      "What we offer:",
+      "PlaceMakers Innovations in Frame and Truss Manufacturing",
+      "Delivery",
+      "Technology",
+      "Safety",
+      "Framology"
+    ],
+    "paragraphs": [
+      "PlaceMakers Frame and Truss delivers you value for money and saves you time on assembly. We deliver your order right first time, on time.",
+      "PlaceMakers is revolutionising New Zealand homes with innovative frame and truss manufacturing techniques, ensuring quality and efficiency every step of the way.",
+      "Framology - Smart thinking, Manufactured.\nWall framing in NZ is evolving and a shifting regulatory landscape raises the question of how can we do this better?\n\nPlaceMakers Frame and Truss have a pipeline of new solutions which will feature under the title of Framology - so if you see it, know that it is us saying - here is a better way.",
+      "PlaceMakers Frame and Truss Terms & Conditions",
+      "Unless stated otherwise these terms and conditions apply to any Estimate or Purchase Order for the supply of PlaceMakers Manufactured Products and Services PlaceMakers Manufactured Products and Services Products include: detailing and manufacture of frames, trusses, pre-cut roof components, cassette floors, posi-struts, beams and other prefabricated products or components as set out in the Estimate or PurchaseOrder.",
+      "1.1.      PlaceMakers Standard Terms of Trade (“Terms of Trade”) apply. If there is any conflict between these PlaceMakers Frame and Truss Terms & Conditions  and the Terms of Trade, then the Terms of Trade will prevail. You, the Customer are deemed to have accepted these PlaceMakers Frame & Truss Standard Terms and Conditions upon requesting PlaceMakers to provide the PlaceMakers Manufactured Products as set out in the Purchase Order and/or Production Request Form.",
+      "1.2.      PlaceMakers will endeavour to ensure the accuracy of any Estimate based on the information supplied by the Customer. The Customer is solely responsible for and, must provide accurate complete comprehensive up to date plans (most recent and preferably consented plans) specifications and other requisite information.",
+      "1.3       PlaceMakers relies on the information supplied by (or on behalf of) the Customer in detailing and manufacturing Manufactured Products. It is the Customer's responsibility to ensure that the information supplied meets the requirements of the NZ Building Code, NZS 3604 or any other relevant legislation, regulations, standards or codes of practice.",
+      "1.4       If the plans or specifications change, resulting in a change to the measurements or requirements or a departure from industry tolerances the Customer must immediately notify PlaceMakers of such changes and receive acceptance of such changes in writing and prior to manufacture. This may include a new PRF at PlaceMakers’ discretion.",
+      "1.5       The Customer is responsible for the accuracy of the information upon which the Estimate and the PRF is based and is responsible for checking all items and the quantities of materials before budgeting or pricing and before placing orders. PlaceMakers excludes liability for any differences which arise between our Estimate and any estimated quantities and final quantities ordered by the Customer.",
+      "1.6       Any material changes to the specification or agreed plans for production may render an Estimate invalid at PlaceMakers’ discretion.",
+      "1.7       Any change to the agreed plans for production which is not material but will add cost may be treated and charged as a variation at PlaceMakers’ discretion.",
+      "1.8       The agreed plans for production (most recent and preferably consented plans) , drawings, specifications and other design information must be supplied before production will proceed.",
+      "1.9       Architectural plans lacking necessary information may cause any detailing and/or manufacture to be put \"on hold\" until rectified by the Customer.",
+      "1.10.     PlaceMakers excludes liability for design and architectural errors or omissions.",
+      "1.11      PlaceMakers excludes liability for any design or structural engineering errors of omissions.",
+      "1.12      PlaceMakers excludes liability for any inconsistency between architectural and structural engineering plans.",
+      "1.13      Where projects contain structural steel components such as steel portals, frames, beams or posts that could interfere with framing, PlaceMakers may require additional time between these components being installed on site and frame/truss delivery manufacture and delivery due to the potential for site measures being required to confirm dimensions before frame and truss manufacture. The Customer must ensure appropriate lead times to take account such delays or requirements.",
+      "1.14.     The prices in an Estimate are GST exclusive and will remain valid for a period of30 Daysonly from the date of the Estimate.",
+      "1.15.     Only items shown on the Estimate are included.",
+      "1.16      Material, manufacturing and supplier price increases and costs will be passed through to theCustomerand will apply at the date of invoicing unless the Estimate pricing is still valid or as otherwise agreed in writing by PlaceMakers.",
+      "1.17      The Customer will be invoiced by the PlaceMakers branch on completion of manufacture and payment will be due in full in cleared funds by the 20thday of the month irrespective ofdelivery.",
+      "1.18      No allowance has been made for a site visit, site measure or special engineering design.",
+      "1.19.     Trusses under 15 degrees may require a raised heel height greater than is specified on architectural plans to design. If heel heights are not noted on the Estimate, it is the Customer’s responsibility to raise and confirm the heel height before final plans are submitted for production.",
+      "1.20.     If no durability zones are specified, it will be assumed that the project is located in NZS 3604 1999 Building Zone 1, and is not in Sea Spray, Geothermal zones or Very High Wind zones. The Customer must confirm this in the PRF.",
+      "1.21.     Estimates are based on the trusses being \"enclosed\" under NZS 3604 guidelines, in particular reference to coastline (no allowance has been made for stainless steel fixings or nail plates).",
+      "1.22      Mitek Stud-Lock screw price is only to fit to load bearing walls directly under a roof unless specified otherwise by the architect",
+      "1.23.     No allowance made for the cutting of bastard mitres, complex/compound seat cuts.",
+      "1.24.     No allowance made for special stud to top plate fixings, or any other frame hardware.",
+      "1.25.     No allowance made for FSC timber.",
+      "1.26.     No allowance made for curved/circular lintels. Curved walls supplied as loose components only (if applicable).",
+      "1.27.     No allowance for extra fixings for frames or trusses.",
+      "1.28.     Exposed trusses/rafters/beams are excluded",
+      "1.29      Risk passes on delivery, title passes on payment in full.",
+      "1.30.     Unless stated otherwise, the cost of delivery to the site is excluded from the Estimate. Delivery will be charged at PlaceMakers branch standard delivery rates or as otherwise agreed in writing.",
+      "1.31.     As construction techniques and site conditions can vary and all circumstances on site cannot be reasonably anticipated nor controlled by PlaceMakers. PlaceMakers excludes liability for site conditions.",
+      "1.32.     Delivery to site is by standard Hiab, maximum 12 metre reach.",
+      "1.33.     Any additional requirements such as on-site lifting, four-wheel drive, will be an additional charge to the Customer.",
+      "1.34      Cassette Delivery. If the ground floor framing is not adequately prepared for the placing of the cassette floors prior to delivery, there may be additional PlaceMakers delivery delay costs charged for time waiting on site.",
+      "1.35.     The stacking order of the Manufactured Products will be at the discretion of PlaceMakers with health and safety and transportation requirements taking priority.",
+      "1.36.     The Customer is responsible for providing safe access to the site for delivery and for ensuring the site’s environment and health and safety processes and safety equipment meet the requirements of the Health and Safety at Work Act 2015. PlaceMakers Workers will not undertake work if they consider the site unsafe or non-compliant.",
+      "1.37.     Claims for shortfall, defects, error or remedial workmust be made within 7 days of delivery or enclosing whichever is earlier.No claim will be accepted unless a Remedial Request Order is submitted and agreed to by the Customer and PlaceMakers as per the PlaceMakers RemedialProcess.",
+      "1.38.     PlaceMakers will not be responsible for and excludes liability for maintaining the condition of PlaceMakers Manufactured Products , and any supplementary packs of timberthatare not collected or delivered within 30 working days of the manufacturing date.",
+      "1.39.     If the PlaceMakers Manufactured Products and/or supplementary packs of timber are not delivered or taken within 90 working days of the later of scheduled delivery date or manufacturing date PlaceMakers reserves the right to either deliver at the Customer’s cost or dispose of the PlaceMakers Manufactured Products even if such Products have been paid for by the Customer.",
+      "1.40      Neither you nor we will be liable under or in connection to these Terms for any delay or failure to perform in part or in full any of their obligations under these Terms to the extent that the delay or failure (whether in part or in full) is caused by a Force Majeure Event or a cause beyond our control.Force Majeuremeans any cause that prevents the affected party from performing any or all of its obligations (in part or in full) under this agreement which arises from or is attributable to acts (including but not limited to governmental or regulatory acts or directives) events (including but not limited to natural disasters or extreme weather events, pandemics, epidemics), omissions or accidents beyond the control of the affected party. For the avoidance of doubt, refusal or failure to pay does not amount to a Force Majeure.",
+      "1.41      PlaceMakers may update or amend these Terms from time to time without prior notice. Each time the Customer orders a Manufactured Product or Service from PlaceMakers Frame & Truss, The Terms in force at that time will apply as set out here.These Terms were last updated on 30thMarch 2023"
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/frame-truss"
+  },
+  {
+    "page_id": "paint-survey-terms-and-conditions",
+    "page_name": "Paint Survey Terms and Conditions | PlaceMakers NZ",
+    "heading": "Paint Survey Terms and Conditions",
+    "sub_headings": [],
+    "paragraphs": [
+      "Entry into this promotion is deemed as acceptance of the following terms and conditions."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/paint-survey-terms-and-conditions"
+  },
+  {
+    "page_id": "paint",
+    "page_name": "Paint | PlaceMakers NZ",
+    "heading": "Paint",
+    "sub_headings": [
+      "Paint and Woodcare Treatment"
+    ],
+    "paragraphs": [
+      "Find everything you need to transform your space and decorate your home with our wide range of paint, stains, varnishes and wood treatments at PlaceMakers.  We have hundreds of colours to suit your home. For expert advice visit your local PlaceMakers store and we'll help you choose the right option for your project to give it that professional finish."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/paint"
+  },
+  {
+    "page_id": "interior-wall-ceiling-linings",
+    "page_name": "Interior Linings | PlaceMakers NZ",
+    "heading": "Interior Linings",
+    "sub_headings": [
+      "Your destination for Interior Linings",
+      "Interior Linings Brands",
+      "GIB",
+      "James Hardie",
+      "BBI",
+      "Laminex",
+      "Hallmark",
+      "Hermpac",
+      "Abodo",
+      "Comfortech",
+      "PSP",
+      "State of Clad",
+      "Brickery",
+      "GB Masonary"
+    ],
+    "paragraphs": [
+      "Interior wall and ceiling linings create the backdrop for your space to which finishes, furniture and textiles are added to create an overall design style and aesthetic. They can act as a blank canvas or create feature, character and interest.",
+      "Here at PlaceMakers we have a comprehensive range of quality wall and ceiling linings that are suitable for various applications in both residential and commercial environments. We can help you get the most out of your space from creating warmth, scale or texture to selecting durable, low maintenance products.",
+      "Winstone Wallboards is New Zealand's only manufacturer and largest marketer of gypsum plasterboard, and manufactures under the GIB® Brand. At PlaceMakers we supply a range of high quality Plasterboard for interior walls and ceilings including ranges with noise and fire control systems.",
+      "James Hardie high-performance interior wall linings provide high impact resistance in internal wet, semi-wet and dry areas. These hard-wearing products are used in a vast range of commercial applications and complement a wide range of design looks.",
+      "BBI specialise in providing a range of wall linings in wood that are highly functional, superior quality and beautiful to look at. BBI uses economical plywood with a selection of attractive faces - popular choice for use in linings, furniture, and joinery.",
+      "Laminex specialise in a modern range of pre-finished decorative wall and ceiling lining panels which can used in wet and dry areas for both commercial and residential interiors. The Laminex Seratone range is available in a range of profiles suitable for areas where hygienic, low maintenance surfaces are required including kitchens and bathrooms and hospitals and restaurants, in the commercial space.",
+      "The Hallmark Group offers the DecoForme™ range consisting of decorative battens that  provide a warm and rich textured appearance for a wide variety of paneling. Ideal for wall and ceiling applications in either a vertical or horizontal set out, creating strong directional lines that will add a striking feature to any internal commercial space.",
+      "Hermpac specialises in timber wood panels for inteior wall and ceiling panelling for your home. Hermpac panels provide striking results ranging from edgy contemporary styles through to warm relaxed and cosy charm. The warmth and varied tones of timber, along with its acoustic and thermal properties, all add to the overall appeal of utilising internal timber as the 'hero' theme.",
+      "The Abodo brand can help you create a feature timber ceiling or wall with the rich warmth and distinctive grains of Vulcan panelling. Created from thermally modified plantation timber, Abodo's Vulcan Panelling is a lightweight, stable sarking timber with excellent thermal characteristics.",
+      "Comfortech offers a range of ceiling and wall linings including the Viroc cement bounded particle board (CBPB) that combines the flexibility of pine wood particles with the strength and durability of cement. With the look of real concrete panels, it ’s the smart way to ensureinterior walls make a statement in contemporary homes, hotels, restaurants, foyers and commercial fit-outs.",
+      "PSP offers various wall lining options including DumaWall, a warm, lightweight and easy to install waterproof wall tile. Produced with the revolutionary patented RCB® (Rigid Core Board) technology, featuring an interlocking tongue and groove system and can be installed over existing walls making it ideal for new builds and renovation projects.",
+      "State of Clad offers a natural cladding range that can also be used as an interior lining. In particular the Cemintel Territory comes from the Japanese values of simplicity, nature and quality. These prefinished panels simulate materials like stone, timber, concrete and tiles, in a sophisticated way that enhances building facades and interiors, without the ongoing maintenance.",
+      "The Brickery specialises in clay bricks wall linings that are a sustainable building option. Made from organic minerals found in naturally abundant sources of clay; clay brick’s long-lasting life cycle offers ongoing environmental and health benefits. Durable, re-usable, free from contaminants and naturally resistant to pests or fire, clay brick is safe to live in, making it the ultimate material in responsible and economical home building design.",
+      "GB Masonry sources the best quality sands and aggregates, achieving distinctive colours and finishes thanks to outstanding attention to detail and extensive expertise. GB Masonry products have become a hallmark of architectural style and design, with a range that includes sleek Honed and Polished options, bold textured finishes in the Split Face and Rock Face ranges, and the timeless style of our smooth finished ranges. For products that show the skill of master block makers there is no rival to the GB Masonry Collection of premium concrete masonry blocks."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/interior-wall-ceiling-linings"
   },
   {
     "page_id": "pine-decking",
@@ -1343,6 +2143,11 @@
       "A deck extends the living areas of your home and creates a seamless indoor-outdoor flow that Kiwis love. Whether creating a beautiful outdoor entertainment space or simply adding value to your property, you want to be sure you’re making the right choice when investing in a deck."
     ],
     "products": [
+      {
+        "sku": "2331023",
+        "name": "Radiata Rough Sawn Fence Paling H3.2 CCA Treated 150 x 25mm x 1.8m",
+        "brand": ""
+      },
       {
         "sku": "2332328",
         "name": "Radiata Rough Sawn Fence Paling H3.2 CCA Treated 150 x 19mm x 1.8m",
@@ -4223,6 +5028,7 @@
       "Protect your garden with our range of plant and pest control solutions – because a thriving garden deserves the best care! Our range is designed to empower you in nurturing healthy plants while keeping pesky intruders at bay. From organic solutions to advanced pest deterrents, we've got your back. Shop today and nurture your garden with love and protection!",
       "Urban Turf is a New Zealand-owned and operated company with generations of experience in the production of high quality, lifelike artificial grass. Urban Turf offers an extensive range to suit areas from lawns and backyards to sports fields and playgrounds and catering to all tastes and budgets. Turf requires little maintenance, is pet and child friendly, reduces allergy triggers and looks great all year round. It can also be customised to suit each project.",
       "Urban Turf",
+      "$279.00 EA",
       "View our helpful tips on decking installation through to our decking screw selection guide. We are here to help you every step of the way to accomplish your decking project.",
       "View Decking Guides",
       "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice.",
@@ -4263,6 +5069,73 @@
     "tags": [],
     "projects": [],
     "url": "https://www.placemakers.co.nz/online/projects/landscaping/lawn-and-garden"
+  },
+  {
+    "page_id": "frame-truss-mandarin",
+    "page_name": "PlaceMakers框架和桁架定制服务",
+    "heading": "PlaceMakers框架和桁架定制服务",
+    "sub_headings": [
+      "我们的服务包括：",
+      "配送服务",
+      "技术创新",
+      "安全保障",
+      "Framology",
+      "采购建材",
+      "找PLACEMAKERS"
+    ],
+    "paragraphs": [
+      "PlaceMakers框架和桁架工厂会按照您的要求提供物超所值的解决方案，并按时高质量的交付订单，帮助您的项目团队节省施工时间。",
+      "Framology – Smart thinking, Manufactured. 新西兰对框架墙体的需求在不断改变，政策在进步，客户也在思考“我们怎么能做的更好？”,这让我们在轻量框架墙体方向上有更多机会突破创新。我们的框架和桁架团队接下来会为您带来一系列“Framology”解决方案，告诉您“这有更好的方法”。",
+      "您需要为您的建筑项目采购建材吗？您想要开通PlaceMakers Trade账户吗？欢迎您拨打PlaceMakers华语热线，我们的PlaceMakers华人团队可以用普通话、粤语、英语等三种语言与您沟通！我们期待为您服务！",
+      "0800 035 888",
+      "PlaceMakers Frame and Truss Terms & Conditions",
+      "Unless stated otherwise these terms and conditions apply to any Estimate or Purchase Order for the supply of PlaceMakers Manufactured Products and Services PlaceMakers Manufactured Products and Services Products include: detailing and manufacture of frames, trusses, pre-cut roof components, cassette floors, posi-struts, beams and other prefabricated products or components as set out in the Estimate or PurchaseOrder.",
+      "1.1.      PlaceMakers Standard Terms of Trade (“Terms of Trade”) apply. If there is any conflict between these PlaceMakers Frame and Truss Terms & Conditions  and the Terms of Trade, then the Terms of Trade will prevail. You, the Customer are deemed to have accepted these PlaceMakers Frame & Truss Standard Terms and Conditions upon requesting PlaceMakers to provide the PlaceMakers Manufactured Products as set out in the Purchase Order and/or Production Request Form.",
+      "1.2.      PlaceMakers will endeavour to ensure the accuracy of any Estimate based on the information supplied by the Customer. The Customer is solely responsible for and, must provide accurate complete comprehensive up to date plans (most recent and preferably consented plans) specifications and other requisite information.",
+      "1.3       PlaceMakers relies on the information supplied by (or on behalf of) the Customer in detailing and manufacturing Manufactured Products. It is the Customer's responsibility to ensure that the information supplied meets the requirements of the NZ Building Code, NZS 3604 or any other relevant legislation, regulations, standards or codes of practice.",
+      "1.4       If the plans or specifications change, resulting in a change to the measurements or requirements or a departure from industry tolerances the Customer must immediately notify PlaceMakers of such changes and receive acceptance of such changes in writing and prior to manufacture. This may include a new PRF at PlaceMakers’ discretion.",
+      "1.5       The Customer is responsible for the accuracy of the information upon which the Estimate and the PRF is based and is responsible for checking all items and the quantities of materials before budgeting or pricing and before placing orders. PlaceMakers excludes liability for any differences which arise between our Estimate and any estimated quantities and final quantities ordered by the Customer.",
+      "1.6       Any material changes to the specification or agreed plans for production may render an Estimate invalid at PlaceMakers’ discretion.",
+      "1.7       Any change to the agreed plans for production which is not material but will add cost may be treated and charged as a variation at PlaceMakers’ discretion.",
+      "1.8       The agreed plans for production (most recent and preferably consented plans) , drawings, specifications and other design information must be supplied before production will proceed.",
+      "1.9       Architectural plans lacking necessary information may cause any detailing and/or manufacture to be put \"on hold\" until rectified by the Customer.",
+      "1.10.     PlaceMakers excludes liability for design and architectural errors or omissions.",
+      "1.11      PlaceMakers excludes liability for any design or structural engineering errors of omissions.",
+      "1.12      PlaceMakers excludes liability for any inconsistency between architectural and structural engineering plans.",
+      "1.13      Where projects contain structural steel components such as steel portals, frames, beams or posts that could interfere with framing, PlaceMakers may require additional time between these components being installed on site and frame/truss delivery manufacture and delivery due to the potential for site measures being required to confirm dimensions before frame and truss manufacture. The Customer must ensure appropriate lead times to take account such delays or requirements.",
+      "1.14.     The prices in an Estimate are GST exclusive and will remain valid for a period of30 Daysonly from the date of the Estimate.",
+      "1.15.     Only items shown on the Estimate are included.",
+      "1.16      Material, manufacturing and supplier price increases and costs will be passed through to theCustomerand will apply at the date of invoicing unless the Estimate pricing is still valid or as otherwise agreed in writing by PlaceMakers.",
+      "1.17      The Customer will be invoiced by the PlaceMakers branch on completion of manufacture and payment will be due in full in cleared funds by the 20thday of the month irrespective ofdelivery.",
+      "1.18      No allowance has been made for a site visit, site measure or special engineering design.",
+      "1.19.     Trusses under 15 degrees may require a raised heel height greater than is specified on architectural plans to design. If heel heights are not noted on the Estimate, it is the Customer’s responsibility to raise and confirm the heel height before final plans are submitted for production.",
+      "1.20.     If no durability zones are specified, it will be assumed that the project is located in NZS 3604 1999 Building Zone 1, and is not in Sea Spray, Geothermal zones or Very High Wind zones. The Customer must confirm this in the PRF.",
+      "1.21.     Estimates are based on the trusses being \"enclosed\" under NZS 3604 guidelines, in particular reference to coastline (no allowance has been made for stainless steel fixings or nail plates).",
+      "1.22      Mitek Stud-Lock screw price is only to fit to load bearing walls directly under a roof unless specified otherwise by the architect",
+      "1.23.     No allowance made for the cutting of bastard mitres, complex/compound seat cuts.",
+      "1.24.     No allowance made for special stud to top plate fixings, or any other frame hardware.",
+      "1.25.     No allowance made for FSC timber.",
+      "1.26.     No allowance made for curved/circular lintels. Curved walls supplied as loose components only (if applicable).",
+      "1.27.     No allowance for extra fixings for frames or trusses.",
+      "1.28.     Exposed trusses/rafters/beams are excluded",
+      "1.29      Risk passes on delivery, title passes on payment in full.",
+      "1.30.     Unless stated otherwise, the cost of delivery to the site is excluded from the Estimate. Delivery will be charged at PlaceMakers branch standard delivery rates or as otherwise agreed in writing.",
+      "1.31.     As construction techniques and site conditions can vary and all circumstances on site cannot be reasonably anticipated nor controlled by PlaceMakers. PlaceMakers excludes liability for site conditions.",
+      "1.32.     Delivery to site is by standard Hiab, maximum 12 metre reach.",
+      "1.33.     Any additional requirements such as on-site lifting, four-wheel drive, will be an additional charge to the Customer.",
+      "1.34      Cassette Delivery. If the ground floor framing is not adequately prepared for the placing of the cassette floors prior to delivery, there may be additional PlaceMakers delivery delay costs charged for time waiting on site.",
+      "1.35.     The stacking order of the Manufactured Products will be at the discretion of PlaceMakers with health and safety and transportation requirements taking priority.",
+      "1.36.     The Customer is responsible for providing safe access to the site for delivery and for ensuring the site’s environment and health and safety processes and safety equipment meet the requirements of the Health and Safety at Work Act 2015. PlaceMakers Workers will not undertake work if they consider the site unsafe or non-compliant.",
+      "1.37.     Claims for shortfall, defects, error or remedial workmust be made within 7 days of delivery or enclosing whichever is earlier.No claim will be accepted unless a Remedial Request Order is submitted and agreed to by the Customer and PlaceMakers as per the PlaceMakers RemedialProcess.",
+      "1.38.     PlaceMakers will not be responsible for and excludes liability for maintaining the condition of PlaceMakers Manufactured Products , and any supplementary packs of timberthatare not collected or delivered within 30 working days of the manufacturing date.",
+      "1.39.     If the PlaceMakers Manufactured Products and/or supplementary packs of timber are not delivered or taken within 90 working days of the later of scheduled delivery date or manufacturing date PlaceMakers reserves the right to either deliver at the Customer’s cost or dispose of the PlaceMakers Manufactured Products even if such Products have been paid for by the Customer.",
+      "1.40      Neither you nor we will be liable under or in connection to these Terms for any delay or failure to perform in part or in full any of their obligations under these Terms to the extent that the delay or failure (whether in part or in full) is caused by a Force Majeure Event or a cause beyond our control.Force Majeuremeans any cause that prevents the affected party from performing any or all of its obligations (in part or in full) under this agreement which arises from or is attributable to acts (including but not limited to governmental or regulatory acts or directives) events (including but not limited to natural disasters or extreme weather events, pandemics, epidemics), omissions or accidents beyond the control of the affected party. For the avoidance of doubt, refusal or failure to pay does not amount to a Force Majeure.",
+      "1.41      PlaceMakers may update or amend these Terms from time to time without prior notice. Each time the Customer orders a Manufactured Product or Service from PlaceMakers Frame & Truss, The Terms in force at that time will apply as set out here.These Terms were last updated on 30thMarch 2023"
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/timber-1/frame-truss-mandarin"
   },
   {
     "page_id": "polyester",
@@ -4726,6 +5599,81 @@
     "url": "https://www.placemakers.co.nz/online/projects/cladding/fibre-cement"
   },
   {
+    "page_id": "building-envelope-barriers",
+    "page_name": "Building Wraps and RAB | Explore Building Envelope Protection",
+    "heading": "PROTECT YOUR BUILD FROM THE ELEMENTS",
+    "sub_headings": [
+      "Types of building barrier solutions",
+      "RIGID AIR BARRIERS",
+      "FLEXIBLE AIR BARRIERS",
+      "SYNTHETIC BUILDING WRAPS",
+      "ROOFING UNDERLAY",
+      "TAPES",
+      "TOOLS AND ACCESSORIES",
+      "CUSTOM BUILDING WRAP",
+      "Featured Product",
+      "GIB Weatherline Rigid Air Barrier Systems®",
+      "BUILDING BARRIERS COMPARISON CHART",
+      "SHOP BUILDING WRAPS",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Choosing the right wall or roof underlay is an essential step when securing your building envelope. With benefits that last well beyond the construction process, our range is extensive across synthetic wraps, flexible air barriers and rigid air barriers. You can purchase individual products or we provide whole system solutions that will increase the weather tightness, durability, and performance of your new build. Discover the right system for you.",
+      "Explore our range of solutions to ensure your build is protected from the elements.",
+      "Rigid Air Barriers are the premium industry choice for early close-in giving you up to 180 days of protection pre-cladding. These rigid sheets are manufactured in a range of materials to create a pressure-equalised system and also offer a bracing element for additional building stability. Purchase as a system for a complete solution.",
+      "Flexible Air Barrier systems utilise flexible wrap technology. Their versatile but robust design means they can quickly and easily defend your pre-clad build from the elements during construction offering breathability, weather tightness and UV timber protection. Purchase as a system to ensure you have all the matching components.",
+      "Synthetic building wrap is a flexible underlay which provides un-clad builds with an important line of defense against water penetration. Available in a range of synthetic materials, these weather-resistant wraps come in easy-to-use rolls, temporarily protecting steel or timber framing from UV and moisture damage while still allowing vapour to permeate.",
+      "Roofing underlays are designed to sit beneath your roof or cladding to prevent water penetration and condensation build-up. Airtight and vapour permeable, roof underlays (or underlayments) can be purchased independently or as a component within a full system and ensure moisture escapes from your roof space via a tear and shrink-resistant layer while keeping the roof space from becoming too moist.",
+      "Our premium range of sealing, flashing and multipurpose building wrap tapes for commercial and residential builds will ensure your joints, seams and junctions are airtight and secure. They provide a protective barrier around windows, sills, doors, underlays and pipes. Our tapes are UV stabilised and specifically designed to be water, mould and often fire resistant for use with synthetic building wrap. If you are not purchasing a whole system solution please ensure you purchase the tape recommended by the manufacturer.",
+      "Having the right tools and accessories to install, fix and secure your building barrier will optimise the life of your build and ensure your time is spent more productively. Explore our range of strappings, penetration seals and quality fixings that will guarantee a professional finish. Premium tools for cutting like the trademark Hardie knife and the Hardie Blade Saw Blade will, for example, reduce dust and deliver a fast, clean cut on your James Hardie RAB Board or James Hardie HomeRAB.",
+      "Make your next build stand out from the crowd",
+      "Designed for builders seeking to maximise marketing impact, why not customise your building barriers, transforming your construction site into a powerful advertising platform? With the option to include your logo and business contact details at minimal to no additional cost when purchasing in bulk, showcase your brand all while ensuring your project remains on schedule and on budget.",
+      "TALK TO YOUR LOCAL BRANCH",
+      "The GIB Weatherline® Rigid Air Barrier System offers moisture protection, providing a second line of defence against water penetration. GIB Weatherline® also offers enhanced thermal efficiency, structural bracing and up to a 60 minute fire resistance rating.  It's safe to handle with no harmful dust created, environmentally friendly and cost effective.",
+      "Cost effective, high performance rigid air barrier solutions.",
+      "Compare the different aspects of the types of building barriers and wraps available at PlaceMakers.",
+      "*See individual products for more information on types of exposure",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3150178",
+        "name": "RAB Board  6mm 3000 x 1200mm",
+        "brand": "James Hardie"
+      },
+      {
+        "sku": "4263002",
+        "name": "UNIPLUS Flexible Air Barrier 2.74 x 18.25m (50m2)",
+        "brand": "Masons"
+      },
+      {
+        "sku": "3410191",
+        "name": "Watergate Plus Wall Wrap Underlay Placemakers 2740mm x 36.5m 100m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410244",
+        "name": "Covertek 407 Roof And Wall Underlay Heavy Duty Self-Supporting 1250mm x 40m 50m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410117",
+        "name": "Sill Tape 150mm x 23m",
+        "brand": "Marshall Innovations"
+      },
+      {
+        "sku": "3410249",
+        "name": "Thermastrap 201 Builders Strap 19mm x 300m Blue TS201300",
+        "brand": "Thermakraft"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers"
+  },
+  {
     "page_id": "lunawood",
     "page_name": "TMT Taiga (Lunawood) | Cladding | PlaceMakers",
     "heading": "TMT Taiga (Lunawood)",
@@ -4749,6 +5697,919 @@
     "tags": [],
     "projects": [],
     "url": "https://www.placemakers.co.nz/online/projects/cladding/timber/lunawood"
+  },
+  {
+    "page_id": "decking",
+    "page_name": "Fastenings - Decking Screws",
+    "heading": "DECKING SCREWS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "Select the look",
+      "COUNTERSUNK",
+      "STANDARD HEAD",
+      "DISCRETE SMALL HEAD",
+      "FLAT PROFILE",
+      "DISCRETE SMALL HEAD",
+      "RAISED PROFILE",
+      "DISCRETE SMALL HEAD",
+      "CYLINDER HEAD",
+      "LARGER DIAMETER",
+      "FOR LARGER DECK BOARDS",
+      "COUNTERSUNK",
+      "STANDARD HEAD, BRONZE COLOUR",
+      "Featured Product",
+      "T-REX17® Decking Screw Trim Head – 316 S/Steel Bronze",
+      "Decking Screws to get the job done",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Choosing the right screws for your deck is crucial for ensuring its longevity, structural integrity, and overall aesthetic appeal. Several factors need to be considered when selecting screws for deck construction, including the type of decking material, environmental conditions, and desired appearance. Additionally, factors such as corrosion resistance, ease of installation, and compatibility with decking fastening systems play a significant role. By carefully evaluating these factors and understanding the options available, you can make informed decisions to ensure that your deck is built to last and meets your specific needs and preferences.",
+      "Check out our guide below to find the right decking screw for your job:",
+      "Explore the different style of decking screws available at PlaceMakers. Not sure? Come in-store to discuss your needs.",
+      "A countersunk standard head screw features a head that is designed to sit flush with or below the surface of the material it is fastening. The top of the head is typically angled, allowing it to fit into a countersunk hole.",
+      "A discrete small head flat profile screw is characterised by its compact size and low-profile design. The head of the screw is smaller compared to standard screws, allowing for a more inconspicuous appearance once installed.",
+      "The raised profile screw is characterised by its compact size and slightly raised head compared to the flat profile. The screw head protrudes slightly above the surface of the material it is fastening.",
+      "The head of this screw type is smaller in diameter, offering a more inconspicuous appearance once installed. The cylindrical head sits above the surface of the material it is fastening, providing easy access for installation and removal.",
+      "These screws typically feature a thicker shaft and a larger head diameter, offering increased strength and stability to withstand the heavy loads and stresses experienced in deck construction.",
+      "A countersunk standard head screw with a bronze colour features a head that is designed to sit flush with or below the surface of the material it is fastening. The top of the head is typically angled, allowing it to fit into a countersunk hole.",
+      "For Kwila decking, Garapa decking, Vitex decking or hardwood timber applications where a more decorative finish is required. The screw's 316 stainless steel material with a Bronze finish provides premium corrosion resistance with a high end decorative finish and can be used in outdoor or sea spray zone applications. The screws have T-REX Teeth, T20 TX TORX drive driver bit included in each packet and a Reverse Tip for quick and easy installation.",
+      "ECKO Fastening Systems is a 100% Kiwi owned & operated company specialising in innovative systems that helps builders, manufacturers and industry customers in this competitive Fastening market.",
+      "$399.00 PA",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4516540",
+        "name": "Deck Screw Shark Truss Stainless Steel T304 10g x 65mm 1000 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4524811",
+        "name": "A2/304 Decking Screw Value Pack 5 x 60mm",
+        "brand": "SPAX"
+      },
+      {
+        "sku": "4516548",
+        "name": "Deck Screw Shark Trim Stainless Steel T304 10g x 65mm 500 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4516539",
+        "name": "Deck Screw Shark Truss Stainless Steel T304 10g x 65mm 500 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4512064",
+        "name": "T-Rex17 Decking Screws Countersunk Head Stainless Steel T304 T25 Torx Drive 10g x 65mm 250 Box",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4513327",
+        "name": "T-Rex17 Decking Screws Trim Head Stainless Steel T316 T20 Bronze 10g X 65mm 250 Box",
+        "brand": "Ecko"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws/decking"
+  },
+  {
+    "page_id": "landscaping",
+    "page_name": "Fastenings - Landscaping Screws",
+    "heading": "LANDSCAPING SCREWS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "Below-Ground",
+      "WASHER HEAD",
+      "COUNTERSUNK HEAD",
+      "Batten screw bugle head SS",
+      "Above-Ground",
+      "WASHER HEAD",
+      "COUNTERSUNK HEAD",
+      "Batten screw bugle head SS",
+      "Featured Product",
+      "Batten Screw Stainless Steel T316 T17 14g x 100mm 100 Packet",
+      "Landscaping Screws to get the job done",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Choosing the right screws for a landscaping project is crucial to ensure the longevity and stability of your outdoor structures. When considering above-ground applications such as constructing decks, pergolas, or fences, opt for corrosion-resistant screws made from stainless steel or coated with materials. These screws are durable and can withstand exposure to the elements, preventing rust and corrosion over time. For below-ground applications like building retaining walls, anchoring posts, or installing edging, it's essential to select screws specifically designed for outdoor use and ground contact.",
+      "Check out our guide below to find the right landscaping screw for your job:",
+      "When it comes to in-ground landscaping projects, choosing the right screws is crucial for ensuring durability and longevity, especially considering exposure to moisture and soil. Stainless steel screws are an excellent choice for such applications due to their exceptional corrosion resistance, even in harsh outdoor environments. These screws are typically made from marine-grade stainless steel, such as 304 or 316 stainless steel, which offers superior resistance to rust and corrosion caused by moisture, soil, and exposure to the elements.",
+      "By selecting high-quality washer head screws designed for outdoor use and following proper installation procedures, you can ensure long-lasting stability and a visually appealing finish for your in-ground landscaping projects.",
+      "For in-ground landscaping applications like securing landscape timbers or retaining wall blocks, countersunk head screws provide a secure and flush mount.",
+      "The bugle head design provides a low-profile and flush finish, minimizing the risk of snagging or protrusions in the landscaping area. Additionally, the batten screw's coarse thread ensures a strong grip, securely fastening landscaping materials together.",
+      "For above-ground landscaping projects the choice of screws ensures structural stability and visual coherence in your design. Selecting the right screws for the job can make all the difference in the longevity and appearance of your landscaping features, whether it's erecting fences, installing decking, or constructing raised garden beds. Screws with a flat or countersunk head design provide a flush finish, maintaining the aesthetic integrity of the landscaping while minimising any potential tripping or catching hazards. By choosing the appropriate screws tailored to the specific requirements of your above-ground landscaping projects, you can achieve both durability and aesthetic appeal that withstands the test of time.",
+      "By selecting high-quality washer head screws designed for outdoor use and following proper installation procedures, you can ensure long-lasting stability and a visually appealing finish for your in-ground landscaping projects.",
+      "For in-ground landscaping applications like securing landscape timbers or retaining wall blocks, countersunk head screws are provide a secure and flush mount.",
+      "The bugle head design provides a low-profile and flush finish, minimizing the risk of snagging or protrusions in the landscaping area. Additionally, the batten screw's coarse thread ensures a strong grip, securely fastening landscaping materials together.",
+      "Batten screws are a heavy duty, large diameter screw used in many different construction and landscaping projects. These Ecko Batten screws are made from T316 grade Stainless Steel for excellent corrosion resistance in extreme conditions.",
+      "Driver bit included in each packet.",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4512050",
+        "name": "Batten Screw Bugle Head Hex Drive incl. driver bit Class 4 Galvanised  14g 100mm 100 Pack",
+        "brand": "PLACEMAKERS"
+      },
+      {
+        "sku": "4512052",
+        "name": "Batten Screw Bugle Head Hex Drive incl. driver bit Class 4 Galvanised  14g 100mm 500 Pack",
+        "brand": "PLACEMAKERS"
+      },
+      {
+        "sku": "4512051",
+        "name": "Batten Screw Bugle Head Hex Drive incl. driver bit Class 4 Galvanised  14g 100mm 250 Pack",
+        "brand": "PLACEMAKERS"
+      },
+      {
+        "sku": "4510894",
+        "name": "Batten Screw Stainless Steel T316 T17 14g x 100mm 100 Packet",
+        "brand": "Ecko"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws/landscaping"
+  },
+  {
+    "page_id": "rigid-air-barriers",
+    "page_name": "Building Wraps and RAB |Explore Building Envelope Protection",
+    "heading": "Rigid Air Barriers",
+    "sub_headings": [
+      "About Rigid Air Barriers",
+      "OUR RIGID AIR BARRIER systemS",
+      "CHH Ecoply Rigid Air Barrier",
+      "James Hardie HomeRAB™ Pre-Cladding",
+      "James Hardie RAB™ Board",
+      "GIB Weatherline®",
+      "IBS RigidRAP",
+      "IBS RigidRAP-XT",
+      "RIGID AIR BARRIERS COMPARISON CHART",
+      "COMPARE ALL BUILDING WRAPS",
+      "Featured Product",
+      "GIB Weatherline Rigid Air Barrier Systems®",
+      "SHOP RIGID AIR BARRIERS",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Our first choice for durability and performance, Rigid Air Barriers have become the industry standard building wrap for early close-ins, giving you up to 180 days exposure pre-cladding. Offering superior weather tightness, structural rigidity, UV defence and excellent fire resistance, these rigid sheets will protect your new build from water penetration, high winds and onsite damage. Rigid Air Barriers come in a range of durable materials including fibre-cement, gypsum, laminated oriented strand board (OSB) and plywood to fully secure your building envelope. A whole system solution, necessary tools, tapes, and accessories to complete the job are also available.",
+      "*Exceptions apply, please read details of your system carefully",
+      "Manufactured from NZ-grown radiated pine, the Ecoply barrier system provides a strong secondary line of defence, protecting your building envelope from moisture penetration.",
+      "A weather-tight rigid air barrier for drained and vented cavity systems, this solution keeps your building frame dry, enabling fast close-in and an earlier interior finish, unhindered by conditions outside. Providing inherent structural bracing on timber-framed buildings, the Ecoply Barrier panels and sealing tapes can be exposed for up to 180 days ensuring your new build remains well protected from environmental damage.",
+      "James Hardie HomeRAB™ Pre-Cladding is a cost-effective pre-cladding system designed for use in all residential builds. Each green fibre cement panel has an integral water repellent sealer to keep moisture out, ensuring your build remains weather-tight, air-tight and structurally secure.",
+      "In addition to its unique structural bracing and fire resistance properties, James Hardie HomeRAB™ Pre-Cladding is suitable for the exterior of almost all residential buildings, including those in very high wind zones, ensuring your build remains well protected from the elements for up to 180 days pre-cladding.",
+      "A whole system solution which includes James Hardie tools, tapes, fixings and seals.",
+      "James Hardie RAB™ board is a premium fibre-cement panel available in 6mm or 9mm widths with a proven track record of delivering the most advanced rigid building wrap technology for commercial and residential builds.",
+      "Featuring a built-in air and water-resistant barrier to keep moisture out while still allowing water vapour to escape, this green board also provides structural bracing, high wind defence and superior weather-tightness.",
+      "The board boasts an impressive 60 min fire resistance rating, is easy to install directly onto your framing and allows you 180 days exposure without warping or shrinking. Early close-in mean no unnecessary delays or re-scheduling, maximising your construction time.",
+      "A whole system solution which includes James Hardie tools, tapes, fixings and seals.",
+      "Suitable for both residential and commercial buildings, the GIB Weatherline® rigid air barrier system is a cost effective, high performance wall underlay solution, providing a strong secondary line of defence against moisture penetration into the building envelope.",
+      "GIB Weatherline® also offers enhanced thermal efficiency, structural bracing and up to a 60 minute fire resistance rating.",
+      "GIB Weatherline® sheets can be exposed to weather for up to 180 days prior to cladding installation and can be easily cut and worked with on site with no harmful dust created.",
+      "IBS RigidRAP is an environmentally friendly rigid air barrier system with a dual layer micro-porous design using 8mm OSB boards laminated with an approved building paper/underlay.",
+      "Manufactured specifically for NZ, these sustainable boards are easy to cut, nail, screw or drill giving your new build rapid protection from the elements for up to 90 days pre-cladding. Used for internal or external wall bracing, the RigidRAP sheet is easy to install (one-man lift) ensuring construction times are maximised.",
+      "Note: Can be used with multiple tapes",
+      "IBS RigidRap-XT offers all the benefits of RigidRap but with an R-value of 0.41 and an additional thermal break adhered to the 8mm laminated OSB .",
+      "This thermal break is made from graphite polystyrene board, specifically designed to prevent the conduction of heat between timber or steel framing and cladding. IBS RigidRap-XT is suitable for use as both an external bracing and thermal break when steel frames are in use.",
+      "If you are not building with steel frames, we would recommend using IBS RigidRAP.",
+      "Compare the different aspects of the types of Rigid Air Barriers available at PlaceMakers.",
+      "VIEW COMPARISON TABLE",
+      "The GIB Weatherline® Rigid Air Barrier System offers moisture protection, providing a second line of defence against water penetration. GIB Weatherline® also offers enhanced thermal efficiency, structural bracing and up to a 60 minute fire resistance rating. It's safe to handle with no harmful dust created, environmentally friendly and cost effective.",
+      "Cost effective, high performance rigid air barrier solutions.",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3150178",
+        "name": "RAB Board  6mm 3000 x 1200mm",
+        "brand": "James Hardie"
+      },
+      {
+        "sku": "3100879",
+        "name": "Rigid Air Barrier System Beige 2745 x 1200 x 7mm",
+        "brand": "Ecoply"
+      },
+      {
+        "sku": "2800878",
+        "name": "Weatherline Wallboard 3000 x 1200 x 13mm",
+        "brand": "GIB"
+      },
+      {
+        "sku": "2700125",
+        "name": "RIGIDRAP Rigid Air Barrier 2740 x 1196 x 8mm",
+        "brand": "IBS"
+      },
+      {
+        "sku": "3100870",
+        "name": "HomeRAB Pre-Cladding  4.5mm 2450 x 1200mm",
+        "brand": "James Hardie"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/rigid-air-barriers"
+  },
+  {
+    "page_id": "flexible-air-barriers",
+    "page_name": "Flexible Air Barriers | Building Envelope Protection",
+    "heading": "FLEXIBLE AIR BARRIERS",
+    "sub_headings": [
+      "About Flexible Air Barriers",
+      "OUR FLEXIBLE AIR BARRIERS",
+      "DriSpace DriStud Repel",
+      "Masons UNI PLUS Flexible Air Barrier",
+      "Masons UNI PRO Flexible Air Barrier",
+      "CUSTOM BUILDING WRAP",
+      "FLEXIBLE AIR BARRIERS COMPARISON CHART",
+      "COMPARE ALL BUILDING WRAPS",
+      "Featured Product",
+      "DRISPACE DRISTUD REPEL",
+      "SHOP FLEXIBLE AIR BARRIERS",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Flexible Air Barrier systems (FABs) are the latest solution in flexible building wrap technology and are primarily designed to allow early close-in for your build so you can begin work on the interiors before the cladding goes on. Supplied in rolls for quick and easy installation, these versatile but robust barriers provide a cost-effective secondary line of defence for your timber framing, offering improved breathability, weather tightness and greater protection from UV exposure. The recent advances in water-resistant complex materials mean our range of flexible air barriers are far superior to traditional building papers, allowing moisture to escape whilst protecting the building envelope from the damage caused by water penetration. Purchase as a whole system solution to ensure you have all required components.",
+      "DriStud Repel is a reinforced flexible wall underlay with an advanced four-layered, heavy-duty synthetic membrane designed to be vapour-permeable and water-resistant. Supplied in a distinctive dark green polypropylene with a white reverse of non-woven PET, it is an affordable whole system building wrap solution supplied with its own DriStud flashing, joining tapes and roof underlay. DriStud products are engineered for New Zealand weather conditions, so they are highly functional, durable and easy to install with fire retardant properties.",
+      "Masons UNI PLUS Flexible Air Barrier is a non-woven polypropylene, absorbent and water resistant 180 GSM triple-layered wall underlay with a central technical film. This distinctive blue flexible air barrier with a black reverse is suitable for both timber and heavy steel-framed buildings. Compatible with all cladding systems, it provides a secondary line of defence against moisture over the life of the building with its high breathability allowing vapour to pass from the interior out. An affordable alternative to rigid air barriers, the UNI PLUS Flexible Air Barrier can be purchased independently or as a whole system solution with branded tools, tapes, flashings and accessories.",
+      "Masons UNI PRO Flexible Air Barrier is a heavy duty Flexible Air Barrier that provides early close in and weather/UV protection for up to 150 days. While still a triple-layered wrap, UNI PRO is 22% thicker than UNI Plus providing a stronger barrier and secondary line of defence against the weather. Install in conjunction with Masons' purpose-designed accessories to ensure a reliable and effective installation that will last for the life of the building",
+      "Make your next build stand out from the crowd",
+      "Designed for builders seeking to maximise marketing impact, why not customise your building barriers, transforming your construction site into a powerful advertising platform? With the option to include your logo and business contact details at minimal to no additional cost when purchasing in bulk, showcase your brand all while ensuring your project remains on schedule and on budget.",
+      "TALK TO YOUR LOCAL BRANCH",
+      "Compare the different aspects of the types of Flexible Air Barriers available at PlaceMakers.",
+      "VIEW COMPARISON TABLE",
+      "DriStud Repel is a four-layer laminated Flexible Air Barrier which is fire retardant, vapour permeable and water resistant. This synthetic membrane is fixed directly to either timber or steel wall framing and provides temporary weather protection to allow you to push forward with work inside the building before the exterior cladding is fixed in place. Use with DriStud Joining Tape.",
+      "Fire Retardant, Vapour Permeable, Water Resistant, Flexible Air Barrier",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "4263002",
+        "name": "UNIPLUS Flexible Air Barrier 2.74 x 18.25m (50m2)",
+        "brand": "Masons"
+      },
+      {
+        "sku": "5990992",
+        "name": "Penetration Seal 1-75mm PSEAL75",
+        "brand": "Masons"
+      },
+      {
+        "sku": "5990993",
+        "name": "Penetration Seal 85-170mm PSEAL170",
+        "brand": "Masons"
+      },
+      {
+        "sku": "3430686",
+        "name": "40 Below Flex Flashing Tape 150mm x 20m 40FLXBELOW150X20",
+        "brand": "Masons"
+      },
+      {
+        "sku": "2370967",
+        "name": "DriStud Repel Flexible Air Barrier/Wall Wrap 2740mm x 18.3m 50m2 Green",
+        "brand": "DriSpace"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/flexible-air-barriers"
+  },
+  {
+    "page_id": "synthetic-wraps",
+    "page_name": "Synthetic Building Wraps | Building Envelope Protection",
+    "heading": "SYNTHETIC BUILDING WRAPS",
+    "sub_headings": [
+      "About Synthetic Building Wraps",
+      "OUR SYNTHETIC BUILDING WRAPS",
+      "Thermakraft Watergate Plus by Kingspan",
+      "Marshall Innovations Tekton",
+      "Pro Clima Solitex Extasana",
+      "Covertek Wall Underlays",
+      "WRAP CUSTOMISATION",
+      "SYNTHETIC BUILDING WRAPS COMPARISON CHART",
+      "CUSTOM BUILDING WRAP",
+      "Featured Product",
+      "WATERGATE PLUS",
+      "SHOP SYNTHETIC BUILDING WRAPS",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Synthetic building wraps have become the clear alternative to building papers over the last 30 years, providing a greater level of temporary protection for your timber or steel-framed new build. Available in a variety of widths and thicknesses they are designed to resist tearing, making them quicker and easier to install than traditional building papers. Offering a secondary line of defence against the elements, the more superior designs are often permeable and water-resistant, boasting UV protection and fire-retardant properties. Though less durable and weathertight than a Flexible or Rigid Air Barrier system, synthetic wraps are a viable, cost-effective alternative. Wraps and accompanying components are available as a whole system solution.",
+      "Watergate Plus is part of the Thermakraft One Wrap System and is specifically designed as a wall underlay behind exterior wall cladding. Made from synthetic materials Watergate Plus is fire retardant, water resistant and vapour permeable.",
+      "The water vapour transfer rate of the product has been optimised to minimise condensation risk in homes without compromising its primary water barrier properties. Its unique construction allows for easier installation while maintaining best in class performance qualities.",
+      "Tekton building wrap is part of the innovative Marshall Weatherization System. A premium, non-absorbent coated synthetic wall wrap with superior breathability and versatility. Available in 2 roll sizes, this is a thick polypropylene wrap with superior fire-retardant capabilities. Tekton features high water resistance and is the leading synthetic wrap for tensile strength and tear resistance. Offering UV stability and effective moisture vapour control, it delivers a complete and affordable solution for your timber or steel construction with the option to use it as an air barrier in unlined wall spaces. Customers require 18 Rolls for customized branding.",
+      "Solitex Extasana is an effective tear-resistant and UV stabilised wall underlay designed by Pro Clima for use behind most cladding systems. Available in 2 sizes this 0.60mm synthetic wrap consists of a non-porous highly water-resistant TEEE film laminated at high temperatures between two layers of spun-bonded polypropylene. A roll out and fix blue membrane with a grey underside, it is both pliable and highly permeable (Class 4) ensuring moisture vapour can escape during construction. This weather resistive barrier also boasts thermostability so it can cope with significant changes in temperature.",
+      "Covertek offers a range of synthetic wall/roof underlays. Covertek 401 is a lightweight, self supporting underlay which is non-fire retardant. Covertek 403 is also lightweight, offering high strength and is fire retardant. Choose Covertek 405 for a strong, self-supporting fire retardant barrier or Covertek 407 for a premium, heavyweight synthetic wall underlay solution. As these products can also be used in roofing applications, more information can be found on ourroofing underlays page.",
+      "Designed for builders seeking to maximise marketing impact, why not customise your building barriers and transform your construction site into a powerful advertising platform? With the option to include your logo and business contact details at minimal to no additional cost when purchasing in bulk, showcase your brand all while ensuring your project remains on schedule and on budget.",
+      "Compare the different aspects of the types of Synthetic Building Wraps available at PlaceMakers.",
+      "Make your next build stand out from the crowd",
+      "Designed for builders seeking to maximise marketing impact, why not customise your building barriers, transforming your construction site into a powerful advertising platform? With the option to include your logo and business contact details at minimal to no additional cost when purchasing in bulk, showcase your brand all while ensuring your project remains on schedule and on budget.",
+      "TALK TO YOUR LOCAL BRANCH",
+      "Watergate Plus is a synthetic wall underlay which is part of the Thermakraft One Wrap System, a synthetic wrap system which comes with over 10 complementary products to provide a full building envelope wrap. Watergate Plus is vapour permeable, fire retardant and offers up to 90 days of weather protection. The wrap can be fixed to steel or timber framing and in the case of steel construction, can be used in conjunction with thermal breaks.",
+      "Tried, tested and trusted by most New Zealand builders.",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3410191",
+        "name": "Watergate Plus Wall Wrap Underlay Placemakers 2740mm x 36.5m 100m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410090",
+        "name": "Tekton Building Wrap 2.74 x 37m 100m2 PlaceMakers",
+        "brand": "Marshall Innovations"
+      },
+      {
+        "sku": "3410301",
+        "name": "Watergate Plus Wall Wrap Underlay 1370mm x 37m 50m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410632",
+        "name": "SOLITEX EXTASANA ADHERO® Self Adhesive Weather Resistive Roof and Wall Underlay 1.5m x 30m 45m2",
+        "brand": "Pro Clima"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/synthetic-wraps"
+  },
+  {
+    "page_id": "roof-underlay",
+    "page_name": "Roof Underlay | Superior Weather Protection for Roofing",
+    "heading": "ROOFING UNDERLAYS",
+    "sub_headings": [
+      "About Roofing Underlays",
+      "OUR ROOFING UNDERLAYS",
+      "Thermakraft Covertek Roofing Underlays",
+      "DriStud Roofing Underlays",
+      "Masons Roofing Underlays",
+      "Marshall Innovations Hydra Roof",
+      "ROOFING UNDERLAY COMPARISON CHART",
+      "COMPARE ALL BUILDING WRAPS",
+      "Featured Product",
+      "COVERTEK 405 ROOF UNDERLAY",
+      "SHOP ROOFING UNDERLAY",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Securing your roof space is an important part of protecting the structure and energy efficiency of your whole build. Our range of roofing underlays, also known as roof underlayments, are purposefully designed to provide an essential secondary line of defence against water entry whilst absorbing any\ncondensation that forms beneath your roof cladding. Fire retardant, airtight and vapour permeable, our advanced synthetic underlays ensure moisture can escape from your roof space in a stable protective layer that is both tear and shrink-resistant. Self-supporting and available in rolls of different sizes, they are easy to lay and can also be used to line walls and ceilings.",
+      "Covertek 405 is a premium synthetic roof and wall underlay designed as a means of managing condensation, water vapour transfer and water ingress. It is self-supporting, stable and shrink. For a stronger solution, upgrade to Covertek 407 which is fire retardant and can be used in applications where the roof pitch is 3° and above.   resistant and can be installed in applications where the roof pitch is 3° and above.",
+      "A premium 150gsm Roof Underlay, the DriStud FRU36 is a white synthetic tri-laminate that is water resistant, vapour permeable and fire retardant. Self-supporting, it is intended for use on new and existing buildings in wind zones up to and including ‘Extra High’. For a heavier duty option choose the 220gsm duty Roof Underlay, the DriStud FRU38. This underlay has a thicker membrane as well as the same benefits offered by the FRU36 option.",
+      "Masons offers a range of roofing underlay products which, when installed correctly, also act as an effective air barrier. The underlays are all self supporting, fire retardant and come in a range of thicknesses depending on the protection you require",
+      "Hydra Roof Underlay from the team at Marshall Innovations is a tri-laminate, fire retardant, self supporting roof underlay which prevents water ingress while still allowing for the transfer of water vapour. It's suitable for application on timber or steel and with all roof types. It includes the GripSpot slip-resistant walking surface, an innovative design which allows for safer installation.",
+      "Compare the different aspects of the types of Roofing Underlay available at PlaceMakers.",
+      "VIEW COMPARISON TABLE",
+      "Covertek 405 is just one of the many roof underlays available from Thermakraft. It is fire retardant, tear resistant and self-supporting. Suitable for both timber and steel framed buildings, it can also be used as a wall underlay with non-absorbent wall claddings (metal or plastic). It is effective in providing temporary weather protection for roofs for up to 7 days. If you’re using the Thermakraft OneWrap system, you will be provided with Covertek 403 – a light weight roof and wall underlay. This solution will also provide up to 7 days of weather protection but is not self-supporting.",
+      "Self supporting, stable and shrink resistant.",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3410244",
+        "name": "Covertek 407 Roof And Wall Underlay Heavy Duty Self-Supporting 1250mm x 40m 50m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410389",
+        "name": "Covertek 401 Roof Underlay 1350mm x 55m 75m2 Coverage",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410257",
+        "name": "Covertek 405 Roof And Wall Underlay Self Support 1250mm x 40m 50m2 Coverage",
+        "brand": "Thermakraft"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/roof-underlay"
+  },
+  {
+    "page_id": "tapes",
+    "page_name": "Tape Solutions for Building Wraps and Barriers",
+    "heading": "TAPES",
+    "sub_headings": [
+      "OUR RANGE OF TAPES",
+      "FLASHING TAPES",
+      "SEALING TAPES",
+      "ALL TAPES",
+      "COMPARE ALL BUILDING WRAPS",
+      "SHOP TAPES",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "Our Placemakers range of sealing, flashing and multipurpose construction tapes deliver high performance adhesives with enhanced pliability and superior water resistance. Designed to ensure your joints, seams and junctions remain airtight and secure no matter which system you use, they are an essential accessory when installing any of our flexible synthetic or rigid underlay systems. Offering UV defence and weathertight properties, our premium tapes are water, mould and fire resistant and cope well when applied to cold or wet surfaces. Easy to cut and use, there is a \ntape designed for every step of the building wrap process.",
+      "You must ensure you use the specific tapes recommended for the system you have purchased.",
+      "Flashing Tapes are an essential tool in any building wrap process, providing a secondary water-resistant barrier that will seal around window and door openings to effectively secure your building envelope system. Flashing tapes are also ideal for use with RAB panels, sealing the joints while they are still exposed. Our premium flashing tapes offer excellent adhesion with an aluminium/foil layer that performs well under a wide range of conditions.",
+      "Sealing tapes are an essential accessory in any building wrap process ensuring vertical joints are sealed with a seamless and airtight protective barrier as part of your building envelope system. Our premium sealing tapes are watertight and UV stable making them ideal for use with our range of building wraps, FAB’s and RAB’s. Using the latest advances in adhesive technology these tapes will perform well under a wide range of conditions.",
+      "We supply a wide range of multipurpose tapes, designed by leading construction manufacturers, to provide excellent adhesive bonding during the building wrap process. Ideal for sealing and joining edges of vapour control layers and synthetic underlays, our high performing multipurpose tapes will perform well under a wide range of conditions. \n\nNB: Please refer to your purchased building wrap/underlay guidelines to identify the recommended tapes to use with your system.",
+      "VIEW COMPARISON TABLE",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3410117",
+        "name": "Sill Tape 150mm x 23m",
+        "brand": "Marshall Innovations"
+      },
+      {
+        "sku": "3410394",
+        "name": "Thermaflash Window Flashing Tape 150mm x 23m THFLASH150023",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3100810",
+        "name": "Barrier Frame Sealing Tape 150mm x 30m",
+        "brand": "Ecoply"
+      },
+      {
+        "sku": "3410387",
+        "name": "Premium Joining Tape High-End Construction Tape 75mm x 23m PJT075023",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410265",
+        "name": "Aluband Window Flashing Tape 150mm x 25m ALU150025",
+        "brand": "Thermakraft"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/tapes"
+  },
+  {
+    "page_id": "accessories",
+    "page_name": "Accessories for Building Wraps and Barriers",
+    "heading": "BUILDING WRAP ACCESSORIES",
+    "sub_headings": [
+      "OUR BUILDING WRAP ACCESSORIES",
+      "Penetration Seals",
+      "Fixings",
+      "Strappings",
+      "Tools",
+      "COMPARE ALL BUILDING WRAPS",
+      "SHOP BUILDING WRAP ACCESSORIES",
+      "Insulating?",
+      "Building Supplies"
+    ],
+    "paragraphs": [
+      "At Placemakers we pride ourselves on supplying you with the optimum tools and accessories to achieve a professional finish whilst maximising productivity. The Tools required for building wrap installation include the high production cap nailer (Stinger) guns, cutters, rakers and clamps.",
+      "Explore our wide range of accessories to support your building wrap construction including strappings (to hold your wrap in place), penetration seals (to provide air and water resistance for pipes/cables) and quality fixings (caps, nails, clouts, liquid glues & staples) to\nincrease the holding power of your wrap or barrier.",
+      "NB: Please ensure you purchase the tools and accessories recommended by the manufacturer.",
+      "Penetration seals are designed to multi-fit pipe and cable wall penetrations to create an air and water-resistant barrier as part of your building envelope solution. Simple to install and usually requiring no special tools, glue or tapes they adhere to a wide range of substrates.",
+      "Building barrier systems are supplied with fixings and fastenings which are specifically designed for their use. Used to properly secure your barrier in place, fixings ensure structural integrity and contributes to the overall safety and longevity of the building while mitigating risks of failure or compromise due to inadequate fastening.",
+      "Strappings engineered for building barrier systems are integral for securely fastening and reinforcing critical components of the barrier structure. Designed specifically for each system, these strappings provide robust support and structural reinforcement enhancing the strength and stability of the building barrier. Ideal for large wall applications, our tough woven and coated straps will hold non-self-supporting roof underlays in place and ensure insulation is restricted without bellowing. Made from a high tensile polythene these straps are easy to use from a hand-held dispenser.",
+      "Tools crafted for building barrier systems are designed to streamline the installation process and ensure precise implementation of various barrier components. Tailored to meet the unique requirements of each system, these tools are essential for effective installation of your chosen barrier. Make sure you use the products specifically intended for use with your underlay system. E.g. If you have purchased the James Hardie RAB Boards use their trademark James Hardie knife and JH Blade Saw to deliver a fast clean cut and reduce dust.",
+      "VIEW COMPARISON TABLE",
+      "At PlaceMakers we know our stuff. Check out our insulation resources.",
+      "Explore a wide array of building supplies for both indoor and outdoor projects, tailored to meet all your construction needs."
+    ],
+    "products": [
+      {
+        "sku": "3410249",
+        "name": "Thermastrap 201 Builders Strap 19mm x 300m Blue TS201300",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410267",
+        "name": "Corner Moulding 50 Pack CORNERM50",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3410488",
+        "name": "OneSeal Multi-Fit Pipe & Cable Penetration Seals 195mm TKS19501",
+        "brand": "Thermakraft"
+      },
+      {
+        "sku": "3697308",
+        "name": "Trade Seal Waterproofing Collar 8-12mm",
+        "brand": "Marshall Innovations"
+      },
+      {
+        "sku": "3697309",
+        "name": "Trade Seal Waterproofing Collar 15-22mm",
+        "brand": "Marshall Innovations"
+      },
+      {
+        "sku": "3697310",
+        "name": "Trade Seal Waterproofing Collar 25-32mm",
+        "brand": "Marshall Innovations"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/building-envelope-barriers/accessories"
+  },
+  {
+    "page_id": "special-projects",
+    "page_name": "Fastenings - Screws for Special Projects",
+    "heading": "SPECIAL PROJECTS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "Hinge Screws",
+      "Drywall Collated",
+      "Drywall Loose",
+      "Cement Screws",
+      "Hex Head with Neo Washer for Timber",
+      "Hex Head with No Neo Washer for Timber",
+      "Rivets",
+      "Rivet Size Guide",
+      "Featured Product",
+      "T-REX17® Decking Screw Trim Head – 316 S/Steel Bronze",
+      "Special Project Screws to get the job done",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "From installing hinges to attaching brackets into concrete, there are a number of different projects which require unique types of screws with distinct features and capabilities to help get the job done. On this page, we summarise screws that are ideal for more specific projects.",
+      "Check out our guide below to find the right screw for your job:",
+      "Hinge screws have shanks designed for seamless insertion into hinges, minimising the risk of breakage and loosening. With a range of finishes and tip options, they provide aesthetic appeal and reliability.",
+      "Drywall screws are specifically designed for securing sheets of plasterboard to wall and ceiling joists. Collated drywall screws come on a strip for feeding into an auto feed screw gun.",
+      "Drywall screws are specifically designed for securing sheets of plasterboard to wall and ceiling joists. Drywall loose screws are individual screws designed for use with a standard screwdriver.",
+      "Cement screws are specifically designed for driving into concrete, brick or stone surfaces. They offer strong load bearing qualities in heavy duty applications and come in a range of head shapes.",
+      "Hex Head timber screws are designed for fastening timber to other substrates. Often used for securing metal roofing to timber purlins. The addition of the neoprene seal creates a soft surface to help prevent wear while also providing a tighter seal and reinforcing the joint.",
+      "Hex Head timber screws are designed for fastening timber to other substrates. Often used for securing metal roofing to timber purlins. The addition of the neoprene seal creates a soft surface to help prevent wear while also providing a tighter seal and reinforcing the joint.",
+      "A rivet is a type of fastening with a head on one end and a cylinder-shaped stem on the opposite end. They are used to join large structural pieces and small electronic assembly",
+      "Check out our rivet size guide below.",
+      "For Kwila decking, Garapa decking, Vitex decking or hardwood timber applications where a more decorative finish is required. The screw's 316 stainless steel material with a Bronze finish provides premium corrosion resistance with a high end decorative finish and can be used in outdoor or sea spray zone applications. The screws have T-REX Teeth, T20 TX TORX drive driver bit included in each packet and a Reverse Tip for quick and easy installation.",
+      "ECKO Fastening Systems is a 100% Kiwi owned & operated company specialising in innovative systems that helps builders, manufacturers and industry customers in this competitive fastening market.",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4516591",
+        "name": "Self Tapping Screw 8gauge 25mm long Pan Head Square Drive T304 grade Stainless Steel 200 pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514741",
+        "name": "Grabber Screw Coarse Collated 6g x 32mm 1000 Box",
+        "brand": "Gib"
+      },
+      {
+        "sku": "4525780",
+        "name": "Long Thread Hinge Screw 8g x 30mm Phillips Dive Countersink Head Zinc Plated SKXLZ#80300",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514638",
+        "name": "Hex Head T17 Screw Galvanised CL4 Neo 14g x 75mm 100 Box",
+        "brand": "PlaceMakers"
+      },
+      {
+        "sku": "4514986",
+        "name": "Grabber Screw Coarse 6g x 32mm 200 Box",
+        "brand": "GIB"
+      },
+      {
+        "sku": "4516581",
+        "name": "Self Tapping Screw 8g x 32mm Countersink Head Square Drive T302 Stainless Steel 200 Pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "3161783",
+        "name": "Villadrive Screw 30mm x 7g 100 Jar",
+        "brand": "Villadrive"
+      },
+      {
+        "sku": "4525740",
+        "name": "Rivet 5-4mm Truss Head 5052 Aluminium Body Zinc Plated Steel Stem RPT2S0504I0",
+        "brand": "Bremick"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws/special-projects"
+  },
+  {
+    "page_id": "metal",
+    "page_name": "Fastenings - Metal Screws",
+    "heading": "METAL SCREWS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "Roof Screws",
+      "Metal screws with wings",
+      "Hex Head with Neo Washer for Timber",
+      "Hex Head with No Neo Washer for Timber",
+      "Pan Head",
+      "Button Head",
+      "Wafer Head",
+      "Contour Head",
+      "Countersunk Head",
+      "Featured Product",
+      "MultiONE Screw 14g x 65mm Countersunk Truss Head B8 Coating 200 Pack",
+      "Metal Screws to get the job done",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "If you're fastening into metal then make sure you avoid using regular wood screws and choose a screw specifically designed for metal instead. The point at the tip of a metal screw is designed to drill through steel and most other metals without pre-driling the material first. Metal screws have a blunt-looking drill point in comparison to a wood screw's sharp point. You will also see that the screw threads are closer together.",
+      "Check out our guide below to find the right landscaping screw for your job:",
+      "Screws specifically designed for working with metal roofing and plated to avoid corrosion.",
+      "Ideal for fastening thicker materials such as timber into metal, the wings on this screw create a wider hold which means the screw threads do not engage too early.",
+      "Hex Head metal screws are designed for fastening into metal. The addition of the neoprene seal creates a soft surface to help prevent wear while also providing a tighter seal and reinforcing the joint.",
+      "Hex Head timber screws with no new washer are designed for fastening timber into metal where not waterproofing seal is required.",
+      "Named as it looks like an upside-down frying pan, a pan head screw has a slightly domed top and flat bottom. Versatile with visual appeal used primarily for metal-to-metal applications.",
+      "Good for use in confined spaces and offering a smooth, discreet, finished appearance.",
+      "Wafer heads have an extra wide surface for load bearing and a lower profile than a pan or button head screw. They can de designed as a self-drilling screw with a drill bit point that drives into the metal.",
+      "When you want a decorative finish and broad holding power for use with heavier materials a contour head screw is a solid choice. The screw head is rounded but the underside is flat, ideal for fixing sheet metal.",
+      "Countersunk or flathead screws have no profile so they sink into the surface of the material they are drilled into and sit flat. The flush surface gives a streamlined look and prevents the screw from catching.",
+      "MultiONE is the world's most advanced screw, offering a screw and drill bit in one. Designed and engineered to screw into almost any material without pre-drilling, it's the only screw that performs in multiple building and construction materials.",
+      "Countersunk truss head for use where a flush finish is needed.",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4514610",
+        "name": "Wafer Head SDS Self Drilling Screw Galv CL4 T20 10g 16mm 100 Pack",
+        "brand": "PlaceMakers"
+      },
+      {
+        "sku": "4519826",
+        "name": "Self Drilling Screw for Metal 10g x 16mm Wafer Head Square Drive Zinc Yellow SMWAQCZ100162T",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4516334",
+        "name": "Self Drilling Screw for Metal Wing 10g x 40mm Countersink Head Square Drive B8 Coated SWCRQC8100402T",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "3371864",
+        "name": "Roof Screw SupaDrive Single Shot Galv 50 Pack",
+        "brand": "SunTuf"
+      },
+      {
+        "sku": "4512657",
+        "name": "MultiONE Screw 12g x 75mm Countersunk Torx Head B8 Coating 200 Pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514607",
+        "name": "Placemakers Self Drilling Screw Button Head Galvanised Class 4 T20 8g x 30mm 200 Box",
+        "brand": "PlaceMakers"
+      },
+      {
+        "sku": "4516293",
+        "name": "Self Drilling Screw for Metal with NEO Washer 14g x 65mm Hex Flange Head Class 4 B8 Coated",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4516318",
+        "name": "Top Grip Self Drilling Screw for Timber with Seal Type 17 12g x 65mm Hex Head B8 Coated STHT8120657",
+        "brand": "Bremick"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws/metal"
+  },
+  {
+    "page_id": "general-construction",
+    "page_name": "Fastenings - General Construction Screws",
+    "heading": "GENERAL CONSTRUCTION SCREWS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "General Wood",
+      "Zinc",
+      "General Wood",
+      "Galvanised",
+      "General Wood",
+      "Stainless Steel",
+      "Ply",
+      "Plyfix Screws",
+      "Featured Product",
+      "QuikDrive Coll Screw CSK Stainless Steel 10g x 50mm 2000 Box",
+      "General Construction Screws to get the job done",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "General construction screws are available in interior and exterior options. For interior applications, screws are zinc plated while exterior applications can use stainless steel or galvanised screws. Stainless steel will not rust and is ideal for above ground and extreme conditions. Galvanised screws are the more affordable option but may rust over time and are only suited to moderate, sheltered conditions.",
+      "Gauge Size:Screw gauge refers to the diameter of the shank on a screw. It's measured using an imperial system that ranks the size with a number from 1 to 20. The higher the gauge, the bigger the screw. An 8 gauge screw is one of the most common sizes available and is considered to be a standard size.",
+      "Sharp threads and a deep, coarse design provide exceptional grip in various types of wood, from soft pine to hardwoods. The zinc plating keeps corrosion at bay while offering a more affordable option than stainless steel.",
+      "A general wood screw with a more affordable but less durable galvanised coating.",
+      "A general wood screw with superior corrosion resistance and strength.",
+      "Ply fix screws feature a countersunk head to they sit flush against a ply substrate. Stainless steel and suitable for use in exterior and interior applications.",
+      "The Simpson Strong-Tie Quik Drive WSC Series 50mm Square Drive Collated Screw is designed for fastening timber to timber. This 10 gauge screw features 305 stainless steel construction for long lasting durability and superior corrosion resistance. It is suitable for Quik Drive systems. The 4.9mm flat head screw with nib, has Type 17 point to ensure fast and easy installations.",
+      "Flat head with nibs for easy countersinking",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4515366",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 50mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4515690",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 65mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4510459",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 8g x 40mm 200 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4511416",
+        "name": "Surequik 8g x 50mm Square Drive Zinc Chipboard Screw 100 Pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4510604",
+        "name": "Bremick Screw Surefix Surequik Square CL3 8g x 50mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4515705",
+        "name": "Plyfix Screw Type 17 10g x 50mm Ribbed Countersink Head Square Drive T316 Stainless Steel 100 Pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "3521236",
+        "name": "ECKO T-Rex17 Joltscrew OutDoor XGuard 8g x 75mm 500 Box",
+        "brand": "ECKO"
+      },
+      {
+        "sku": "3521238",
+        "name": "T-REX17 JoltScrew Stainless Steel T316 TX15 Drive 8g x 75mm 500 Box",
+        "brand": "ECKO"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws/general-construction"
+  },
+  {
+    "page_id": "screws",
+    "page_name": "Fastenings - Screws",
+    "heading": "SCREWS",
+    "sub_headings": [
+      "Your guide to the right screw for the job",
+      "Decking Screws",
+      "Landscaping Screws",
+      "General Construction Screws",
+      "Metal Screws",
+      "Special Project Screws",
+      "Featured Product",
+      "T-REX17® Decking Screw Trim Head – 316 S/Steel Bronze",
+      "Shop Screws",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Screws are an indispensable fastenings choice across numerous industries and applications. Their threaded design is a hallmark of their functionality, facilitating a secure grip that surpasses many other fastening methods. This unique feature allows screws to firmly hold materials together, whether wood, metal, drywall, or even concrete.",
+      "Check out our guide below to find the right screw for your job:",
+      "Each screw in our comprehensive collection undergoes rigorous testing and evaluation to ensure it meets the demanding requirements of various trades. Whether you're working on decking, landscaping, general construction, metal fabrication, or specialised projects, our extensive range of screws has you covered.\n\nFrom corrosion-resistant exterior screws for outdoor projects to high-strength structural screws for heavy-duty applications, we provide a diverse array of options to suit your specific needs.",
+      "Choosing the right screws for your deck is crucial for ensuring its longevity, structural integrity, and overall aesthetic appeal. Several factors need to be considered when selecting screws for deck construction, including the type of decking material, environmental conditions, and desired appearance.",
+      "Choosing the right screws for a landscaping project is crucial to ensure the longevity and stability of your outdoor structures. When considering above-ground applications such as constructing decks, pergolas, or fences, opt for corrosion-resistant screws made from stainless steel or coated with materials.",
+      "General construction screws are available in interior and exterior options. For interior applications, screws are zinc plated while exterior applications can use stainless steel or galvanised screws.",
+      "If you're fastening into metal then make sure you avoid using regular wood screws and choose a screw specifically designed for metal instead. The point at the tip of a metal screw is designed to drill through steel and most other metals without pre-driling the material first.",
+      "From installing hinges to attaching brackets into concrete, there are a number of different projects which require unique types of screws with distinct features and capabilities to help get the job done.",
+      "For Kwila decking, Garapa decking, Vitex decking or hardwood timber applications where a more decorative finish is required. The screw's 316 stainless steel material with a Bronze finish provides premium corrosion resistance with a high end decorative finish and can be used in outdoor or sea spray zone applications. The screws have T-REX Teeth, T20 TX TORX drive driver bit included in each packet and a Reverse Tip for quick and easy installation.",
+      "ECKO Fastening Systems is a 100% kiwi owned & operated company specialising in innovative systems that helps builders, manufacturers and industry customers in this competitive Fastening market.",
+      "$399.00 PA",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4516540",
+        "name": "Deck Screw Shark Truss Stainless Steel T304 10g x 65mm 1000 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4524811",
+        "name": "A2/304 Decking Screw Value Pack 5 x 60mm",
+        "brand": "SPAX"
+      },
+      {
+        "sku": "4512050",
+        "name": "Batten Screw Bugle Head Hex Drive incl. driver bit Class 4 Galvanised  14g 100mm 100 Pack",
+        "brand": "PLACEMAKERS"
+      },
+      {
+        "sku": "4515366",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 50mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4515690",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 65mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514610",
+        "name": "Wafer Head SDS Self Drilling Screw Galv CL4 T20 10g 16mm 100 Pack",
+        "brand": "PlaceMakers"
+      },
+      {
+        "sku": "4519826",
+        "name": "Self Drilling Screw for Metal 10g x 16mm Wafer Head Square Drive Zinc Yellow SMWAQCZ100162T",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4516591",
+        "name": "Self Tapping Screw 8gauge 25mm long Pan Head Square Drive T304 grade Stainless Steel 200 pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514741",
+        "name": "Grabber Screw Coarse Collated 6g x 32mm 1000 Box",
+        "brand": "Gib"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/screws"
+  },
+  {
+    "page_id": "farm-sheds",
+    "page_name": "Farm Sheds | PlaceMakers NZ",
+    "heading": "THE EXPERTS IN FARM SHEDS",
+    "sub_headings": [
+      "PlaceMakers Custom Farm Sheds - Let us bring your vision to life",
+      "Why PlaceMakers?",
+      "Tailored Solutions",
+      "Quality Materials",
+      "Expertise",
+      "Specialty areas",
+      "1. Get in touch",
+      "2. Consultation",
+      "3. Design",
+      "4. Construction",
+      "Ready to Get Started?",
+      "SHOP FARM SHED ESSENTIALS",
+      "EXPLORE OTHER PLACEMAKERS DESIGN SERVICES"
+    ],
+    "paragraphs": [
+      "PlaceMakers offers custom-designed farm sheds tailored to meet the unique needs of New Zealand farmers. Whether you're looking for a storage solution, a workshop, or a shelter for livestock, PlaceMakers provides durable and functional structures built to withstand local conditions. With a commitment to quality materials and expert guidance throughout the design and construction process, PlaceMakers ensures your farm shed meets all your expectations.",
+      "We understand that every farm is different. That's why we offer custom-designed farm sheds to suit your specific requirements. Whether you need a storage solution, a workshop, or a shelter for your livestock, we've got you covered.",
+      "Our commitment to quality means we only use the finest materials in our construction process. From robust steel frames to durable roofing materials, your farm shed will be built to last.",
+      "With years of experience in the industry, our team of experts is here to guide you through the design and construction process. We'll work closely with you to ensure that your farm shed meets all your expectations.",
+      "Kitsets and fully installed solutions—we can do it all. PlaceMakers specialises in standard pole sheds, hybrid pole sheds, consent-exempt rural buildings, and non-habitable structures. Our team can assist with wintering sheds, hay barns, storage sheds, stables, secure lockups, workshops, and carports.",
+      "Use the form below to let us know what you want, and we’ll contact you.",
+      "Whether you have a clear vision in mind or need some guidance, our team will ask all the right questions to get you just what you need.",
+      "Once we clearly understand your needs, we'll create a custom design for your farm shed. We'll consider factors such as size, layout, and functionality to ensure the final product meets your specifications.",
+      "We can supply both kitset & fully installed solutions.",
+      "Please fill out the form below with your farm shed requirements, and one of our friendly team members will contact you shortly to discuss your project further.",
+      "No matter the size or scope of your project, we'll work with you from concept to completion to bring your vision to life. Let's build something great together."
+    ],
+    "products": [
+      {
+        "sku": "5760118",
+        "name": "Diesel Fuel Can Rear Vented 20L SCD520",
+        "brand": "Scepter"
+      },
+      {
+        "sku": "4591342",
+        "name": "Fortress Keyed Padlock Solid Brass 40mm",
+        "brand": "MASTER LOCK"
+      },
+      {
+        "sku": "4620722",
+        "name": "115mm Galvansied Hasp & Staple",
+        "brand": "Gartner"
+      },
+      {
+        "sku": "3840220",
+        "name": "Light Patrol Security Sensor Light 1200VA",
+        "brand": "HPM"
+      },
+      {
+        "sku": "3570126",
+        "name": "Tru-Test Vertical Barred Gate Hot Dip Galvanised Steel 1.83 x 1m 806589",
+        "brand": "Tru-Test"
+      },
+      {
+        "sku": "3371937",
+        "name": "Corrugated Roofing Sheet Solar Grey 3600 x 860mm",
+        "brand": "SunTuf"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/farm-sheds"
   },
   {
     "page_id": "showers",
@@ -4853,6 +6714,7 @@
       "When it comes to outfitting your bathroom, consistency is key to achieving a cohesive and harmonious look. Shopping by brand ensures that every element, from fixtures to accessories, aligns seamlessly in style and quality. Explore our trusted brands to create a bathroom space that exudes both elegance and functionality, reflecting your unique taste and vision.",
       "Book in a time with one of our bathroom experts to design your own bathroom oasis.",
       "BOOK A CONSULATION",
+      "$3,638.00 EA",
       "Your complete guide to a bathroom you wil love. Whether you're starting from scratch or renovating a well designed bathroom built with quality materials and styling fittings can add convenience, comfort and value.",
       "We have the brands, looks, sizes, and functions to suit your budget and personality. Not to mention the know how to help guide you to the best decisions."
     ],
@@ -4945,6 +6807,7 @@
       "BOOK A CONSULATION",
       "Spend $15,000+ (excl. GST) on kitchen and/or bathroom products in one transaction between 1 Aug–20 Nov 2025 at PlaceMakers in-store or online and receive a My Food Bag™ Christmas Hamper (valued up to $429.99 incl. delivery). While stocks last.",
       "FULL TERMS & CONDITIONS",
+      "$3,638.00 EA",
       "Your complete guide to a bathroom you wil love. Whether you're starting from scratch or renovating a well designed bathroom built with quality materials and styling fittings can add convenience, comfort and value.",
       "We have the brands, looks, sizes, and functions to suit your budget and personality. Not to mention the know how to help guide you to the best decisions."
     ],
@@ -5037,6 +6900,7 @@
       "BOOK A CONSULATION",
       "Spend $15,000+ (excl. GST) on kitchen and/or bathroom products in one transaction between 1 Aug–20 Nov 2025 at PlaceMakers in-store or online and receive a My Food Bag™ Christmas Hamper (valued up to $429.99 incl. delivery). While stocks last.",
       "FULL TERMS & CONDITIONS",
+      "$3,638.00 EA",
       "Your complete guide to a bathroom you wil love. Whether you're starting from scratch or renovating a well designed bathroom built with quality materials and styling fittings can add convenience, comfort and value.",
       "We have the brands, looks, sizes, and functions to suit your budget and personality. Not to mention the know how to help guide you to the best decisions."
     ],
@@ -5180,6 +7044,7 @@
       "Each of our bathroom ranges is inspired by local and international trends and named after an iconic ‘city of style’.",
       "Book in a time with one of our bathroom experts to design your own bathroom oasis.",
       "BOOK A CONSULATION",
+      "$3,638.00 EA",
       "Your complete guide to a bathroom you wil love. Whether you're starting from scratch or renovating a well designed bathroom built with quality materials and styling fittings can add convenience, comfort and value.",
       "We have the brands, looks, sizes, and functions to suit your budget and personality. Not to mention the know how to help guide you to the best decisions."
     ],
@@ -5616,7 +7481,8 @@
       "PLACEMAKERS RECOMMENDS..."
     ],
     "paragraphs": [
-      "Thank you for reaching out regarding your interest in a bathroom consultation. We appreciate your inquiry and will be in touch shortly to discuss your needs and next steps."
+      "Thank you for reaching out regarding your interest in a bathroom consultation. We appreciate your inquiry and will be in touch shortly to discuss your needs and next steps.",
+      "$3,638.00 EA"
     ],
     "products": [
       {
@@ -5653,6 +7519,160 @@
     "tags": [],
     "projects": [],
     "url": "https://www.placemakers.co.nz/online/projects/bathrooms/bathroom-consult-thank-you"
+  },
+  {
+    "page_id": "bolts",
+    "page_name": "Fastenings - Bolts",
+    "heading": "BOLTS",
+    "sub_headings": [
+      "Your guide to the right bolt for the job",
+      "Select the type",
+      "HEX HEAD BOLT",
+      "COACH BOLT",
+      "COACH SCREW",
+      "WASHERS, NUTS & RODS",
+      "Featured Product",
+      "Square Washer SS Stainless Steel T316 grade M12 50mm",
+      "Shop Bolts",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Bolts are a key fastening choice across a wide range of industries and applications. Their strong, threaded design ensures a secure and reliable connection that excels in holding materials together.",
+      "Check out our guide below to find the right bolt for your job:",
+      "Whether you’re working on construction, furniture assembly, fencing, or heavy-duty applications, our extensive range of bolts has you covered. Select the bolt you need from the selection below and we'll show you what we have available. Bolts are available to purchase online or in-branch at your local PlaceMakers.",
+      "Explore the range available at PlaceMakers and click SHOP OUR RANGE to select between stainless steel or galvanised and choose your sizes. Not sure? Come in-store to discuss your needs.",
+      "A hex head bolt, also known as a hex bolt, is a type of fastener characterised by its hexagonal (six-sided) head. This design allows for easy turning with a spanner or a socket. Hex head bolts are used to create a strong and secure connection between materials and are designed to be used with a matching nut and washer. They are frequently used in construction projects for securing wooden beams, metal frames, and concrete structures.",
+      "A coach bolt, also known as a carriage bolt, features a round, domed head with a square section underneath that prevents the bolt from turning when a nut is tightened. These bolts are used to secure wood to wood or wood to metal connections, providing a strong and reliable hold. Commonly utilised in woodworking projects, fencing, and decking; coach bolts offer both strength and a good looking finish.",
+      "A coach screw features a hexagonal head that allows for easy turning with a spanner or socket. Designed for joining heavy timber or affixing metal to wood, these screws provide a strong, secure connection often needing a pilot hole. Unlike bolts, coach screws do not protrude through the materials they fasten, ensuring a neat finish.",
+      "Nuts, washers, and rods are essential components to accompany bolts. Nuts are typically hexagonal with internal threads, used to secure bolts and screws, providing a strong and reliable connection. Washers are thin, flat discs with a central hole, designed to distribute the load of threaded fasteners, reduce surface wear, and improve fastening connections by offering a larger bearing surface. Rods, also known as threaded rods or studs, are long, straight bars with continuous threading, used to connect and secure materials over a distance.",
+      "The M12 Square Washer is designed for use in applications with any nuts, bolts and screw products. It measures 50mm x 3mm. This washer helps to prevent a nut or bolt head from pulling through the material. It can also be used as a spacer.These washers come in a handy pack of 25. they are made from T316 grade Stainless Steel for outside projects.\nM12 inside diameter stainless steel washer that minimises surface damage to the work material.",
+      "ECKO Fastening Systems is a 100% kiwi owned & operated company specialising in innovative systems that helps builders, manufacturers and industry customers in this competitive Fastening market.",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4510791",
+        "name": "Engineer Bolt & Nut Stainless Steel T316 M12 220mm",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4500692",
+        "name": "Square Washer SS Stainless Steel T316 grade M12 50mm sold as per each washer",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4510795",
+        "name": "Coach Screw 12 x 180mm Hex Head T316 Stainless Steel",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4500237",
+        "name": "Coach Bolt and Nut 12 x 170mm 4.6 Galvanised Steel",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4511236",
+        "name": "Threaded Rod Stainless Steel T316 M12 1m",
+        "brand": "Ecko"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings/bolts"
+  },
+  {
+    "page_id": "fastenings",
+    "page_name": "Fastenings",
+    "heading": "FASTENINGS",
+    "sub_headings": [
+      "Explore our Fastenings",
+      "Screws",
+      "Bolts",
+      "Featured Brand",
+      "Ramset™",
+      "Shop Fastenings",
+      "The complete guide to Fastenings",
+      "Landscaping Catalogue"
+    ],
+    "paragraphs": [
+      "Whether you're securing timber, framing, or heavy materials, having the right fastening is crucial. At PlaceMakers, we offer a comprehensive range of screws, bolts, anchors, and more, designed to provide strength and durability for any project, from the first fix to the final touch.",
+      "Check out our guide below to find the right fastening for your job:",
+      "Take the guesswork out of choosing the right fastening with our new Fastenings Selection Tool. Easily narrow down your options to find the perfect screws and bolts for your project, with more fastening types coming soon. Start your search now and get the job done right.",
+      "Got a job that needs screws? We've got you covered with a massive range of types and sizes—from decking and landscaping screws to metal screws and more. With our Screw Selection Tool, you'll easily find the right screw for whatever your project.",
+      "whether you’re bolting down a frame, securing steel, or need something heavy-duty. Our selection covers all the sizes and types you need. And with our Bolt Selection Tool, we help you find the perfect fit for your project.",
+      "With 70 years in the industry, Ramset™ knows what it takes to get the job done right. Their products are designed to meet the demands of modern construction, built for efficiency and ease of use on site. Ramset listens to the needs of builders and constantly innovates to ensure their fastenings live up to the highest standards—because on-site, time is money.",
+      "Products that make building easier",
+      "$399.00 PA",
+      "The cornerstone of construction - fastenings. Everything that we build gets its strength, reliability, and precision of from the fastenings invisibly holding things together.",
+      "At PlaceMakers we're well equipped to turn your landscaping dream into a reality. We have a comprehensive range of trade quality products and offer helpful advice."
+    ],
+    "products": [
+      {
+        "sku": "4516540",
+        "name": "Deck Screw Shark Truss Stainless Steel T304 10g x 65mm 1000 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4510791",
+        "name": "Engineer Bolt & Nut Stainless Steel T316 M12 220mm",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4524811",
+        "name": "A2/304 Decking Screw Value Pack 5 x 60mm",
+        "brand": "SPAX"
+      },
+      {
+        "sku": "4500692",
+        "name": "Square Washer SS Stainless Steel T316 grade M12 50mm sold as per each washer",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4512050",
+        "name": "Batten Screw Bugle Head Hex Drive incl. driver bit Class 4 Galvanised  14g 100mm 100 Pack",
+        "brand": "PLACEMAKERS"
+      },
+      {
+        "sku": "4510795",
+        "name": "Coach Screw 12 x 180mm Hex Head T316 Stainless Steel",
+        "brand": "Ecko"
+      },
+      {
+        "sku": "4515366",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 50mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4515690",
+        "name": "Screw Surefix SureQuik Square Stainless Steel T304 10g x 65mm 100 Box",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514610",
+        "name": "Wafer Head SDS Self Drilling Screw Galv CL4 T20 10g 16mm 100 Pack",
+        "brand": "PlaceMakers"
+      },
+      {
+        "sku": "4519826",
+        "name": "Self Drilling Screw for Metal 10g x 16mm Wafer Head Square Drive Zinc Yellow SMWAQCZ100162T",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4516591",
+        "name": "Self Tapping Screw 8gauge 25mm long Pan Head Square Drive T304 grade Stainless Steel 200 pack",
+        "brand": "Bremick"
+      },
+      {
+        "sku": "4514741",
+        "name": "Grabber Screw Coarse Collated 6g x 32mm 1000 Box",
+        "brand": "Gib"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/fastenings"
   },
   {
     "page_id": "appliances-fundamentals",
@@ -5761,11 +7781,6 @@
         "sku": "5993127",
         "name": "Single-Door Bar Fridge 126L Black",
         "brand": "Artusi"
-      },
-      {
-        "sku": "7692837",
-        "name": "Atlanta Sink Mixer Mains Pressure Chrome SD91225-2",
-        "brand": "Raymor"
       },
       {
         "sku": "3794124",
@@ -6186,6 +8201,166 @@
     "url": "https://www.placemakers.co.nz/online/projects/kitchens/showrooms"
   },
   {
+    "page_id": "laundry",
+    "page_name": "Laundry Tubs and and Laundry Essentials  | PlaceMakers NZ",
+    "heading": "LAUNDRY FUNDAMENTALS",
+    "sub_headings": [
+      "LAUNDRY TUBS",
+      "LAUNDRY CABINETS",
+      "LAUNDRY APPLIANCES & ACCESSORIES",
+      "LAUNDRY TAPS",
+      "LAUNDRY SINKS",
+      "WET WALL LININGS",
+      "Featured Product",
+      "Essential Laundry Cabinet Slim 350mm",
+      "SHOP BEST SELLING LAUNDRY PRODUCTS"
+    ],
+    "paragraphs": [
+      "Get your laundry space sorted with quality tubs, tapware, and cabinets that work as hard as you do. From everyday essentials to stylish upgrades, we've got what you need to fit your space, budget and style.",
+      "Whether you’re rinsing muddy boots, soaking stained clothes, or washing your hands after a day on the tools, a quality laundry tub is an essential workhorse in any laundry room. Choose from a range of sizes and styles including both slimline and wide-fit options, to suit your space and needs.",
+      "We offer a pre-fabricated laundry cabinet that you can easily shop online, making it a quick and convenient solution for your space. If you're after something more tailored, you can also book a consultation with one of our kitchen and laundry consultants to create a customised solution that fits your needs perfectly.",
+      "For appliances, we’ve got a selection of washing machines and dryers to suit any household size and laundry setup. And don't forget the accessories—our range includes ironing centres, shelving, and more to help you keep things organised and efficient. Whether you’re upgrading your appliances or adding those final touches, we’ve got the options to complete your laundry.",
+      "Get the right tapware that’s built to handle the daily grind. Whether it's a sturdy mixer or a flexible pull-out design, our tough range is designed for durability and ease of install. With gear that performs under pressure and fits any laundry setup, you’ll have no trouble getting the job done right the first time.",
+      "When it comes to laundry sinks, we’ve got you covered with a variety of options to suit any space. From double sinks for those bigger loads to traditional butler sinks as well as overmount and undermount options, you'll find the right fit for your laundry setup. And don’t forget to check out our matching tapware to complete the look.",
+      "Wet wall linings are the perfect choice for laundry spaces, designed specifically for areas exposed to moisture. These interior wall linings offer superior protection against water damage while giving your laundry a clean, modern look. Easy to install and maintain, they provide a durable, moisture-resistant solution that keeps your walls looking great, even in high-humidity areas.",
+      "The Essentials laundry tub is an ideal and easy choice offering a seamless stainless steel tub with a single door. Perfect for tight spaces, the Essentials Laundry Tub has a 17 litre capacity with a satin finish, powder-coated galvanised steel cabinet providing strength.",
+      "Elegant design, fine engineering, low maintenance and outstanding value"
+    ],
+    "products": [
+      {
+        "sku": "7736548",
+        "name": "Essential Laundry Cabinet Slim 350mm",
+        "brand": "Raymor"
+      },
+      {
+        "sku": "3804211",
+        "name": "Ironing Kit Centre White IC1300",
+        "brand": "Robinhood"
+      },
+      {
+        "sku": "7736549",
+        "name": "Essential Laundry Cabinet Standard 560mm",
+        "brand": "Raymor"
+      },
+      {
+        "sku": "3645340",
+        "name": "Laundry Tub 460 x 650 x 990mm Laundra Slim Plus With Door LAUNDRA460 PLUS",
+        "brand": "Aquatica"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/laundry"
+  },
+  {
+    "page_id": "rural-supplies",
+    "page_name": "Rural Supplies NZ | Farm & Lifestyle Products | PlaceMakers",
+    "heading": "Rural Supplies, Online and On-Demand",
+    "sub_headings": [
+      "From the back paddock to the home paddock, we've got you covered.",
+      "Rural Essentials - Fencing, Fastenings & Water Solutions",
+      "Fencing",
+      "Top Categories",
+      "Fastenings",
+      "Top Categories",
+      "WATER & IRRIGATION",
+      "Top Categories",
+      "SHOP ONLINE WITH YOUR FARMLANDS CARD",
+      "TOOLS BUILT FOR THE FARM",
+      "POWER TOOLS",
+      "Top Categories",
+      "Hand Tools",
+      "Top Categories",
+      "AUTOMOTIVE TOOLS",
+      "Top Categories",
+      "Work Safe - Stay Warm",
+      "SAFETY EQUIPMENT",
+      "Top Categories",
+      "CLOTHING & BOOTS",
+      "Top Categories",
+      "INSULATION",
+      "Top Categories",
+      "Tidy the Yard, Protect Your Patch",
+      "GARDEN SHEDS",
+      "Top Categories",
+      "PEST CONTROL",
+      "Top Categories",
+      "LAWN & GARDEN",
+      "Top Categories",
+      "SHOP RURAL ESSENTIALS",
+      "CUSTOM FARM SHEDS",
+      "RURAL SUPPLIES"
+    ],
+    "paragraphs": [
+      "Whether you're running a working farm or managing a lifestyle block, getting the right gear shouldn't mean losing half a day driving into town. At PlaceMakers, we've made rural shopping simple. Order fencing, tools, tanks, farm sheds and more - all online, all in one place. With flexible delivery options and trusted brands, you can spend more time on the land and less time chasing supplies.",
+      "From supplies for your fencing needs to reliable fastenings and water and irrigation systems built for New Zealands tough rural conditions, find everything you need to keep your property running smoothly and securely.",
+      "Keep your boundaries secure and your stock safe with our range of rural fencing supplies. We've got the gear to suit every farm layout.",
+      "Built for the demands of rural life, our fastenings range includes everything from nails to bolts and screws - tough enough for fencing, sheds, and farm maintenance.",
+      "Manage water flow across your property with pumps, tanks, and irrigation designed for Kiwi farms.",
+      "The team at PlaceMakers are pleased to have partnered with Farmlands to offer you great discounts when you shop online.",
+      "Signup Here",
+      "From heavy-duty power tools to everyday hand tools and workshop-ready automotive gear, we’ve got the tools to tackle any rural job - big or small, in the shed or out in the field.",
+      "Tough, reliable, and ready to work — our power tools are built to handle farm jobs from fencing repairs to machinery maintenance.",
+      "Whether it’s a quick fix or a full-day project, our hand tools deliver the durability and grip you need in rugged rural environments.",
+      "Keep your farm vehicles running with our range of automotive tools, ideal for utes, tractors, and bikes that need servicing in the workshop or on-site.",
+      "Farm life doesn't stop for weather or hazards. From protective gear and hard-wearing clothing to insulation that keeps sheds and homes comfortable, this gear is made for rural conditions.",
+      "Protect yourself on the job with high-vis gear, helmets, gloves, and eye protection - essential for working safely around machinery, livestock, and the elements.",
+      "Rural workwear that’s tough, weather-resistant, and built for long days. From waterproof jackets to steel-cap boots, this kit keeps you dry, warm, and protected.",
+      "Keep your farm buildings energy-efficient and weather-tight with insulation solutions for sheds, homes, and sleepouts — built to perform in New Zealand’s diverse climates.",
+      "From keeping pests out to keeping your tools dry, this gear helps you maintain your land, garden, and lifestyle block - all with practical solutions that last.",
+      "Store tools, gear, and supplies out of the weather with durable sheds built to handle rural conditions - from compact units to large garden storage.",
+      "Keep rodents, insects, and other pests under control with proven solutions for the home, shed, or paddock - because a healthy farm starts with good protection.",
+      "Whether it's edging, composting, or general upkeep, find the tools and products to keep your lawn, veggie garden, and green spaces in top shape year-round.",
+      "PlaceMakers custom farm sheds are built to suit your needs - from storage and workshops to livestock shelters. Designed for Kiwi conditions, we use quality materials and guide you through every step of the process.",
+      "Whether it's a working farm or a lifestyle block, PlaceMakers makes rural shopping easy. Order fencing, tools, tanks, sheds and more - all online, with trusted brands and flexible delivery."
+    ],
+    "products": [
+      {
+        "sku": "3394228",
+        "name": "Novaflo 400.110.15",
+        "brand": "Iplex"
+      },
+      {
+        "sku": "2332807",
+        "name": "Radiata Rough Sawn Fence Post H4 100 x 100mm x 3.0m",
+        "brand": ""
+      },
+      {
+        "sku": "2332344",
+        "name": "Radiata Rough Sawn Fence Post H4 100 x 100mm x 2.7m",
+        "brand": ""
+      },
+      {
+        "sku": "2320846",
+        "name": "Radiata Timber Builders Peg H4 CCA Treated 50mm x 25mm x 450mm",
+        "brand": "Pegs Unlimited"
+      },
+      {
+        "sku": "2332328",
+        "name": "Radiata Rough Sawn Fence Paling H3.2 CCA Treated 150 x 19mm x 1.8m",
+        "brand": ""
+      },
+      {
+        "sku": "3391950",
+        "name": "Novaflo 400.110.30",
+        "brand": "Iplex"
+      },
+      {
+        "sku": "7503046",
+        "name": "DWV 100SN6.100.6 SOE",
+        "brand": "Iplex"
+      },
+      {
+        "sku": "7769855",
+        "name": "Self-priming Centrifugal Pump Pressure Tank JP 4-47 0.85kW",
+        "brand": "Grundfos"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/projects/rural-supplies"
+  },
+  {
     "page_id": "book-a-consultation",
     "page_name": "Book a Bathroom Design Consultation | PlaceMakers NZ",
     "heading": "BATHROOM DESIGN SERVICES",
@@ -6244,5 +8419,163 @@
     "tags": [],
     "projects": [],
     "url": "https://www.placemakers.co.nz/online/projects/bathrooms/book-a-consultation"
+  },
+  {
+    "page_id": "wardrobes-catalogue",
+    "page_name": "Wardrobes Catalogue | PlaceMakers NZ",
+    "heading": "Wardrobe Catalogue",
+    "sub_headings": [
+      "DOWNLOAD THE WARDROBE CATALOGUE"
+    ],
+    "paragraphs": [
+      "Made to order wardrobes with a range of standard size configurations or created custom to your requirements. You choose the colour, configuration and wardrobe door sliders to match. We can arrange for a measure, design and installation of a wardrobe to suit your needs and space. Download the Wardrobe Brochure for more details on how to order your customised wardrobe today.",
+      "The latest PlaceMakers wardrobe catalogue is out now ready to view below in the flipbook, downloadable below or available to pick up at your local PlaceMakers store today.",
+      "Download a PDF version of the online Wardrobe Catalogue."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes-catalogue"
+  },
+  {
+    "page_id": "wardrobes-consultation",
+    "page_name": "Wardrobes Consultation Booking Form | PlaceMakers NZ",
+    "heading": "Book a Wardrobe Consultation",
+    "sub_headings": [],
+    "paragraphs": [
+      "We want you to enjoy the process of creating your new wardrobes. We will listen to your ideas and work with you to come up with clever solutions to your requirements and the very best wardrobes to fit your budget. Book a consultation at your nearest PlaceMakers store and talk to one of our friendly consultants to make your storage requirements a reality."
+    ],
+    "products": [],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/wardrobes-consultation"
+  },
+  {
+    "page_id": "wardrobes",
+    "page_name": "Book a Wardrobe Design Consultation | PlaceMakers NZ",
+    "heading": "WARDROBE DESIGN SERVICES",
+    "sub_headings": [
+      "Let our experts help you create a stylish and functional storage space",
+      "Personalised One-on-One Consultation",
+      "Get a Quote Tailored to You",
+      "SHOP WARDROBE ESSENTIALS",
+      "The Top 3 Questions We Get",
+      "Shop our exclusive brands",
+      "Your complete guide to a wardrobe you will love",
+      "EXPLORE OTHER PLACEMAKERS DESIGN SERVICES"
+    ],
+    "paragraphs": [
+      "We want you to enjoy the process of creating your new wardrobe. We will listen to your ideas and work with you to bring your dream storage space to life, while working within your budget. Book a consultation at a PlaceMakers store and talk to one of our friendly consultants to make your dream wardrobe a reality!",
+      "Meet with one of our expert team members in a relaxed showroom setting. We'll take the time to understand your preferences and the specifics of your space, so we can guide you through the process and help bring your wardrobe to life.",
+      "See, touch, and compare the latest in wardrobe design. Exploring our range in person helps you make confident choices that suit your style and budget.",
+      "The key things to know before your consultation with PlaceMakers",
+      "When it comes to outfitting your bathroom, consistency is key to achieving a cohesive and harmonious look. Shopping by brand ensures that every element, from fixtures to accessories, aligns seamlessly in style and quality. Explore our trusted brands to create a bathroom space that exudes both elegance and functionality, reflecting your unique taste and vision.",
+      "Browse through our wide range of wardrobes solutions to suit your lifestyle and budget. We have a fantastic range of free-standing modular wardrobe systems, an easy to install wire wardrobe configuration, to our made to measure custom option. Whichever solution you are looking for we have it right here.",
+      "VIEW GUIDE",
+      "No matter the size or scope of your project, we'll work with you from concept to completion to bring your vision to life. Let's build something great together."
+    ],
+    "products": [
+      {
+        "sku": "4583440",
+        "name": "Wardrobe Style C1 Tower 1800mm",
+        "brand": "Lifestyle"
+      },
+      {
+        "sku": "4583436",
+        "name": "Wardrobe Style A2/B2 Tower 2400mm 3 Drawers",
+        "brand": "Lifestyle"
+      },
+      {
+        "sku": "4583437",
+        "name": "Wardrobe Style A3/B3 Tower 2 wire Baskets",
+        "brand": "Lifestyle"
+      },
+      {
+        "sku": "4583447",
+        "name": "Wardrobe wire shoe rack 600mm",
+        "brand": "Lifestyle"
+      },
+      {
+        "sku": "4583446",
+        "name": "Wardrobe wire shoe rack 1200mm",
+        "brand": "Lifestyle"
+      },
+      {
+        "sku": "3809135",
+        "name": "Wire Wardrobe Kit 0.9 - 1.8m",
+        "brand": "Ledge"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/services/wardrobes"
+  },
+  {
+    "page_id": "farm-sheds",
+    "page_name": "Farm Sheds | PlaceMakers NZ",
+    "heading": "THE EXPERTS IN FARM SHEDS",
+    "sub_headings": [
+      "PlaceMakers Custom Farm Sheds - Let us bring your vision to life",
+      "Why PlaceMakers?",
+      "Tailored Solutions",
+      "Quality Materials",
+      "Expertise",
+      "Specialty areas",
+      "1. Get in touch",
+      "2. Consultation",
+      "3. Design",
+      "4. Construction",
+      "Ready to Get Started?",
+      "SHOP FARM SHED ESSENTIALS",
+      "EXPLORE OTHER PLACEMAKERS DESIGN SERVICES"
+    ],
+    "paragraphs": [
+      "PlaceMakers offers custom-designed farm sheds tailored to meet the unique needs of New Zealand farmers. Whether you're looking for a storage solution, a workshop, or a shelter for livestock, PlaceMakers provides durable and functional structures built to withstand local conditions. With a commitment to quality materials and expert guidance throughout the design and construction process, PlaceMakers ensures your farm shed meets all your expectations.",
+      "We understand that every farm is different. That's why we offer custom-designed farm sheds to suit your specific requirements. Whether you need a storage solution, a workshop, or a shelter for your livestock, we've got you covered.",
+      "Our commitment to quality means we only use the finest materials in our construction process. From robust steel frames to durable roofing materials, your farm shed will be built to last.",
+      "With years of experience in the industry, our team of experts is here to guide you through the design and construction process. We'll work closely with you to ensure that your farm shed meets all your expectations.",
+      "Kitsets and fully installed solutions—we can do it all. PlaceMakers specialises in standard pole sheds, hybrid pole sheds, consent-exempt rural buildings, and non-habitable structures. Our team can assist with wintering sheds, hay barns, storage sheds, stables, secure lockups, workshops, and carports.",
+      "Use the form below to let us know what you want, and we’ll contact you.",
+      "Whether you have a clear vision in mind or need some guidance, our team will ask all the right questions to get you just what you need.",
+      "Once we clearly understand your needs, we'll create a custom design for your farm shed. We'll consider factors such as size, layout, and functionality to ensure the final product meets your specifications.",
+      "We can supply both kitset & fully installed solutions.",
+      "Please fill out the form below with your farm shed requirements, and one of our friendly team members will contact you shortly to discuss your project further.",
+      "No matter the size or scope of your project, we'll work with you from concept to completion to bring your vision to life. Let's build something great together."
+    ],
+    "products": [
+      {
+        "sku": "5760118",
+        "name": "Diesel Fuel Can Rear Vented 20L SCD520",
+        "brand": "Scepter"
+      },
+      {
+        "sku": "4591342",
+        "name": "Fortress Keyed Padlock Solid Brass 40mm",
+        "brand": "MASTER LOCK"
+      },
+      {
+        "sku": "4620722",
+        "name": "115mm Galvansied Hasp & Staple",
+        "brand": "Gartner"
+      },
+      {
+        "sku": "3840220",
+        "name": "Light Patrol Security Sensor Light 1200VA",
+        "brand": "HPM"
+      },
+      {
+        "sku": "3570126",
+        "name": "Tru-Test Vertical Barred Gate Hot Dip Galvanised Steel 1.83 x 1m 806589",
+        "brand": "Tru-Test"
+      },
+      {
+        "sku": "3371937",
+        "name": "Corrugated Roofing Sheet Solar Grey 3600 x 860mm",
+        "brand": "SunTuf"
+      }
+    ],
+    "tags": [],
+    "projects": [],
+    "url": "https://www.placemakers.co.nz/online/services/farm-sheds"
   }
 ]

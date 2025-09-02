@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List, Optional
 import re
-from utils.page_data import Page
+from page_data import Page
 
 
 def extract_headings_and_paragraphs(html_content: str) -> dict[str, list[str]]:

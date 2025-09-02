@@ -89,7 +89,7 @@ class PineconeIndexer:
                 text = text[:self.config.MAX_TEXT_LENGTH]
             
             response = self.openai_client.embeddings.create(
-                model="text-embedding-3-large",
+                model="text-embedding-3-small",
                 input=text
             )
             return response.data[0].embedding

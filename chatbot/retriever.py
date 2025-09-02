@@ -38,8 +38,8 @@ class PineconeRetriever:
             
             # Initialize OpenAI embeddings for LangChain with the new package
             self.embeddings = OpenAIEmbeddings(
-                model="text-embedding-3-large",
-                dimensions=3072,
+                model="text-embedding-3-small",
+                dimensions=1536,
                 openai_api_key=self.config.OPENAI_API_KEY
             )
             
@@ -53,7 +53,7 @@ class PineconeRetriever:
         """Get embedding for a text using OpenAI API"""
         try:
             response = self.openai_client.embeddings.create(
-                model="text-embedding-3-large",
+                model="text-embedding-3-small",
                 input=text
             )
             return response.data[0].embedding
@@ -66,12 +66,12 @@ class PineconeRetriever:
         try:
             # Default search kwargs
             if search_kwargs is None:
-                search_kwargs = {"k": 5}  # Default to top 5 results
+                search_kwargs = {"k": 3}  # Default to top 5 results
             
             # Ensure we're using the correct embedding model that matches the index
             self.embeddings = OpenAIEmbeddings(
-                model="text-embedding-3-large",
-                dimensions=3072,  # Match the index dimension
+                model="text-embedding-3-small",
+                dimensions=1536,  # Match the index dimension
                 openai_api_key=self.config.OPENAI_API_KEY
             )
                 

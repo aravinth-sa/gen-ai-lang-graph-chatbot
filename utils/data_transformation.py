@@ -2,7 +2,7 @@ from typing import List
 import csv
 import json
 from pathlib import Path
-from utils.page_data import Page
+from page_data import Page
 
 
 def to_csv(pages: List[Page], output_path: str) -> None:

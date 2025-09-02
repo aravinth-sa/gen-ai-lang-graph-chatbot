@@ -16,7 +16,7 @@ class Config:
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     
     # Vector Database Settings
-    VECTOR_DIMENSION = 3072  # OpenAI text-embedding-3-large dimension
+    VECTOR_DIMENSION = 1536  # OpenAI text-embedding-3-large dimension
     METRIC = 'cosine'
     
     # Indexing Settings

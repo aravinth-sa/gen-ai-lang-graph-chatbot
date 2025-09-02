@@ -1,10 +1,10 @@
 from pathlib import Path
 from typing import List
 
-from utils.websource import get_page_urls
-from utils.webscrapper import extract_content
-from utils.data_transformation import to_json
-from utils.page_data import Page
+from websource import get_page_urls
+from webscrapper import extract_content
+from data_transformation import to_json
+from page_data import Page
 
 
 def prepare_data() -> str:
@@ -16,6 +16,15 @@ def prepare_data() -> str:
         "/projects/cladding",
         "/projects/insulation",
         "/projects/plywood",
+        "/timber-1",
+        "/projects/fastenings",
+        "/interior-wall-ceiling-linings",
+        "/projects/building-envelope-barriers",
+        "/projects/laundry",
+        "/wardrobes",
+        "/paint",
+        "/farm-sheds",
+        "/projects/rural-supplies"
     ]
 
     xml_path = str(Path("dataset/input/content-pages.xml"))
@@ -30,4 +39,6 @@ def prepare_data() -> str:
     to_json(pages, output_json)
     return output_json
 
+if __name__ == "__main__":
+    prepare_data()
 
