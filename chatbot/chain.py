@@ -3,7 +3,7 @@ from langchain_openai import ChatOpenAI
 from config import Config
 
 # Set up Gemini (gpt-4o equivalent from Google)
-llm = ChatOpenAI(api_key=Config.OPENAI_API_KEY,model="gpt-4o")
+llm = ChatOpenAI(api_key=Config.OPENAI_API_KEY,model="gpt-4o-mini")
 
 template = """Answer the question based on the following context and the Chathistory. Especially take the latest question into consideration:
 

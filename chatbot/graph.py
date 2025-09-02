@@ -11,7 +11,7 @@ class GraphConfig(TypedDict):
 
         # Workflow
         workflow = StateGraph(AgentState)
-        workflow.add_node("question_rewriter", question_rewriter)
+        #workflow.add_node("question_rewriter", question_rewriter)
         workflow.add_node("question_classifier", question_classifier)
         workflow.add_node("off_topic_response", off_topic_response)
         workflow.add_node("retrieve", retrieve)
@@ -20,7 +20,7 @@ class GraphConfig(TypedDict):
         workflow.add_node("refine_question", refine_question)
         workflow.add_node("cannot_answer", cannot_answer)
 
-        workflow.add_edge("question_rewriter", "question_classifier")
+        #workflow.add_edge("question_rewriter", "question_classifier")
         workflow.add_conditional_edges(
             "question_classifier",
             on_topic_router,
@@ -43,6 +43,6 @@ class GraphConfig(TypedDict):
         workflow.add_edge("generate_answer", END)
         workflow.add_edge("cannot_answer", END)
         workflow.add_edge("off_topic_response", END)
-        workflow.set_entry_point("question_rewriter")
+        workflow.set_entry_point("question_classifier")
         graph = workflow.compile(checkpointer=checkpointer) 
         return graph
