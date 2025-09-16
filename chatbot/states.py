@@ -11,6 +11,7 @@ from chatbot.retriever import retriever
 class AgentState(TypedDict):
     messages: List[BaseMessage]
     documents: List[Document]
+    relavant_documents: List[Document]
     on_topic: str
     rephrased_question: str
     proceed_to_generate: bool
@@ -40,6 +41,7 @@ def question_rewriter(state: AgentState):
     # Only reset these state variables if we're starting a new conversation
     if len(state["conversation_history"]) == 0:
         state["documents"] = []
+        state["relavant_documents"] = []
         state["on_topic"] = ""
         state["rephrased_question"] = ""
         state["proceed_to_generate"] = False
@@ -269,7 +271,7 @@ Be strict and precise in your evaluation. When in doubt, prefer 'No'."""
         for i, (doc, score) in enumerate(zip(state["documents"], scores)):
             print(f"Document {i+1}: {score.upper()} - {doc.page_content[:50]}...")
             
-        state["documents"] = relevant_docs
+        state["relavant_documents"] = relevant_docs
         state["proceed_to_generate"] = len(relevant_docs) > 0
         print(f"retrieval_grader: {len(relevant_docs)} relevant documents found")
         
@@ -332,7 +334,7 @@ def generate_answer(state: AgentState):
         state["conversation_history"] = []
 
     # Get the current question and documents
-    documents = state["documents"]
+    documents = state["relavant_documents"]
     rephrased_question = state["rephrased_question"]
     
     # Prepare conversation context for RAG
