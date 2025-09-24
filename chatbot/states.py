@@ -5,8 +5,8 @@ from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
-from chatbot.chain import rag_chain
-from chatbot.retriever import retriever
+from .chain import rag_chain
+from .retriever import retriever
 
 class AgentState(TypedDict):
     messages: List[BaseMessage]
@@ -18,7 +18,13 @@ class AgentState(TypedDict):
     rephrase_count: int
     question: HumanMessage
     conversation_history: List[Dict[str, str]]  # To store conversation context
+    category_slot: str  # To store the product category slot
+    detected_category: str  # To store the detected product category
 
+# Define the input state structure
+class AgentInput(TypedDict):
+    question: HumanMessage
+    conversation_history: List[Dict[str, str]] = []  # Optional conversation history input
 
 class GradeQuestion(BaseModel):
     score: str = Field(
@@ -34,18 +40,39 @@ def get_timestamp():
 def question_rewriter(state: AgentState):
     print(f"[{get_timestamp()}] Entering question_rewriter with following state: {state}")
 
-    # Initialize conversation history if it doesn't exist
-    if "conversation_history" not in state or state["conversation_history"] is None:
+    # Initialize or use provided conversation history
+    if "conversation_history" in state.get("question", {}):
+        # If conversation history is provided in the input, use it
+        print(f"[{get_timestamp()}] Using provided conversation history in question_rewriter")
+        state["conversation_history"] = state["question"].get("conversation_history", [])
+    elif "conversation_history" not in state or state["conversation_history"] is None:
+        print(f"[{get_timestamp()}] Initializing empty conversation history in question_rewriter")
         state["conversation_history"] = []
+    else:
+        print(f"[{get_timestamp()}] Using existing conversation history with {len(state['conversation_history'])} messages in question_rewriter")
 
-    # Only reset these state variables if we're starting a new conversation
-    if len(state["conversation_history"]) == 0:
+    # Initialize state variables if they don't exist
+    if "documents" not in state:
         state["documents"] = []
+    if "relavant_documents" not in state:
         state["relavant_documents"] = []
+    if "on_topic" not in state:
         state["on_topic"] = ""
+    if "rephrased_question" not in state:
         state["rephrased_question"] = ""
+    if "proceed_to_generate" not in state:
         state["proceed_to_generate"] = False
+    if "rephrase_count" not in state:
         state["rephrase_count"] = 0
+        
+    # Add the current question to conversation history if it's not already there
+    current_question = state["question"].content
+    if not any(msg.get("content") == current_question and msg.get("role") == "user" 
+              for msg in state["conversation_history"][-3:]):
+        state["conversation_history"].append({
+            "role": "user",
+            "content": current_question
+        })
 
     if "messages" not in state or state["messages"] is None:
         state["messages"] = []
@@ -89,17 +116,37 @@ def question_rewriter(state: AgentState):
 def question_classifier(state: AgentState):
     print(f"[{get_timestamp()}] Entering question_classifier")
 
-    # Initialize conversation history if it doesn't exist
-    if "conversation_history" not in state or state["conversation_history"] is None:
+    # Initialize or use provided conversation history
+    if "conversation_history" in state.get("question", {}):
+        # If conversation history is provided in the input, use it
+        print(f"[{get_timestamp()}] Using provided conversation history")
+        state["conversation_history"] = state["question"].get("conversation_history", [])
+    elif "conversation_history" not in state or state["conversation_history"] is None:
+        print(f"[{get_timestamp()}] Initializing empty conversation history")
         state["conversation_history"] = []
+    else:
+        print(f"[{get_timestamp()}] Using existing conversation history with {len(state['conversation_history'])} messages")
 
-    # Only reset these state variables if we're starting a new conversation
-    if len(state["conversation_history"]) == 0:
+    # Initialize state variables if they don't exist
+    if "documents" not in state:
         state["documents"] = []
+    if "on_topic" not in state:
         state["on_topic"] = ""
+    if "rephrased_question" not in state:
         state["rephrased_question"] = ""
+    if "proceed_to_generate" not in state:
         state["proceed_to_generate"] = False
+    if "rephrase_count" not in state:
         state["rephrase_count"] = 0
+        
+    # Add the current question to conversation history if it's not already there
+    current_question = state["question"].content
+    if not any(msg.get("content") == current_question and msg.get("role") == "user" 
+              for msg in state["conversation_history"][-3:]):
+        state["conversation_history"].append({
+            "role": "user",
+            "content": current_question
+        })
 
     if "messages" not in state or state["messages"] is None:
         state["messages"] = []
@@ -152,6 +199,7 @@ def question_classifier(state: AgentState):
             messages.append(HumanMessage(
                 content=f"[{i}] {role}: {msg['content']}"
             ))
+            print(f"[{get_timestamp()}] Adding message to conversation history: {msg['content']}")
     
     # Add current question with clear separation
     messages.extend([
@@ -364,7 +412,7 @@ def generate_answer(state: AgentState):
     generation = response.content.strip()
     
     # Add SKU hyperlinks if any SKU is found
-    from chatbot.tools import add_sku_hyperlink
+    from .tools import add_sku_hyperlink
     generation = add_sku_hyperlink(generation)
     
     # Add sources if available
@@ -383,9 +431,9 @@ def generate_answer(state: AgentState):
             except Exception as e:
                 print(f"Error processing document metadata: {e}")
 
-        if sources:
-            generation += "\nSources:\n"
-            generation += "\n".join(f"- {source}" for source in sorted(sources))
+        # if sources:
+        #     generation += "\nSources:\n"
+        #     generation += "\n".join(f"- {source}" for source in sorted(sources))
     
     # Update conversation history with the current exchange
     state["conversation_history"].append({
@@ -438,3 +486,201 @@ def off_topic_response(state: AgentState):
     # Add the AI's response to the messages
     state["messages"].append(AIMessage(content=response.content))
     return state
+
+
+import json
+import os
+
+# Load the slots-category.json file
+def load_category_slots():
+    script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(script_dir, 'dataset', 'slots', 'slots-category.json')
+    with open(file_path, 'r') as f:
+        return json.load(f)
+
+
+class CategoryDetection(BaseModel):
+    category: str = Field(
+        description="The detected product category from the user query"
+    )
+    confidence: str = Field(
+        description="Confidence level: 'high', 'medium', or 'low'"
+    )
+
+
+def category_detector(state: AgentState):
+    """Detect the product category from the user query"""
+    print(f"[{get_timestamp()}] Entering category_detector")
+    # Initialize category-related fields if they don't exist
+    if "detected_category" not in state:
+        state["detected_category"] = ""
+    if "category_slot" not in state:
+        state["category_slot"] = ""
+    
+    print(f"DEBUG: detected_category='{state['detected_category']}', category_slot='{state['category_slot']}'")
+    # Load the category slots
+    category_data = load_category_slots()
+    categories = list(category_data["categories"].keys())
+    categories_str = ", ".join(categories)
+    
+    # Prepare the system message with category information
+    system_message = SystemMessage(
+        content=f"""You are a product category detector for a building materials supplier.
+        
+        Your task is to identify which product category the user is asking about from the following list:
+        {categories_str}
+        
+        Analyze the user's question and determine the most likely product category they are referring to.
+        If multiple categories could apply, choose the most specific one.
+        If no category clearly applies, respond with 'unknown'.
+        
+        Also provide a confidence level ('high', 'medium', or 'low') for your detection.
+        - 'high': The category is explicitly mentioned or strongly implied
+        - 'medium': The category is reasonably implied but not explicit
+        - 'low': The category is a best guess but uncertain
+        
+        Return only the category name and confidence level."""
+    )
+    
+    # Get the current question
+    current_question = state["rephrased_question"]
+    
+    # Add conversation history context if available
+    messages = [system_message]
+    if "conversation_history" in state and state["conversation_history"]:
+        # Add the last few exchanges for context
+        context_str = "\nConversation history:\n"
+        for i, msg in enumerate(state["conversation_history"][-3:]):
+            role = "User" if msg["role"] == "user" else "Assistant"
+            context_str += f"{role}: {msg['content']}\n"
+        messages.append(SystemMessage(content=context_str))
+    
+    # Add the current question
+    messages.append(HumanMessage(content=current_question))
+    
+    # Create the prompt
+    category_prompt = ChatPromptTemplate.from_messages(messages)
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    structured_llm = llm.with_structured_output(CategoryDetection)
+    detector_llm = category_prompt | structured_llm
+    
+    # Detect the category
+    try:
+        result = detector_llm.invoke({})
+        detected_category = result.category.strip().lower()
+        confidence = result.confidence.strip().lower()
+        
+        # Validate the detected category
+        if detected_category in categories:
+            state["detected_category"] = detected_category
+            print(f"category_detector: Detected category '{detected_category}' with {confidence} confidence")
+        elif detected_category != "unknown":
+            # Try to find the closest match
+            print(f"category_detector: Category '{detected_category}' not found in available categories, setting to unknown")
+            state["detected_category"] = "unknown"
+        else:
+            state["detected_category"] = "unknown"
+            print("category_detector: No category detected")
+            
+    except Exception as e:
+        print(f"Error in category detection: {str(e)}")
+        state["detected_category"] = "unknown"
+    
+    return state
+
+
+def category_detector_router(state: AgentState):
+    """Route from category detector to either category_router or category_slot_filler"""
+    print(f"[{get_timestamp()}] Entering category_detector_router")
+    
+    # Always route to category_router node after detection
+    return "category_router"
+
+
+def category_router(state: AgentState):
+    """Route based on whether a category was detected"""
+    print(f"[{get_timestamp()}] Entering category_router")
+    
+    detected_category = state.get("detected_category", "").strip().lower()
+    
+    if detected_category and detected_category != "unknown":
+        print(f"category_router: Category '{detected_category}' detected, asking user to fill the slot")
+        return "fill_slots"
+    else:
+        print("category_router: No category detected, proceeding to retrieve")
+        return "retrieve"
+
+
+def category_slot_filler(state: AgentState):
+    """Ask the user to specify a product category"""
+    print(f"[{get_timestamp()}] Entering category_slot_filler")
+    
+    if "messages" not in state or state["messages"] is None:
+        state["messages"] = []
+    
+    # Load the category slots
+    category_data = load_category_slots()
+    categories = list(category_data["categories"].keys())
+    
+    # Group categories for better readability
+    grouped_categories = []
+    for i in range(0, len(categories), 5):  # Group by 5
+        group = categories[i:i+5]
+        grouped_categories.append(", ".join(group))
+    
+    categories_display = "\n".join([f"• {group}" for group in grouped_categories])
+    
+    # Create a message asking the user to specify a category
+    response_content = f"""To help you better, I need to know which product category you're interested in. 
+    
+Please specify one of the following categories:
+
+{categories_display}
+
+Once you select a category, I can provide specific information about products, specifications, and options available."""
+    
+    # Add the message to state
+    state["messages"].append(AIMessage(content=response_content))
+    
+    # Set a flag to indicate we're waiting for category input
+    state["category_slot"] = "pending"
+    
+    return state
+
+
+def slot_filler_router(state: AgentState):
+    """Route based on whether a category slot has been filled"""
+    print(f"[{get_timestamp()}] Entering slot_filler_router")
+    
+    # Get the user's input
+    user_input = state["question"].content.lower()
+    
+    # Load categories
+    category_data = load_category_slots()
+    categories = list(category_data["categories"].keys())
+    
+    # Check if input matches any category
+    for category in categories:
+        if category.lower() in user_input:
+            state["detected_category"] = category
+            state["category_slot"] = "filled"
+            print(f"slot_filler_router: Category slot filled with '{category}'")
+            
+            # Add confirmation message
+            confirmation = f"Great! I'll provide information about {category}. Let me search for relevant details..."
+            state["messages"].append(AIMessage(content=confirmation))
+            
+            return "retrieve"
+    
+    # If no category match is found, ask again but keep the slot pending
+    print("slot_filler_router: No category match found, asking again")
+    
+    # Keep the category_slot as 'pending'
+    state["category_slot"] = "pending"
+    
+    # Add a message asking the user to specify a category again
+    response_content = "I'm sorry, I couldn't identify a specific product category from your response. Could you please specify one of the categories listed above?"
+    state["messages"].append(AIMessage(content=response_content))
+    
+    # Return END to finish this conversation turn, but the next question will start from slot_filler_router
+    return END

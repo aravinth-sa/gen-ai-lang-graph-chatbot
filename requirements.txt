@@ -11,3 +11,6 @@ langchain-pinecone
 openai
 streamlit
 qdrant-client
+networkx
+matplotlib
+IPython
