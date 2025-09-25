@@ -297,7 +297,7 @@ def main():
         all_documents = []
         
         # Define the path to the content JSON file
-        content_file_path = Path(__file__).parent.parent / "dataset" / "output" / "output-raw-page.json"
+        content_file_path = Path(__file__).parent.parent / "dataset" / "output" / "output-raw-page_v2.json"
         
         # Load content data if exists
         if content_file_path.exists():
@@ -311,23 +311,23 @@ def main():
             logger.warning(f"Content JSON file not found: {content_file_path}")
         
         # Define the path to the product JSON file
-        product_file_path = Path(__file__).parent.parent / "dataset" / "output" / "product.json"
+        #product_file_path = Path(__file__).parent.parent / "dataset" / "output" / "product.json"
         
         # Load product data if exists
-        if product_file_path.exists():
-            product_data = load_json_data(str(product_file_path))
-            if product_data and 'products' in product_data:
-                product_documents = product_data['products']
-                logger.info(f"Loaded {len(product_documents)} product documents")
-                all_documents.extend(product_documents)
-            else:
-                logger.warning("No product documents found in product.json or invalid format")
-        else:
-            logger.warning(f"Product JSON file not found: {product_file_path}")
+        # if product_file_path.exists():
+        #     product_data = load_json_data(str(product_file_path))
+        #     if product_data and 'products' in product_data:
+        #         product_documents = product_data['products']
+        #         logger.info(f"Loaded {len(product_documents)} product documents")
+        #         all_documents.extend(product_documents)
+        #     else:
+        #         logger.warning("No product documents found in product.json or invalid format")
+        # else:
+        #     logger.warning(f"Product JSON file not found: {product_file_path}")
         
-        if not all_documents:
-            logger.error("No documents found in any of the JSON files")
-            return
+        # if not all_documents:
+        #     logger.error("No documents found in any of the JSON files")
+        #     return
         
         # Index all documents
         logger.info(f"Indexing a total of {len(all_documents)} documents")

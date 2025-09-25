@@ -102,7 +102,7 @@ def extract_content(html_source: str) -> Page:
             html_content = path.read_text(encoding="utf-8", errors="ignore")
     except Exception as exc:
         print(f"Error fetching or reading HTML: {exc}")
-        sys.exit(3)
+        return None
 
     results = extract_headings_and_paragraphs(html_content)
     h1_list = results.get("h1", [])
