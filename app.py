@@ -128,7 +128,7 @@ def run_streamlit_chatbot():
     # Display chat messages
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+            st.markdown(message["content"], unsafe_allow_html=True)
     
     # Chat input
     if prompt := st.chat_input("Type your message here..."):
@@ -149,7 +149,7 @@ def run_streamlit_chatbot():
                     st.session_state.thread_id,
                     st.session_state.conversation_history
                 ))
-                st.markdown(response)
+                st.markdown(response, unsafe_allow_html=True)
         
         # Add assistant response to chat
         st.session_state.messages.append({"role": "assistant", "content": response})

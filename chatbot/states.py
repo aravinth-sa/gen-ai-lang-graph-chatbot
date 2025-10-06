@@ -114,7 +114,7 @@ def question_rewriter(state: AgentState):
     return state
 
 def question_classifier(state: AgentState):
-    print(f"[{get_timestamp()}] Entering question_classifier")
+    print(f"[{get_timestamp()}] Entering question_classifier##################################")
 
     # Initialize or use provided conversation history
     if "conversation_history" in state.get("question", {}):
@@ -127,17 +127,6 @@ def question_classifier(state: AgentState):
     else:
         print(f"[{get_timestamp()}] Using existing conversation history with {len(state['conversation_history'])} messages")
 
-    # Initialize state variables if they don't exist
-    if "documents" not in state:
-        state["documents"] = []
-    if "on_topic" not in state:
-        state["on_topic"] = ""
-    if "rephrased_question" not in state:
-        state["rephrased_question"] = ""
-    if "proceed_to_generate" not in state:
-        state["proceed_to_generate"] = False
-    if "rephrase_count" not in state:
-        state["rephrase_count"] = 0
         
     # Add the current question to conversation history if it's not already there
     current_question = state["question"].content
@@ -208,6 +197,12 @@ def question_classifier(state: AgentState):
         SystemMessage(content="Based on the conversation history and current question, is this related to building materials? Answer 'Yes' or 'No' only.")
     ])
     
+    # Print all messages for debugging
+    print("\n### MESSAGES FOR CLASSIFICATION ###")
+    for i, msg in enumerate(messages):
+        print(f"Message {i+1} - Type: {type(msg).__name__}, Content: {msg.content}")
+    print("### END OF MESSAGES ###\n")
+    
     # Create the prompt with conversation context
     grade_prompt = ChatPromptTemplate.from_messages(messages)
     llm = ChatOpenAI(model="gpt-4o-mini")
@@ -215,7 +210,7 @@ def question_classifier(state: AgentState):
     grader_llm = grade_prompt | structured_llm
     result = grader_llm.invoke({})
     state["on_topic"] = result.score.strip()
-    print(f"question_classifier: on_topic = {state['on_topic']}")
+    print(f"question_classifier: on_topic = {state['on_topic']} ##################################")
     return state
 
 def on_topic_router(state: AgentState):
@@ -233,7 +228,32 @@ def on_topic_router(state: AgentState):
 def retrieve(state: AgentState):
     print(f"[{get_timestamp()}] Entering retrieve")
     print("Entering retrieve")
-    documents = retriever.get_retriever().invoke(state["rephrased_question"])
+    
+    # Build enhanced query by combining context and rephrased question
+    query_to_use = state["rephrased_question"]
+    
+    # If conversation history exists, create a context-aware query
+    if state.get("conversation_history") and len(state["conversation_history"]) > 0:
+        summarize_prompt = ChatPromptTemplate.from_template("""
+            Summarize the ongoing conversation so the context of the next user question is clear.
+            Focus only on facts and user intent.
+
+            Conversation:
+            {conversation}
+
+            Summary:
+            """)
+        llm = ChatOpenAI(model="gpt-4o-mini")
+        context_summary = llm.invoke(summarize_prompt.format(conversation=state["conversation_history"]))
+        
+        # Combine context summary with rephrased question for better retrieval
+        query_to_use = f"{context_summary.content}\n\nCurrent question: {state['rephrased_question']}"
+        print(f"retrieve: Using context-enhanced query: {query_to_use}")
+    else:
+        print(f"retrieve: Using rephrased question only: {query_to_use}")
+    
+    # Retrieve documents using the enhanced query
+    documents = retriever.get_retriever().invoke(query_to_use)
     print(f"retrieve: Retrieved {len(documents)} documents")
     state["documents"] = documents
     return state
@@ -354,14 +374,34 @@ def refine_question(state: AgentState):
         print("Maximum rephrase attempts reached")
         return state
     question_to_refine = state["rephrased_question"]
+    
+    # Prepare system message with conversation context
     system_message = SystemMessage(
         content="""You are a helpful assistant that slightly refines the user's question to improve retrieval results.
-Provide a slightly adjusted version of the question."""
+                Consider the conversation history when refining to maintain context.
+                Provide a slightly adjusted version of the question."""
     )
+    
+    # Build messages list with conversation history
+    messages = [system_message]
+    
+    # Add conversation history if available
+    if "conversation_history" in state and state["conversation_history"]:
+        # Add the last few exchanges for context
+        messages.append(SystemMessage(content="CONVERSATION HISTORY (for context):"))
+        for msg in state["conversation_history"][-3:]:  # Last 3 exchanges
+            if msg["role"] == "user":
+                messages.append(HumanMessage(content=msg["content"]))
+            else:
+                messages.append(AIMessage(content=msg["content"]))
+    
+    # Add the question to refine
     human_message = HumanMessage(
-        content=f"Original question: {question_to_refine}\n\nProvide a slightly refined question."
+        content=f"Original question: {question_to_refine}\n\nProvide a slightly refined question that considers the conversation context."
     )
-    refine_prompt = ChatPromptTemplate.from_messages([system_message, human_message])
+    messages.append(human_message)
+    
+    refine_prompt = ChatPromptTemplate.from_messages(messages)
     llm = ChatOpenAI(model="gpt-4o-mini")
     prompt = refine_prompt.format()
     response = llm.invoke(prompt)
@@ -412,8 +452,13 @@ def generate_answer(state: AgentState):
     generation = response.content.strip()
     
     # Add SKU hyperlinks if any SKU is found
-    from .tools import add_sku_hyperlink
+    from .tools import add_sku_hyperlink, format_product_suggestions
     generation = add_sku_hyperlink(generation)
+    
+    # Add product cards if documents contain product information
+    product_suggestions = format_product_suggestions(documents)
+    if product_suggestions:
+        generation += product_suggestions
     
     # Add sources if available
     if documents:
@@ -436,14 +481,14 @@ def generate_answer(state: AgentState):
         #     generation += "\n".join(f"- {source}" for source in sorted(sources))
     
     # Update conversation history with the current exchange
-    state["conversation_history"].append({
-        "role": "user",
-        "content": rephrased_question
-    })
-    state["conversation_history"].append({
-        "role": "assistant",
-        "content": generation
-    })
+    # state["conversation_history"].append({
+    #     "role": "user",
+    #     "content": rephrased_question
+    # })
+    # state["conversation_history"].append({
+    #     "role": "assistant",
+    #     "content": generation
+    # })
     
     # Keep conversation history to a reasonable size (last 10 exchanges)
     if len(state["conversation_history"]) > 10:

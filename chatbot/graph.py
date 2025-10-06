@@ -41,37 +41,21 @@ class GraphConfig:
 
         # Workflow - use AgentInput as the input type and AgentState as the state type
         workflow = StateGraph(AgentState, AgentInput)
-        #workflow.add_node("question_rewriter", question_rewriter)
         workflow.add_node("question_classifier", question_classifier)
-        workflow.add_node("off_topic_response", off_topic_response)
-        # workflow.add_node("category_detector", category_detector)
-        # workflow.add_node("category_slot_filler", category_slot_filler)
-        # workflow.add_node("slot_filler_router", slot_filler_router)
         workflow.add_node("retrieve", retrieve)
         workflow.add_node("retrieval_grader", retrieval_grader)
         workflow.add_node("generate_answer", generate_answer)
         workflow.add_node("refine_question", refine_question)
         workflow.add_node("cannot_answer", cannot_answer)
 
-        #workflow.add_edge("question_rewriter", "question_classifier")
         workflow.add_conditional_edges(
             "question_classifier",
             on_topic_router,
             {
                 "retrieve": "retrieve",
-                "off_topic_response": "off_topic_response",
+                "off_topic_response": "cannot_answer",
             },
         )
-        
-        # Add edge from category_detector to category_router via category_detector_router
-        # workflow.add_conditional_edges(
-        #     "category_detector",
-        #     category_router,
-        #     {
-        #         "retrieve": "retrieve",
-        #         "fill_slots": "category_slot_filler",
-        #     },
-        # )
         workflow.add_edge("retrieve", "retrieval_grader")
         workflow.add_conditional_edges(
             "retrieval_grader",
@@ -83,17 +67,8 @@ class GraphConfig:
             },
         )
         workflow.add_edge("refine_question", "retrieve")
-        # workflow.add_conditional_edges(
-        #     "category_slot_filler",
-        #     slot_filler_router,
-        #     {
-        #         "retrieve": "retrieve",
-        #         END: END
-        #     }
-        # )
         workflow.add_edge("generate_answer", END)
         workflow.add_edge("cannot_answer", END)
-        workflow.add_edge("off_topic_response", END)
         workflow.set_entry_point("question_classifier")
         graph = workflow.compile(checkpointer=checkpointer) 
         return graph
