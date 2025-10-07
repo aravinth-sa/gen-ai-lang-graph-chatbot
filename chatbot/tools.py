@@ -78,16 +78,16 @@ def format_product_card(product_data: dict) -> str:
     thumb_image = product_data.get('thumb_image', '')
     url = product_data.get('url', f'https://www.placemakers.co.nz/online/p/{code}')
     
-    # Create HTML product card
+    # Create HTML product card (inline-block for horizontal layout)
     card_html = f"""
-<div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 10px 0; max-width: 300px; font-family: Arial, sans-serif;">
+<div style="display: inline-block; vertical-align: top; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 10px; max-width: 300px; font-family: Arial, sans-serif;">
     <div style="position: relative;">
         <img src="{thumb_image}" alt="{title}" style="width: 100%; height: auto; border-radius: 4px; background: #f5f5f5;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E';"/>
     </div>
-    <h3 style="font-size: 14px; margin: 12px 0 8px 0; color: #ffffff; line-height: 1.4;">
-        <a href="{url}" target="_blank" style="color: #ffffff; text-decoration: none;">{title}</a>
+    <h3 style="font-size: 14px; margin: 12px 0 8px 0; color: ##091c5a; line-height: 1.4;">
+        <a href="{url}" target="_blank" style="color: ##091c5a; text-decoration: none;">{title}</a>
     </h3>
-    <p style="margin: 8px 0; font-size: 13px; color: #ffffff;">
+    <p style="margin: 8px 0; font-size: 13px; color: ##091c5a;">
         <strong>SKU:</strong> <a href="{url}" target="_blank" style="color: #66b3ff; text-decoration: none;">{code}</a>
     </p>
 </div>

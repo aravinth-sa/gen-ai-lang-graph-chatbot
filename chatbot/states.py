@@ -20,6 +20,9 @@ class AgentState(TypedDict):
     conversation_history: List[Dict[str, str]]  # To store conversation context
     category_slot: str  # To store the product category slot
     detected_category: str  # To store the detected product category
+    intent_type: str  # To store the intent type: 'project' or 'product'
+    project_stages: List[Dict[str, str]]  # To store project stages with descriptions
+    stage_products: Dict[str, List[Document]]  # To store products for each stage
 
 # Define the input state structure
 class AgentInput(TypedDict):
@@ -29,6 +32,14 @@ class AgentInput(TypedDict):
 class GradeQuestion(BaseModel):
     score: str = Field(
         description="Question is about the specified topics? If yes -> 'Yes' if not -> 'No'"
+    )
+
+class IntentClassification(BaseModel):
+    on_topic: str = Field(
+        description="Is the question related to building materials? 'Yes' or 'No'"
+    )
+    intent_type: str = Field(
+        description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'off_topic' for unrelated queries"
     )
 
 
@@ -113,12 +124,12 @@ def question_rewriter(state: AgentState):
     
     return state
 
-def question_classifier(state: AgentState):
-    print(f"[{get_timestamp()}] Entering question_classifier##################################")
+def intent_classifier(state: AgentState):
+    """Classify user intent as project-based or product-based query"""
+    print(f"[{get_timestamp()}] Entering intent_classifier##################################")
 
     # Initialize or use provided conversation history
     if "conversation_history" in state.get("question", {}):
-        # If conversation history is provided in the input, use it
         print(f"[{get_timestamp()}] Using provided conversation history")
         state["conversation_history"] = state["question"].get("conversation_history", [])
     elif "conversation_history" not in state or state["conversation_history"] is None:
@@ -127,6 +138,13 @@ def question_classifier(state: AgentState):
     else:
         print(f"[{get_timestamp()}] Using existing conversation history with {len(state['conversation_history'])} messages")
 
+    # Initialize state fields
+    if "intent_type" not in state:
+        state["intent_type"] = ""
+    if "project_stages" not in state:
+        state["project_stages"] = []
+    if "stage_products" not in state:
+        state["stage_products"] = {}
         
     # Add the current question to conversation history if it's not already there
     current_question = state["question"].content
@@ -149,30 +167,35 @@ def question_classifier(state: AgentState):
     state["rephrased_question"] = current_question
 
     system_message = SystemMessage(
-        content="""You are a domain-specific classifier for a building material supplier website.
+        content="""You are an intent classifier for a building material supplier website in New Zealand.
         
-        Your task is to determine if a user's question is related to building materials, construction, or related services. 
+        Your task is to:
+        1. Determine if the question is related to building materials/construction
+        2. Classify the intent type as either 'project' or 'product'
         
-        ALWAYS ANSWER 'Yes' IF THE QUESTION IS RELATED TO:
-        - Any building or construction materials (e.g., wood, tiles, pipes, fixtures)
-        - Kitchen or bathroom products and installations
-        - Home improvement, renovation, or DIY projects
+        INTENT CLASSIFICATION:
+        
+        'project' - Questions about:
+        - Building or constructing something new (e.g., "I want to build a deck", "building a fence", "constructing a pergola")
+        - Renovation or home improvement projects (e.g., "renovating my kitchen", "updating my bathroom")
+        - DIY projects that involve multiple steps/stages
+        - Questions asking for step-by-step guidance or project planning
+        - Questions like "how do I build...", "what are the steps to...", "I'm planning to..."
+        
+        'product' - Questions about:
+        - Specific products or materials (e.g., "what tiles do you have?", "show me decking boards")
         - Product specifications, features, or comparisons
         - Pricing, availability, or ordering information
-        - Installation, maintenance, or usage instructions
-        - Delivery, shipping, or project planning
-        - Any follow-up questions about previously discussed products or topics
-        - General questions about the company's products or services
-        - Questions containing product names, categories, or types
+        - Installation instructions for a specific product
+        - General product inquiries
         
-        ONLY ANSWER 'No' IF:
-        - The question is completely unrelated to building materials or construction
-        - The question is about topics like politics, sports, entertainment, etc.
-        - The question is clearly spam or nonsensical
+        'off_topic' - Questions completely unrelated to building materials or construction
         
-        When in doubt, default to 'Yes' to ensure we don't miss relevant questions.
+        TOPIC CLASSIFICATION:
+        - Answer 'Yes' if related to building materials/construction
+        - Answer 'No' if completely unrelated (politics, sports, entertainment, etc.)
         
-        Respond with exactly 'Yes' or 'No' only, no explanations."""
+        Return both the topic relevance ('Yes' or 'No') and the intent type ('project', 'product', or 'off_topic')."""
     )
 
     # Prepare conversation context for classification
@@ -180,10 +203,9 @@ def question_classifier(state: AgentState):
     
     # Add conversation history if available
     if "conversation_history" in state and state["conversation_history"]:
-        # Add the last few exchanges for context with clear separation
         messages.append(SystemMessage(content="CONVERSATION HISTORY (for context only):"))
         
-        for i, msg in enumerate(state["conversation_history"][-4:], 1):  # Last 4 exchanges
+        for i, msg in enumerate(state["conversation_history"][-4:], 1):
             role = "USER" if msg["role"] == "user" else "ASSISTANT"
             messages.append(HumanMessage(
                 content=f"[{i}] {role}: {msg['content']}"
@@ -194,35 +216,51 @@ def question_classifier(state: AgentState):
     messages.extend([
         SystemMessage(content="CURRENT QUESTION TO CLASSIFY:"),
         HumanMessage(content=state['rephrased_question']),
-        SystemMessage(content="Based on the conversation history and current question, is this related to building materials? Answer 'Yes' or 'No' only.")
+        SystemMessage(content="Classify the topic relevance and intent type.")
     ])
     
     # Print all messages for debugging
-    print("\n### MESSAGES FOR CLASSIFICATION ###")
+    print("\n### MESSAGES FOR INTENT CLASSIFICATION ###")
     for i, msg in enumerate(messages):
         print(f"Message {i+1} - Type: {type(msg).__name__}, Content: {msg.content}")
     print("### END OF MESSAGES ###\n")
     
     # Create the prompt with conversation context
-    grade_prompt = ChatPromptTemplate.from_messages(messages)
+    intent_prompt = ChatPromptTemplate.from_messages(messages)
     llm = ChatOpenAI(model="gpt-4o-mini")
-    structured_llm = llm.with_structured_output(GradeQuestion)
-    grader_llm = grade_prompt | structured_llm
-    result = grader_llm.invoke({})
-    state["on_topic"] = result.score.strip()
-    print(f"question_classifier: on_topic = {state['on_topic']} ##################################")
+    structured_llm = llm.with_structured_output(IntentClassification)
+    classifier_llm = intent_prompt | structured_llm
+    result = classifier_llm.invoke({})
+    
+    state["on_topic"] = result.on_topic.strip()
+    state["intent_type"] = result.intent_type.strip().lower()
+    
+    print(f"intent_classifier: on_topic = {state['on_topic']}, intent_type = {state['intent_type']} ##################################")
     return state
 
-def on_topic_router(state: AgentState):
-    print(f"[{get_timestamp()}] Entering on_topic_router")
-    print("Entering on_topic_router")
+# Keep the old function name for backward compatibility
+question_classifier = intent_classifier
+
+def intent_router(state: AgentState):
+    """Route based on intent type: project or product"""
+    print(f"[{get_timestamp()}] Entering intent_router")
+    
     on_topic = state.get("on_topic", "").strip().lower()
-    if on_topic == "yes":
-        print("Routing to retrieve")
-        return "retrieve"
-    else:
+    intent_type = state.get("intent_type", "").strip().lower()
+    
+    if on_topic != "yes":
         print("Routing to off_topic_response")
         return "off_topic_response"
+    
+    if intent_type == "project":
+        print("Routing to project_stage_generator")
+        return "project_stage_generator"
+    else:  # product or default
+        print("Routing to retrieve")
+        return "retrieve"
+
+# Keep the old function name for backward compatibility
+on_topic_router = intent_router
 
 
 def retrieve(state: AgentState):
@@ -729,3 +767,188 @@ def slot_filler_router(state: AgentState):
     
     # Return END to finish this conversation turn, but the next question will start from slot_filler_router
     return END
+
+
+# ==================== PROJECT-BASED RECOMMENDATION NODES ====================
+
+class ProjectStage(BaseModel):
+    """Model for a single project stage"""
+    stage_name: str = Field(description="Clear, concise name for the stage")
+    description: str = Field(description="Brief description of what needs to be done in this stage")
+
+class ProjectStages(BaseModel):
+    """Model for project stages"""
+    stages: List[ProjectStage] = Field(
+        description="List of project stages with stage_name and description for each"
+    )
+
+def project_stage_generator(state: AgentState):
+    """Generate project stages based on the user's project description"""
+    print(f"[{get_timestamp()}] Entering project_stage_generator")
+    
+    if "project_stages" not in state:
+        state["project_stages"] = []
+    
+    # Get the project description from the question
+    project_description = state["rephrased_question"]
+    
+    # Create system message for stage generation
+    system_message = SystemMessage(
+        content="""You are a construction and DIY project expert for a building materials supplier in New Zealand.
+        
+        Your task is to break down a user's project into logical stages/steps.
+        
+        For each stage, provide:
+        1. stage_name: A clear, concise name for the stage (e.g., "Foundation Preparation", "Framing", "Decking Installation")
+        2. description: A brief description of what needs to be done in this stage
+        
+        Guidelines:
+        - Keep stages logical and sequential
+        - Typically 3-7 stages for most projects
+        - Focus on construction/building stages, not planning or design
+        - Be specific to the type of project mentioned
+        
+        Examples:
+        - For "building a deck": Foundation Preparation, Frame Construction, Decking Installation, Railing Installation, Finishing
+        - For "renovating a bathroom": Demolition, Plumbing Rough-in, Electrical Work, Tiling, Fixture Installation, Finishing
+        - For "building a fence": Post Installation, Rail Installation, Panel/Picket Installation, Gate Installation, Finishing
+        
+        Return a list of stages with stage_name and description for each."""
+    )
+    
+    # Add conversation history for context
+    messages = [system_message]
+    if "conversation_history" in state and state["conversation_history"]:
+        context_str = "\nConversation history:\n"
+        for msg in state["conversation_history"][-3:]:
+            role = "User" if msg["role"] == "user" else "Assistant"
+            context_str += f"{role}: {msg['content']}\n"
+        messages.append(SystemMessage(content=context_str))
+    
+    # Add the project description
+    messages.append(HumanMessage(content=f"Project: {project_description}\n\nGenerate the project stages."))
+    
+    # Create the prompt
+    stage_prompt = ChatPromptTemplate.from_messages(messages)
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    structured_llm = llm.with_structured_output(ProjectStages)
+    generator_llm = stage_prompt | structured_llm
+    
+    try:
+        result = generator_llm.invoke({})
+        # Convert Pydantic models to dictionaries
+        state["project_stages"] = [
+            {"stage_name": stage.stage_name, "description": stage.description}
+            for stage in result.stages
+        ]
+        print(f"project_stage_generator: Generated {len(result.stages)} stages")
+        for i, stage in enumerate(result.stages, 1):
+            print(f"  Stage {i}: {stage.stage_name}")
+    except Exception as e:
+        print(f"Error generating project stages: {str(e)}")
+        state["project_stages"] = []
+    
+    return state
+
+
+def project_stage_product_retrieval(state: AgentState):
+    """Retrieve products for each project stage"""
+    print(f"[{get_timestamp()}] Entering project_stage_product_retrieval")
+    
+    if "stage_products" not in state:
+        state["stage_products"] = {}
+    
+    project_stages = state.get("project_stages", [])
+    
+    if not project_stages:
+        print("No project stages found, skipping product retrieval")
+        return state
+    
+    # For each stage, retrieve relevant products
+    for stage in project_stages:
+        stage_name = stage.get("stage_name", "")
+        stage_description = stage.get("description", "")
+        
+        # Create a search query combining stage name and description
+        search_query = f"{stage_name}: {stage_description}"
+        
+        print(f"Retrieving products for stage: {stage_name}")
+        
+        # Use the retriever to get products for this stage
+        try:
+            documents = retriever.get_retriever(search_kwargs={"k": 3}).invoke(search_query)
+            state["stage_products"][stage_name] = documents
+            print(f"  Retrieved {len(documents)} products for {stage_name}")
+        except Exception as e:
+            print(f"Error retrieving products for stage {stage_name}: {str(e)}")
+            state["stage_products"][stage_name] = []
+    
+    return state
+
+
+def generate_project_response(state: AgentState):
+    """Generate a comprehensive project response with stages and products"""
+    print(f"[{get_timestamp()}] Entering generate_project_response")
+    
+    if "messages" not in state or state["messages"] is None:
+        state["messages"] = []
+    
+    project_stages = state.get("project_stages", [])
+    stage_products = state.get("stage_products", {})
+    
+    if not project_stages:
+        # Fallback if no stages were generated
+        state["messages"].append(
+            AIMessage(content="I apologize, but I couldn't generate a project plan for your request. Could you provide more details about your project?")
+        )
+        return state
+    
+    # Build the response
+    response_parts = []
+    
+    # Introduction
+    response_parts.append(f"Here's a step-by-step guide for your project:\n")
+    
+    # For each stage, add stage info and product recommendations
+    for i, stage in enumerate(project_stages, 1):
+        stage_name = stage.get("stage_name", f"Stage {i}")
+        stage_description = stage.get("description", "")
+        
+        response_parts.append(f"\n## {i}. {stage_name}")
+        response_parts.append(f"{stage_description}\n")
+        
+        # Add product recommendations for this stage
+        products = stage_products.get(stage_name, [])
+        if products:
+            response_parts.append("**Recommended Products:**")
+            
+            # Use the product card formatter
+            from .tools import format_product_suggestions
+            product_cards = format_product_suggestions(products)
+            if product_cards:
+                response_parts.append(product_cards)
+            else:
+                # Fallback to simple list if no product cards
+                for doc in products[:3]:  # Limit to top 3 products per stage
+                    if hasattr(doc, 'metadata'):
+                        product_title = doc.metadata.get('product_title', 'Product')
+                        product_code = doc.metadata.get('product_id', 'N/A')
+                        response_parts.append(f"- {product_title} (SKU: {product_code})")
+        else:
+            response_parts.append("*Consult with our team for specific product recommendations for this stage.*")
+    
+    # Add closing message
+    response_parts.append("\n\n💡 **Tip:** Visit your local PlaceMakers store or contact our team for personalized advice and to ensure you have all the materials you need for your project!")
+    
+    # Combine all parts
+    generation = "\n".join(response_parts)
+    
+    # Add SKU hyperlinks
+    from .tools import add_sku_hyperlink
+    generation = add_sku_hyperlink(generation)
+    
+    # Add the response to messages
+    state["messages"].append(AIMessage(content=generation))
+    print(f"generate_project_response: Generated project response with {len(project_stages)} stages")
+    
+    return state

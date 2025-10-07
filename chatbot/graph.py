@@ -10,7 +10,14 @@ To visualize this graph, use the graph_visualizer.py module.
 from typing import Any, Dict
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
-from chatbot.states import AgentState, AgentInput, question_rewriter, question_classifier, off_topic_response, retrieve, retrieval_grader, generate_answer, refine_question, cannot_answer, on_topic_router, proceed_router, category_detector, category_detector_router, category_router, category_slot_filler, slot_filler_router
+from chatbot.states import (
+    AgentState, AgentInput, question_rewriter, question_classifier, off_topic_response, 
+    retrieve, retrieval_grader, generate_answer, refine_question, cannot_answer, 
+    on_topic_router, proceed_router, category_detector, category_detector_router, 
+    category_router, category_slot_filler, slot_filler_router,
+    intent_classifier, intent_router, project_stage_generator, 
+    project_stage_product_retrieval, generate_project_response
+)
 
 class GraphConfig:
     """Configuration class for creating the conversation flow graph.
@@ -41,21 +48,32 @@ class GraphConfig:
 
         # Workflow - use AgentInput as the input type and AgentState as the state type
         workflow = StateGraph(AgentState, AgentInput)
-        workflow.add_node("question_classifier", question_classifier)
+        
+        # Add all nodes
+        workflow.add_node("intent_classifier", intent_classifier)
         workflow.add_node("retrieve", retrieve)
         workflow.add_node("retrieval_grader", retrieval_grader)
         workflow.add_node("generate_answer", generate_answer)
         workflow.add_node("refine_question", refine_question)
         workflow.add_node("cannot_answer", cannot_answer)
+        
+        # Add project-based nodes
+        workflow.add_node("project_stage_generator", project_stage_generator)
+        workflow.add_node("project_stage_product_retrieval", project_stage_product_retrieval)
+        workflow.add_node("generate_project_response", generate_project_response)
 
+        # Add conditional edges from intent classifier
         workflow.add_conditional_edges(
-            "question_classifier",
-            on_topic_router,
+            "intent_classifier",
+            intent_router,
             {
                 "retrieve": "retrieve",
+                "project_stage_generator": "project_stage_generator",
                 "off_topic_response": "cannot_answer",
             },
         )
+        
+        # Product flow (existing)
         workflow.add_edge("retrieve", "retrieval_grader")
         workflow.add_conditional_edges(
             "retrieval_grader",
@@ -68,8 +86,18 @@ class GraphConfig:
         )
         workflow.add_edge("refine_question", "retrieve")
         workflow.add_edge("generate_answer", END)
+        
+        # Project flow (new)
+        workflow.add_edge("project_stage_generator", "project_stage_product_retrieval")
+        workflow.add_edge("project_stage_product_retrieval", "generate_project_response")
+        workflow.add_edge("generate_project_response", END)
+        
+        # Common edges
         workflow.add_edge("cannot_answer", END)
-        workflow.set_entry_point("question_classifier")
+        
+        # Set entry point
+        workflow.set_entry_point("intent_classifier")
+        
         graph = workflow.compile(checkpointer=checkpointer) 
         return graph
 
