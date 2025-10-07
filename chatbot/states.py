@@ -37,7 +37,7 @@ from config import Config
 # ============================================================================
 
 # ==================== OpenAI LLM Functions ====================
-def get_llm(model: str = "gpt-4o-mini", temperature: float = 0.0):
+def get_llm(model: str = "gpt-3.5-turbo", temperature: float = 0.0):
     """Factory function to create OpenAI LLM instances with consistent configuration.
     
     Args:
@@ -51,15 +51,15 @@ def get_llm(model: str = "gpt-4o-mini", temperature: float = 0.0):
 
 def get_default_llm():
     """Get the default LLM for most tasks (Now using Gemini 2.5 Flash)"""
-    return get_gemini_default_llm()
+    return get_llm()
 
 def get_grader_llm():
     """Get LLM for document grading (Now using Gemini 2.5 Flash)"""
-    return get_gemini_grader_llm()
+    return get_llm()
 
 def get_creative_llm():
     """Get LLM for creative responses (Now using Gemini 2.5 Flash)"""
-    return get_gemini_creative_llm()
+    return get_llm()
 
 # ==================== Google Gemini LLM Functions ====================
 def get_gemini_llm(model: str = "gemini-2.5-flash", temperature: float = 0.0):

@@ -15,7 +15,7 @@ def get_rag_llm():
     1. Modify the model parameter below
     2. Or switch to get_gemini_rag_llm() for Google Gemini
     """
-    return ChatOpenAI(api_key=Config.OPENAI_API_KEY, model="gpt-4o-mini", temperature=0.0)
+    return ChatOpenAI(api_key=Config.OPENAI_API_KEY, model="gpt-3.5-turbo", temperature=0.0)
 
 # ==================== Google Gemini RAG LLM ====================
 def get_gemini_rag_llm():
@@ -33,7 +33,7 @@ def get_gemini_rag_llm():
     )
 
 # Set up LLM for RAG chain (now using Gemini 2.5 Flash)
-llm = get_gemini_rag_llm()  # Using Gemini 2.5 Flash
+llm = get_rag_llm()  # Using Gemini 2.5 Flash
 
 template = """You are an PlaceMakers Expert in New Zealand, Answer the question based on the following documents and the Chathistory. Especially take the latest question into consideration:
 
