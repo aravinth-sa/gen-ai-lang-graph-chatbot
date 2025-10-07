@@ -136,7 +136,7 @@ def format_product_suggestions(documents: List[Any]) -> str:
     
     if product_cards:
         # Add a header and combine all product cards
-        result = "\n\n### 🛍️ Suggested Products\n\n"
+        result = "\n\n### Suggested Products\n\n"
         result += "\n".join(product_cards)
         return result
     
