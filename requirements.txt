@@ -9,6 +9,8 @@ lxml
 pinecone
 langchain-pinecone
 openai
+langchain-openai
+langchain-google-genai
 streamlit
 qdrant-client
 networkx

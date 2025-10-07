@@ -3,10 +3,99 @@ from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, System
 from langchain.schema import Document
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
 from .chain import rag_chain
 from .retriever import retriever
+from config import Config
+
+# ==================== CENTRALIZED LLM CONFIGURATION ====================
+# All LLM instances are created here for easy model switching
+#
+# HOW TO CHANGE MODELS:
+# 1. To change the default model for all operations, modify the model parameter in get_default_llm()
+# 2. To change the grading model, modify the model parameter in get_grader_llm()
+# 3. To change the creative response model, modify the model parameter in get_creative_llm()
+# 4. To add a new LLM configuration, create a new function following the same pattern
+#
+# AVAILABLE MODELS (OpenAI):
+# - gpt-4o-mini: Fast, cost-effective, good for most tasks
+# - gpt-4o: More capable, higher cost
+# - gpt-3.5-turbo: Fastest, cheapest, good for simple tasks
+# - gpt-4: Most capable, highest cost
+#
+# AVAILABLE MODELS (Google Gemini):
+# - gemini-2.5-flash: Latest Flash model, fast and capable (currently used)
+# - gemini-2.0-flash-exp: Experimental Flash model
+# - gemini-1.5-pro: Pro model with enhanced capabilities
+# Note: Using gemini-2.5-flash for optimal performance
+#
+# To switch between providers:
+# 1. Update the functions below to use get_gemini_llm() instead of get_llm()
+# 2. Or modify get_llm() to return ChatGoogleGenerativeAI instead of ChatOpenAI
+# ============================================================================
+
+# ==================== OpenAI LLM Functions ====================
+def get_llm(model: str = "gpt-4o-mini", temperature: float = 0.0):
+    """Factory function to create OpenAI LLM instances with consistent configuration.
+    
+    Args:
+        model: The OpenAI model name to use (default: "gpt-4o-mini")
+        temperature: The temperature setting (default: 0.0 for deterministic output)
+    
+    Returns:
+        ChatOpenAI instance configured with the specified parameters
+    """
+    return ChatOpenAI(model=model, temperature=temperature)
+
+def get_default_llm():
+    """Get the default LLM for most tasks (Now using Gemini 2.5 Flash)"""
+    return get_gemini_default_llm()
+
+def get_grader_llm():
+    """Get LLM for document grading (Now using Gemini 2.5 Flash)"""
+    return get_gemini_grader_llm()
+
+def get_creative_llm():
+    """Get LLM for creative responses (Now using Gemini 2.5 Flash)"""
+    return get_gemini_creative_llm()
+
+# ==================== Google Gemini LLM Functions ====================
+def get_gemini_llm(model: str = "gemini-2.5-flash", temperature: float = 0.0):
+    """Factory function to create Google Gemini LLM instances with consistent configuration.
+    
+    Args:
+        model: The Gemini model name to use (default: "gemini-2.5-flash")
+        temperature: The temperature setting (default: 0.0 for deterministic output)
+    
+    Returns:
+        ChatGoogleGenerativeAI instance configured with the specified parameters
+    """
+    return ChatGoogleGenerativeAI(
+        model=model, 
+        temperature=temperature,
+        google_api_key=Config.GOOGLE_API_KEY,
+        convert_system_message_to_human=True
+    )
+
+def get_gemini_default_llm():
+    """Get the default Gemini LLM for most tasks"""
+    return get_gemini_llm(model="gemini-2.5-flash", temperature=0.0)
+
+def get_gemini_grader_llm():
+    """Get Gemini LLM for document grading (fast and cost-effective)"""
+    return get_gemini_llm(model="gemini-2.5-flash", temperature=0.0)
+
+def get_gemini_creative_llm():
+    """Get Gemini LLM for creative responses (higher temperature)"""
+    return get_gemini_llm(model="gemini-2.5-flash", temperature=0.7)
+
+def get_gemini_pro_llm():
+    """Get Gemini Pro LLM for more complex tasks"""
+    return get_gemini_llm(model="gemini-2.5-flash", temperature=0.0)
+
+# ==================== END LLM CONFIGURATION ====================
 
 class AgentState(TypedDict):
     messages: List[BaseMessage]
@@ -115,7 +204,7 @@ def question_rewriter(state: AgentState):
     
     # Generate rephrased question using conversation context
     rephrase_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = get_default_llm()
     prompt = rephrase_prompt.format()
     response = llm.invoke(prompt)
     better_question = response.content.strip()
@@ -227,7 +316,7 @@ def intent_classifier(state: AgentState):
     
     # Create the prompt with conversation context
     intent_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = get_default_llm()
     structured_llm = llm.with_structured_output(IntentClassification)
     classifier_llm = intent_prompt | structured_llm
     result = classifier_llm.invoke({})
@@ -281,7 +370,7 @@ def retrieve(state: AgentState):
 
             Summary:
             """)
-        llm = ChatOpenAI(model="gpt-4o-mini")
+        llm = get_default_llm()
         context_summary = llm.invoke(summarize_prompt.format(conversation=state["conversation_history"]))
         
         # Combine context summary with rephrased question for better retrieval
@@ -357,7 +446,7 @@ Return a JSON array of 'Yes' or 'No' values in the exact same order as the docum
 Be strict and precise in your evaluation. When in doubt, prefer 'No'."""
     )
 
-    llm = ChatOpenAI(model="gpt-3.5-turbo")
+    llm = get_grader_llm()
     structured_llm = llm.with_structured_output(GradedDocuments)
     
     grade_prompt = ChatPromptTemplate.from_messages([system_message, human_message])
@@ -440,7 +529,7 @@ def refine_question(state: AgentState):
     messages.append(human_message)
     
     refine_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = get_default_llm()
     prompt = refine_prompt.format()
     response = llm.invoke(prompt)
     refined_question = response.content.strip()
@@ -558,7 +647,7 @@ def off_topic_response(state: AgentState):
         state["messages"] = []
     
     # Initialize a chat model with higher temperature for more creative responses
-    chat = ChatOpenAI(temperature=0.7)  # Increased temperature for more creative responses
+    chat = get_creative_llm()
     
     # Generate a creative response
     response = chat.invoke([
@@ -643,7 +732,7 @@ def category_detector(state: AgentState):
     
     # Create the prompt
     category_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = get_default_llm()
     structured_llm = llm.with_structured_output(CategoryDetection)
     detector_llm = category_prompt | structured_llm
     
@@ -830,7 +919,7 @@ def project_stage_generator(state: AgentState):
     
     # Create the prompt
     stage_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = get_default_llm()
     structured_llm = llm.with_structured_output(ProjectStages)
     generator_llm = stage_prompt | structured_llm
     

@@ -12,8 +12,11 @@ class Config:
     PINECONE_ENVIRONMENT = os.getenv('PINECONE_ENVIRONMENT', 'gcp-starter')
     PINECONE_INDEX_NAME = os.getenv('PINECONE_INDEX_NAME', 'placemakers-content')
     
-    # OpenAI Configuration (for embeddings)
+    # OpenAI Configuration (for embeddings and LLM)
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+    
+    # Google Gemini Configuration
+    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
     
     # Vector Database Settings
     VECTOR_DIMENSION = 1536  # OpenAI text-embedding-3-large dimension
