@@ -59,7 +59,7 @@ def get_grader_llm():
 
 def get_creative_llm():
     """Get LLM for creative responses (Now using Gemini 2.5 Flash)"""
-    return get_llm()
+    return get_llm("gpt-4")
 
 # ==================== Google Gemini LLM Functions ====================
 def get_gemini_llm(model: str = "gemini-2.5-flash", temperature: float = 0.0):
@@ -129,6 +129,14 @@ class IntentClassification(BaseModel):
     )
     intent_type: str = Field(
         description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'off_topic' for unrelated queries"
+    )
+
+class ConversationRelevance(BaseModel):
+    is_related: str = Field(
+        description="Is the current question related to the conversation history? 'Yes' or 'No'"
+    )
+    summary: str = Field(
+        description="Summary of the conversation context if related, otherwise empty string"
     )
 
 
@@ -359,25 +367,60 @@ def retrieve(state: AgentState):
     # Build enhanced query by combining context and rephrased question
     query_to_use = state["rephrased_question"]
     
-    # If conversation history exists, create a context-aware query
+    # If conversation history exists, check if the question is related to the conversation
     if state.get("conversation_history") and len(state["conversation_history"]) > 0:
-        summarize_prompt = ChatPromptTemplate.from_template("""
-            Summarize the ongoing conversation so the context of the next user question is clear.
-            Focus only on facts and user intent.
-
-            Conversation:
+        # Combined prompt: check relevance AND generate summary in one LLM call
+        combined_prompt = ChatPromptTemplate.from_template("""
+            Analyze if the current user question is related to or dependent on the previous conversation.
+            
+            Conversation History:
             {conversation}
-
-            Summary:
+            
+            Current Question:
+            {question}
+            
+            Task 1 - Determine Relevance:
+            Answer 'Yes' if the question:
+            - References something from the conversation (e.g., "it", "that", "the one you mentioned")
+            - Is a follow-up question about the same topic
+            - Requires context from the conversation to be understood
+            
+            Answer 'No' if the question:
+            - Is a completely new topic
+            - Can be understood independently without conversation context
+            - Does not reference anything from the previous conversation
+            
+            Task 2 - Generate Summary:
+            If the question IS related (Yes), provide a concise summary of the conversation context that is relevant to the current question.
+            Focus only on facts and user intent.
+            If the question is NOT related (No), leave the summary empty.
+            
+            Return:
+            - is_related: 'Yes' or 'No'
+            - summary: conversation summary if related, otherwise empty string
             """)
-        llm = get_default_llm()
-        context_summary = llm.invoke(summarize_prompt.format(conversation=state["conversation_history"]))
         
-        # Combine context summary with rephrased question for better retrieval
-        query_to_use = f"{context_summary.content}\n\nCurrent question: {state['rephrased_question']}"
-        print(f"retrieve: Using context-enhanced query: {query_to_use}")
+        llm = get_default_llm()
+        structured_llm = llm.with_structured_output(ConversationRelevance)
+        relevance_chain = combined_prompt | structured_llm
+        
+        result = relevance_chain.invoke({
+            "conversation": state["conversation_history"],
+            "question": state["rephrased_question"]
+        })
+        
+        is_related = result.is_related.strip().lower()
+        print(f"retrieve: Question relevance to conversation: {is_related}")
+        
+        # Only use context-enhanced query if the question is related to the conversation
+        if is_related == "yes" and result.summary.strip():
+            # Combine context summary with rephrased question for better retrieval
+            query_to_use = f"{result.summary.strip()}\n\nCurrent question: {state['rephrased_question']}"
+            print(f"retrieve: Using context-enhanced query: {query_to_use}")
+        else:
+            print(f"retrieve: Question not related to conversation, using rephrased question only: {query_to_use}")
     else:
-        print(f"retrieve: Using rephrased question only: {query_to_use}")
+        print(f"retrieve: No conversation history, using rephrased question only: {query_to_use}")
     
     # Retrieve documents using the enhanced query
     documents = retriever.get_retriever().invoke(query_to_use)
@@ -919,7 +962,7 @@ def project_stage_generator(state: AgentState):
     
     # Create the prompt
     stage_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = get_default_llm()
+    llm = get_creative_llm()
     structured_llm = llm.with_structured_output(ProjectStages)
     generator_llm = stage_prompt | structured_llm
     
