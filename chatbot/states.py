@@ -1008,7 +1008,7 @@ def project_stage_product_retrieval(state: AgentState):
         
         # Use the retriever to get products for this stage
         try:
-            documents = retriever.get_retriever(search_kwargs={"k": 3}).invoke(search_query)
+            documents = retriever.get_retriever(search_kwargs={"k": 5,"score_threshold": 0.7}).invoke(search_query)
             state["stage_products"][stage_name] = documents
             print(f"  Retrieved {len(documents)} products for {stage_name}")
         except Exception as e:
