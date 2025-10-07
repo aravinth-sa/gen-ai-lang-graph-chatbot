@@ -920,20 +920,28 @@ def generate_project_response(state: AgentState):
         # Add product recommendations for this stage
         products = stage_products.get(stage_name, [])
         if products:
-            response_parts.append("**Recommended Products:**")
-            
             # Use the product card formatter
             from .tools import format_product_suggestions
             product_cards = format_product_suggestions(products)
             if product_cards:
+                response_parts.append("**Recommended Products:**")
                 response_parts.append(product_cards)
             else:
-                # Fallback to simple list if no product cards
+                # Check if we have valid products in fallback
+                valid_products = []
                 for doc in products[:3]:  # Limit to top 3 products per stage
                     if hasattr(doc, 'metadata'):
-                        product_title = doc.metadata.get('product_title', 'Product')
                         product_code = doc.metadata.get('product_id', 'N/A')
-                        response_parts.append(f"- {product_title} (SKU: {product_code})")
+                        # Only include products with valid SKU codes
+                        if product_code and product_code != 'N/A':
+                            product_title = doc.metadata.get('product_title', 'Product')
+                            valid_products.append(f"- {product_title} (SKU: {product_code})")
+                
+                if valid_products:
+                    response_parts.append("**Recommended Products:**")
+                    response_parts.extend(valid_products)
+                else:
+                    response_parts.append("*Consult with our team for specific product recommendations for this stage.*")
         else:
             response_parts.append("*Consult with our team for specific product recommendations for this stage.*")
     
