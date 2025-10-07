@@ -55,7 +55,7 @@ def get_default_llm():
 
 def get_grader_llm():
     """Get LLM for document grading (Now using Gemini 2.5 Flash)"""
-    return get_llm()
+    return get_llm("gpt-4o-mini")
 
 def get_creative_llm():
     """Get LLM for creative responses (Now using Gemini 2.5 Flash)"""
@@ -324,7 +324,7 @@ def intent_classifier(state: AgentState):
     
     # Create the prompt with conversation context
     intent_prompt = ChatPromptTemplate.from_messages(messages)
-    llm = get_default_llm()
+    llm = get_grader_llm()
     structured_llm = llm.with_structured_output(IntentClassification)
     classifier_llm = intent_prompt | structured_llm
     result = classifier_llm.invoke({})
