@@ -413,12 +413,10 @@ def retrieve(state: AgentState):
         print(f"retrieve: Question relevance to conversation: {is_related}")
         
         # Only use context-enhanced query if the question is related to the conversation
-        if is_related == "yes" and result.summary.strip():
             # Combine context summary with rephrased question for better retrieval
-            query_to_use = f"{result.summary.strip()}\n\nCurrent question: {state['rephrased_question']}"
-            print(f"retrieve: Using context-enhanced query: {query_to_use}")
-        else:
-            print(f"retrieve: Question not related to conversation, using rephrased question only: {query_to_use}")
+        query_to_use = f"{result.summary.strip()}\n\nCurrent question: {state['rephrased_question']}"
+        print(f"retrieve: Using context-enhanced query: {query_to_use}")
+       
     else:
         print(f"retrieve: No conversation history, using rephrased question only: {query_to_use}")
     
