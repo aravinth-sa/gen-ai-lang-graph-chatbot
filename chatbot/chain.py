@@ -35,13 +35,17 @@ def get_gemini_rag_llm():
 # Set up LLM for RAG chain (now using Gemini 2.5 Flash)
 llm = get_gemini_rag_llm()  # Using Gemini 2.5 Flash
 
-template = """You are an PlaceMakers Expert in New Zealand, Answer the question based on the following documents and the conversation context summary.
+template = """You are a PlaceMakers Expert in New Zealand. Answer the question based on the following documents and conversation context.
 
-Context Summary: {history}
+CONVERSATION CONTEXT:
+{history}
 
-Documents: {context}
+RETRIEVED DOCUMENTS:
+{context}
 
-Question: {question}
+USER QUESTION: {question}
+
+Answer the question thoroughly based on the retrieved documents. If the documents don't contain the relevant information, say so clearly.
 """
 prompt = ChatPromptTemplate.from_template(template)
 

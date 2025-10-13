@@ -15,7 +15,8 @@ from chatbot.nodes import (
     greeting_handler, greeting_router,
     intent_classifier, intent_router, retrieve, retrieval_grader,
     generate_answer, refine_question, cannot_answer, proceed_router,
-    project_stage_generator, project_stage_product_retrieval, generate_project_response
+    project_stage_generator, project_stage_product_retrieval, generate_project_response,
+    product_metadata_retriever, format_product_response
 )
 
 class GraphConfig:
@@ -61,6 +62,10 @@ class GraphConfig:
         workflow.add_node("project_stage_generator", project_stage_generator)
         workflow.add_node("project_stage_product_retrieval", project_stage_product_retrieval)
         workflow.add_node("generate_project_response", generate_project_response)
+        
+        # Add product-metadata nodes
+        workflow.add_node("product_metadata_retriever", product_metadata_retriever)
+        workflow.add_node("format_product_response", format_product_response)
 
         # Add conditional edges from greeting handler
         workflow.add_conditional_edges(
@@ -79,6 +84,7 @@ class GraphConfig:
             {
                 "retrieve": "retrieve",
                 "project_stage_generator": "project_stage_generator",
+                "product_metadata_retriever": "product_metadata_retriever",
                 "off_topic_response": "cannot_answer",
             },
         )
@@ -101,6 +107,10 @@ class GraphConfig:
         workflow.add_edge("project_stage_generator", "project_stage_product_retrieval")
         workflow.add_edge("project_stage_product_retrieval", "generate_project_response")
         workflow.add_edge("generate_project_response", END)
+        
+        # Product metadata flow (new)
+        workflow.add_edge("product_metadata_retriever", "format_product_response")
+        workflow.add_edge("format_product_response", END)
         
         # Common edges
         workflow.add_edge("cannot_answer", END)

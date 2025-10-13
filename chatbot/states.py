@@ -128,14 +128,14 @@ class AgentState(TypedDict):
     rephrase_count: int
     question: HumanMessage
     conversation_history: List[Dict[str, str]]  # To store conversation context
-    context_summary: Dict[str, str]  # To store summarized context from conversation
+    context_summary: str  # To store summarized context from conversation as plain text
     category_slot: str  # To store the product category slot
     detected_category: str  # To store the detected product category
     intent_type: str  # To store the intent type: 'project' or 'product'
     project_stages: List[Dict[str, str]]  # To store project stages with descriptions
     stage_products: Dict[str, List[Document]]  # To store products for each stage
     is_greeting: bool  # To store whether the message is a greeting
-
+    product_identifier: str
 
 class AgentInput(TypedDict):
     """Input state structure for the agent"""
@@ -151,7 +151,11 @@ class IntentClassification(BaseModel):
         description="Is the question related to building materials? 'Yes' or 'No'"
     )
     intent_type: str = Field(
-        description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'off_topic' for unrelated queries"
+        description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'product-metadata' for specific product information queries with SKU or product name, 'off_topic' for unrelated queries"
+    )
+    product_identifier: str = Field(
+        description="If intent_type is 'product-metadata', this field contains the identified product SKU or name. Empty string otherwise.",
+        default=""
     )
 
 
@@ -175,6 +179,10 @@ class ContextSummary(BaseModel):
     )
     stage: str = Field(
         description="Current stage of the project or conversation (e.g., 'planning', 'material selection', 'installation'). Empty if not applicable."
+    )
+    preferences: List[str] = Field(
+        description="List of preferences mentioned by the user (e.g., ['color', 'type', 'brand', 'price type','weather-resistant', 'durable', 'easy-to-install']). Empty list if none.",
+        default=[]
     )
     last_suggested_products: List[str] = Field(
         description="List of products that were recently suggested or discussed (e.g., ['treated pine posts', 'decking screws']). Empty list if none."

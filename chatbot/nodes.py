@@ -6,6 +6,7 @@ These nodes handle the main conversation flow including intent classification,
 retrieval, grading, and response generation.
 """
 
+import re
 from typing import List, Dict
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
 from langchain.schema import Document
@@ -104,22 +105,44 @@ def greeting_router(state: AgentState):
 # ==================== INTENT CLASSIFICATION NODE ====================
 
 def intent_classifier(state: AgentState):
-    """Classify user intent as project-based or product-based query"""
+    """Classify user intent as project-based, product-based, or product-metadata query"""
     print(f"[{get_timestamp()}] Entering intent_classifier ##################################")
 
     # Initialize or use provided conversation history
-    if "conversation_history" in state.get("question", {}):
-        print(f"[{get_timestamp()}] Using provided conversation history")
-        state["conversation_history"] = state["question"].get("conversation_history", [])
-    elif "conversation_history" not in state or state["conversation_history"] is None:
-        print(f"[{get_timestamp()}] Initializing empty conversation history")
-        state["conversation_history"] = []
+    # Check if conversation_history is available as direct parameter
+    # from app.py through get_chatbot_response -> graph.ainvoke()
+    
+    # Option 1: Already in state
+    if "conversation_history" in state:
+        print(f"[{get_timestamp()}] Using existing conversation history from state with {len(state['conversation_history'])} messages")
+    # Option 2: From input (passed through from app.py/Streamlit session state)
     else:
-        print(f"[{get_timestamp()}] Using existing conversation history with {len(state['conversation_history'])} messages")
+        # Get the input data and extract conversation_history
+        input_data = state.get("input", {})
+        conversation_history = None
+        
+        if input_data and "conversation_history" in input_data:
+            conversation_history = input_data.get("conversation_history")
+            print(f"[{get_timestamp()}] Using conversation history from input_data with {len(conversation_history)} messages")
+        # Option 3: From question metadata (legacy path)
+        elif "conversation_history" in state.get("question", {}):
+            conversation_history = state["question"].get("conversation_history")
+            print(f"[{get_timestamp()}] Using conversation history from question with {len(conversation_history)} messages")
+        # Option 4: Initialize empty
+        else:
+            conversation_history = []
+            print(f"[{get_timestamp()}] Initializing empty conversation history")
+            
+        # Set in state
+        state["conversation_history"] = conversation_history
+    
+    # Note: conversation_history is already set in state at this point
 
     # Initialize state fields
     if "intent_type" not in state:
         state["intent_type"] = ""
+    if "product_identifier" not in state:
+        state["product_identifier"] = ""
     if "project_stages" not in state:
         state["project_stages"] = []
     if "stage_products" not in state:
@@ -150,7 +173,8 @@ def intent_classifier(state: AgentState):
         
         Your task is to:
         1. Determine if the question is related to building materials/construction
-        2. Classify the intent type as either 'project' or 'product'
+        2. Classify the intent type as either 'project', 'product', or 'product-metadata'
+        3. If 'product-metadata', extract the product identifier (SKU or name)
         
         INTENT CLASSIFICATION:
         
@@ -162,11 +186,16 @@ def intent_classifier(state: AgentState):
         - Questions like "how do I build...", "what are the steps to...", "I'm planning to..."
         
         'product' - Questions about:
-        - Specific products or materials (e.g., "what tiles do you have?", "show me decking boards")
+        - General product categories or materials (e.g., "what tiles do you have?", "show me decking boards")
         - Product specifications, features, or comparisons
         - Pricing, availability, or ordering information
         - Installation instructions for a specific product
-        - General product inquiries
+        - General product inquiries without specific product identifiers
+        
+        'product-metadata' - Questions about:
+        - Specific product by SKU number (e.g., "tell me about SKU 12345", "what is product 789ABC")
+        - Specific product by exact name (e.g., "information about Taubmans Pure Performance paint")
+        - Questions asking for details about a particular product that's clearly identified
         
         'off_topic' - Questions completely unrelated to building materials or construction
         
@@ -174,7 +203,11 @@ def intent_classifier(state: AgentState):
         - Answer 'Yes' if related to building materials/construction
         - Answer 'No' if completely unrelated (politics, sports, entertainment, etc.)
         
-        Return both the topic relevance ('Yes' or 'No') and the intent type ('project', 'product', or 'off_topic')."""
+        PRODUCT IDENTIFIER:
+        - If intent is 'product-metadata', extract the product SKU or name mentioned in the question
+        - Return empty string for other intent types
+        
+        Return the topic relevance ('Yes' or 'No'), the intent type ('project', 'product', 'product-metadata', or 'off_topic'), and the product identifier if applicable."""
     )
 
     # Prepare conversation context for classification
@@ -199,10 +232,10 @@ def intent_classifier(state: AgentState):
     ])
     
     # Print all messages for debugging
-    print("\n### MESSAGES FOR INTENT CLASSIFICATION ###")
-    for i, msg in enumerate(messages):
-        print(f"Message {i+1} - Type: {type(msg).__name__}, Content: {msg.content}")
-    print("### END OF MESSAGES ###\n")
+    #print("\n### MESSAGES FOR INTENT CLASSIFICATION ###")
+    #for i, msg in enumerate(messages):
+        #print(f"Message {i+1} - Type: {type(msg).__name__}, Content: {msg.content}")
+    #print("### END OF MESSAGES ###\n")
     
     # Create the prompt with conversation context
     intent_prompt = ChatPromptTemplate.from_messages(messages)
@@ -213,84 +246,58 @@ def intent_classifier(state: AgentState):
     
     state["on_topic"] = result.on_topic.strip()
     state["intent_type"] = result.intent_type.strip().lower()
+    state["product_identifier"] = result.product_identifier.strip() if hasattr(result, "product_identifier") else ""
     
-    print(f"intent_classifier: on_topic = {state['on_topic']}, intent_type = {state['intent_type']} ##################################")
+    print(f"intent_classifier: on_topic = {state['on_topic']}, intent_type = {state['intent_type']}, product_identifier = {state['product_identifier']} ##################################")
     
     # ==================== CONTEXT SUMMARIZER ====================
     # Generate context summary from conversation history
     if "context_summary" not in state:
-        state["context_summary"] = {}
+        state["context_summary"] = ""
     
-    if state.get("conversation_history") and len(state["conversation_history"]) > 0:
+    if state.get("conversation_history") and len(state["conversation_history"]) >= 2:
         print(f"[{get_timestamp()}] Generating context summary from conversation history")
         
         # Create system message for context summarization
         summary_system_message = SystemMessage(
             content="""You are a context summarizer for a building materials chatbot.
             
-            Analyze the conversation history and extract key information into a structured summary.
+            Create a concise summary (maximum 150 words) of the conversation history that captures:
+            - The main topics discussed
+            - User's goals and needs
+            - Any specific products or materials mentioned
+            - Any preferences the user has expressed
+            - The current stage of discussion
             
-            Extract the following information:
-            1. project_type: The type of project or product category being discussed (e.g., 'decking', 'fencing', 'bathroom renovation'). 
-               Leave empty if not applicable or unclear.
-            
-            2. goal: The user's main goal or objective (e.g., 'build a new backyard deck', 'renovate kitchen'). 
-               Leave empty if not clear from the conversation.
-            
-            3. stage: The current stage of the project or conversation (e.g., 'planning', 'material selection', 'installation'). 
-               Leave empty if not applicable.
-            
-            4. last_suggested_products: List of products that were recently suggested or discussed (e.g., ['treated pine posts', 'decking screws']). 
-               Return empty list if no products were mentioned.
-            
-            Be concise and extract only factual information from the conversation.
-            If information is not present or unclear, use empty strings or empty lists as appropriate."""
+            Focus only on factual information from the conversation.
+            Be concise and informative."""
         )
         
-        # Build conversation history string
+        # Build conversation history string (user questions only)
         conversation_str = "CONVERSATION HISTORY:\n"
-        for msg in state["conversation_history"][-6:]:  # Last 6 messages for context
-            role = "User" if msg["role"] == "user" else "Assistant"
-            conversation_str += f"{role}: {msg['content']}\n"
+        user_messages = [msg for msg in state["conversation_history"] if msg["role"] == "user"]
+        for msg in user_messages[-4:]:  # Last 4 user messages for context
+            conversation_str += f"User: {msg['content']}\n"
         
         # Create messages for summarization
         summary_messages = [
             summary_system_message,
             HumanMessage(content=conversation_str),
-            SystemMessage(content="Extract the context summary as structured data.")
+            SystemMessage(content="Summarize the conversation in 150 words or less.")
         ]
         
-        # Create the prompt
-        summary_prompt = ChatPromptTemplate.from_messages(summary_messages)
         llm = get_default_llm()
-        structured_llm = llm.with_structured_output(ContextSummary)
-        summarizer_llm = summary_prompt | structured_llm
         
         try:
-            summary_result = summarizer_llm.invoke({})
-            state["context_summary"] = {
-                "project_type": summary_result.project_type.strip(),
-                "goal": summary_result.goal.strip(),
-                "stage": summary_result.stage.strip(),
-                "last_suggested_products": summary_result.last_suggested_products
-            }
-            print(f"intent_classifier: Generated context summary: {state['context_summary']}")
+            summary_response = llm.invoke(summary_messages)
+            state["context_summary"] = summary_response.content.strip()
+            print(f"intent_classifier: Generated context summary: {state['context_summary'][:50]}...")
         except Exception as e:
             print(f"Error generating context summary: {str(e)}")
-            state["context_summary"] = {
-                "project_type": "",
-                "goal": "",
-                "stage": "",
-                "last_suggested_products": []
-            }
+            state["context_summary"] = ""
     else:
         # No conversation history, initialize empty summary
-        state["context_summary"] = {
-            "project_type": "",
-            "goal": "",
-            "stage": "",
-            "last_suggested_products": []
-        }
+        state["context_summary"] = ""
         print(f"[{get_timestamp()}] No conversation history, initialized empty context summary")
     
     # ==================== END CONTEXT SUMMARIZER ====================
@@ -301,11 +308,12 @@ def intent_classifier(state: AgentState):
 # ==================== INTENT ROUTER ====================
 
 def intent_router(state: AgentState):
-    """Route based on intent type: project or product"""
+    """Route based on intent type: project, product, or product-metadata"""
     print(f"[{get_timestamp()}] Entering intent_router")
     
     on_topic = state.get("on_topic", "").strip().lower()
     intent_type = state.get("intent_type", "").strip().lower()
+    product_identifier = state.get("product_identifier", "")
     
     if on_topic != "yes":
         print("Routing to off_topic_response")
@@ -314,10 +322,123 @@ def intent_router(state: AgentState):
     if intent_type == "project":
         print("Routing to project_stage_generator")
         return "project_stage_generator"
+    elif intent_type == "product-metadata" and product_identifier:
+        print(f"Routing to product_metadata_retriever with identifier: {product_identifier}")
+        return "product_metadata_retriever"
     else:  # product or default
         print("Routing to retrieve")
         return "retrieve"
 
+
+# ==================== PRODUCT METADATA RETRIEVAL NODE ====================
+
+def product_metadata_retriever(state: AgentState):
+    """Retrieve specific product information using SKU or product name"""
+    print(f"[{get_timestamp()}] Entering product_metadata_retriever")
+    
+    # Get the product identifier from the state
+    product_identifier = state.get("product_identifier", "")
+    
+    if not product_identifier:
+        print("No product identifier found, falling back to general retrieve")
+        return retrieve(state)
+    
+    print(f"Retrieving product metadata for: {product_identifier}")
+    
+    # Build a targeted query for the specific product
+    query = f"Product information for exact product: {product_identifier}"
+    
+    # Use the product identifier to create a more specific query
+    # If it looks like an SKU (alphanumeric without spaces), add SKU specific search
+    if re.match(r'^[A-Za-z0-9]+$', product_identifier):
+        query = f"Product details for SKU: {product_identifier} or product code: {product_identifier}"
+    
+    # Use direct metadata filtering for SKU/product code if it looks like an SKU
+    try:
+        # First, try direct metadata filtering for exact matches if it's alphanumeric (likely a SKU)
+        if re.match(r'^[A-Za-z0-9]+$', product_identifier):
+            # Try direct SKU/product_id match with metadata filtering
+            filter_dict = {
+                "$or": [
+                    {"product_id": product_identifier},
+                    {"code": product_identifier},
+                    {"sku": product_identifier}
+                ]
+            }
+            documents = retriever.get_retriever(
+                search_kwargs={"k": 3, "filter": filter_dict}
+            ).invoke("")
+            print(f"product_metadata_retriever: Direct SKU filter retrieved {len(documents)} documents")
+            
+        # If no direct match or not alphanumeric, use semantic search
+        if not documents:
+            documents = retriever.get_retriever(search_kwargs={"k": 3, "score_threshold": 0.75}).invoke(query)
+            print(f"product_metadata_retriever: Semantic search retrieved {len(documents)} product documents")
+        
+        # If still no documents found, try a more relaxed search
+        if not documents:
+            # Try title/name metadata filter
+            filter_dict = {
+                "product_title": {"$contains": product_identifier}
+            }
+            documents = retriever.get_retriever(
+                search_kwargs={"k": 3, "filter": filter_dict}
+            ).invoke("")
+            print(f"product_metadata_retriever: Product title filter retrieved {len(documents)} documents")
+            
+            # If still nothing, fall back to relaxed semantic search
+            if not documents:
+                relaxed_query = f"Product: {product_identifier}"
+                documents = retriever.get_retriever(search_kwargs={"k": 5, "score_threshold": 0.6}).invoke(relaxed_query)
+                print(f"product_metadata_retriever: Relaxed semantic search retrieved {len(documents)} product documents")
+        
+        state["documents"] = documents
+    except Exception as e:
+        print(f"Error in product_metadata_retriever: {str(e)}")
+        # Fallback to empty documents
+        state["documents"] = []
+    
+    print(f"[{get_timestamp()}] Finished product_metadata_retriever ##################################")
+    return state
+
+def format_product_response(state: AgentState):
+    """Format and display product tiles directly for product-metadata queries"""
+    print(f"[{get_timestamp()}] Entering format_product_response")
+    
+    if "messages" not in state or state["messages"] is None:
+        state["messages"] = []
+    
+    # Get product identifier and documents
+    product_identifier = state.get("product_identifier", "")
+    documents = state.get("documents", [])
+    
+    if not documents:
+        # No products found, generate a helpful response
+        response = f"I couldn't find any specific product matching '{product_identifier}'. Please try a different product name or SKU, or browse our product categories."
+        state["messages"].append(AIMessage(content=response))
+        print(f"format_product_response: No products found for {product_identifier}")
+        return state
+    
+    # Use the product formatter tool to generate product cards
+    from .tools import format_product_suggestions
+    product_cards = format_product_suggestions(documents)
+    
+    # Create a response with product information
+    if product_cards:
+        intro_text = f"Here are the details for product '{product_identifier}':"
+        response = f"{intro_text}\n\n{product_cards}"
+    else:
+        # Documents found but not in product format
+        response = f"I found information about '{product_identifier}', but couldn't display it in product card format. Please ask for specific details you'd like to know."
+    
+    # Add SKU hyperlinks if any SKU is found
+    from .tools import add_sku_hyperlink
+    response = add_sku_hyperlink(response)
+    
+    # Add the response to messages
+    state["messages"].append(AIMessage(content=response))
+    print(f"[{get_timestamp()}] Finished format_product_response")
+    return state
 
 # ==================== RETRIEVAL NODE ====================
 
@@ -325,42 +446,24 @@ def retrieve(state: AgentState):
     print(f"[{get_timestamp()}] Entering retrieve")
     print("Entering retrieve")
     
-    # Build enhanced query using context summary
+    # Build enhanced query using context summary - SIMPLIFY THE QUERY
     query_to_use = state["rephrased_question"]
     
     # Use context_summary instead of conversation_history for retrieval
-    context_summary = state.get("context_summary", {})
+    context_summary = state.get("context_summary", "")
     
-    if context_summary and any(context_summary.values()):
-        # Build context string from summary
-        context_parts = []
-        
-        if context_summary.get("project_type"):
-            context_parts.append(f"Project type: {context_summary['project_type']}")
-        
-        if context_summary.get("goal"):
-            context_parts.append(f"Goal: {context_summary['goal']}")
-        
-        if context_summary.get("stage"):
-            context_parts.append(f"Current stage: {context_summary['stage']}")
-        
-        if context_summary.get("last_suggested_products"):
-            products_str = ", ".join(context_summary['last_suggested_products'])
-            context_parts.append(f"Previously discussed products: {products_str}")
-        
-        if context_parts:
-            context_str = " | ".join(context_parts)
-            query_to_use = f"Context: {context_str}\n\nQuestion: {state['rephrased_question']}"
-            print(f"retrieve: Using context-enhanced query with summary: {query_to_use}")
-        else:
-            print(f"retrieve: Context summary exists but is empty, using rephrased question only")
+    if context_summary:
+        # Use the summary directly as context for the query
+        # Make query shorter and clearer by combining summary with question
+        query_to_use = f"Context: {context_summary}. Question: {state['rephrased_question']}"
+        print(f"retrieve: Using context-enhanced query: {query_to_use[:100]}...")
     else:
-        print(f"retrieve: No context summary, using rephrased question only: {query_to_use}")
+        print(f"retrieve: Using rephrased question only: {query_to_use}")
     
     # Retrieve documents using the enhanced query
     documents = retriever.get_retriever().invoke(query_to_use)
     print(f"retrieve: Retrieved {len(documents)} documents")
-    print(f"[{get_timestamp()}] Finished retrival ##################################")
+    print(f"[{get_timestamp()}] Finished retrieval ##################################")
     state["documents"] = documents
     return state
 
@@ -373,7 +476,17 @@ def retrieval_grader(state: AgentState):
     if not state["documents"]:
         state["proceed_to_generate"] = False
         return state
-        
+    
+    # Get the original question and context
+    rephrased_question = state["rephrased_question"]
+    context_summary = state.get("context_summary", "")
+    
+    # Build a user-focused question that includes context
+    enhanced_question = rephrased_question
+    if context_summary:
+        # Directly use the context summary
+        enhanced_question = f"Context: {context_summary}. Question: {rephrased_question}"
+    
     system_message = SystemMessage(
         content="""You are a strict grader assessing the relevance of multiple retrieved documents to a user question.
 For each document, carefully evaluate if it contains specific, factual information that directly answers or is highly relevant to the user's question.
@@ -395,7 +508,7 @@ Example: ["No", "Yes", "No"]
 
 Be strict in your assessment. When in doubt, prefer 'No'."""
     )
-
+        
     # Prepare the documents content for batch processing
     documents_content = [doc.page_content for doc in state["documents"]]
     documents_str = "\n\n---DOCUMENT {}---\n{}\n"
@@ -405,7 +518,7 @@ Be strict in your assessment. When in doubt, prefer 'No'."""
     )
 
     human_message = HumanMessage(
-        content=f"""User question: {state['rephrased_question']}
+        content=f"""User question with context: {enhanced_question}
 
 Instructions:
 1. Carefully read each document below
@@ -525,38 +638,20 @@ def refine_question(state: AgentState):
 
 def generate_answer(state: AgentState):
     print(f"[{get_timestamp()}] Entering generate_answer")
-    print("Entering generate_answer")
     if "messages" not in state or state["messages"] is None:
         raise ValueError("State must include 'messages' before generating an answer.")
-
-    # Initialize conversation history if it doesn't exist
-    if "conversation_history" not in state or state["conversation_history"] is None:
-        state["conversation_history"] = []
 
     # Get the current question and documents
     documents = state["relavant_documents"]
     rephrased_question = state["rephrased_question"]
     
-    # Prepare context using context_summary instead of conversation_history
-    context_summary = state.get("context_summary", {})
+    # Use context summary directly
+    context_str = state.get("context_summary", "")
     
-    # Build context string from summary
-    context_str = ""
-    if context_summary:
-        if context_summary.get("project_type"):
-            context_str += f"Project: {context_summary['project_type']}. "
-        if context_summary.get("goal"):
-            context_str += f"Goal: {context_summary['goal']}. "
-        if context_summary.get("stage"):
-            context_str += f"Stage: {context_summary['stage']}. "
-        if context_summary.get("last_suggested_products"):
-            products = ", ".join(context_summary['last_suggested_products'])
-            context_str += f"Previous products: {products}."
-    
-    # Generate response with RAG chain using context_summary
+    # Generate response with RAG chain using natural language context
     response = rag_chain.invoke(
         {
-            "history": context_str,  # Using context summary instead of message history
+            "history": context_str,  # Using context summary in natural language format
             "context": documents, 
             "question": rephrased_question
         }
@@ -589,20 +684,6 @@ def generate_answer(state: AgentState):
                         sources.add(url)
             except Exception as e:
                 print(f"Error processing document metadata: {e}")
-
-        # if sources:
-        #     generation += "\nSources:\n"
-        #     generation += "\n".join(f"- {source}" for source in sorted(sources))
-    
-    # Update conversation history with the current exchange
-    # state["conversation_history"].append({
-    #     "role": "user",
-    #     "content": rephrased_question
-    # })
-    # state["conversation_history"].append({
-    #     "role": "assistant",
-    #     "content": generation
-    # })
     
     # Keep conversation history to a reasonable size (last 10 exchanges)
     if len(state["conversation_history"]) > 10:
@@ -611,7 +692,7 @@ def generate_answer(state: AgentState):
     # Add the response to messages
     state["messages"].append(AIMessage(content=generation))
     #print(f"generate_answer: Generated response: {generation}")
-    print(f"[{get_timestamp()}] ENding  generate_answer ##################################")
+    print(f"[{get_timestamp()}] Ending generate_answer ##################################")
     return state
 
 

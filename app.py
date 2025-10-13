@@ -32,9 +32,15 @@ async def get_chatbot_response(question: str, thread_id: str, conversation_histo
             current_state = _graph.get_state(thread_id)
             print(f"Current state for thread {thread_id}: {current_state}")
             
-            # If we have conversation history in the state, use it
+            # If we have conversation history in the state, use it instead of the one from session state
+            # This ensures continuity in conversations across multiple requests
             if current_state and "conversation_history" in current_state:
                 print(f"Found conversation history in state with {len(current_state['conversation_history'])} messages")
+                # Use conversation history from state instead of from input
+                # but only if state history is longer (more complete)
+                if len(current_state['conversation_history']) > len(conversation_history or []):
+                    input_data["conversation_history"] = current_state["conversation_history"]
+                    print(f"Using conversation history from state instead of session")
                 
             if current_state and current_state.get("category_slot") == "pending":
                 print(f"Detected pending category slot, starting from slot_filler_router")
