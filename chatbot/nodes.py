@@ -37,6 +37,13 @@ def greeting_handler(state: AgentState):
         "good evening", "greetings", "howdy", "sup", "yo", "hiya"
     ]
     
+    # Static action phrases from the welcome message
+    action_phrases = {
+        "find products": "Great! I can help you find building materials and products. What type of product are you looking for? For example, you can ask me about timber, fasteners, paints, roofing materials, or any other building supplies.",
+        "get project advice": "Excellent! I can provide step-by-step guidance for your building projects. What project are you planning? For example: building a deck, renovating a bathroom, constructing a fence, or installing a pergola.",
+        "learn about deals": "I'd be happy to help you discover current offers and promotions at PlaceMakers! Could you tell me what type of products or materials you're interested in? This will help me find the most relevant deals for you."
+    }
+    
     # Check if the message is a greeting (exact match or starts with greeting)
     is_greeting = False
     for greeting in greetings:
@@ -44,11 +51,20 @@ def greeting_handler(state: AgentState):
             is_greeting = True
             break
     
+    # Check if the message matches any action phrase
+    action_response = None
+    for phrase, response in action_phrases.items():
+        if phrase in current_question:
+            is_greeting = True
+            action_response = response
+            print(f"[{get_timestamp()}] Detected action phrase: {phrase}")
+            break
+    
     # Store greeting detection result in state
     state["is_greeting"] = is_greeting
     
     if is_greeting:
-        print(f"[{get_timestamp()}] Detected greeting, generating welcome response")
+        print(f"[{get_timestamp()}] Detected greeting or action phrase, generating response")
         
         # Initialize messages if not present
         if "messages" not in state or state["messages"] is None:
@@ -58,11 +74,17 @@ def greeting_handler(state: AgentState):
         if state["question"] not in state["messages"]:
             state["messages"].append(state["question"])
         
-        # Generate welcome response
-        welcome_message = """Kia ora! Welcome to BuildMate, your 24/7 PlaceMakers expert. I'm here to help with your building projects, product searches, or order needs. What can I do for you today?<br><br>Here are some things I can help you with:<br>• <strong>Find Products</strong> - Browse our range of building materials and products<br>• <strong>Get Project Advice</strong> - Get step-by-step guidance for your building projects<br>• <strong>Learn About Deals</strong> - Discover current offers and promotions"""
-        
-        state["messages"].append(AIMessage(content=welcome_message))
-        print(f"[{get_timestamp()}] Generated greeting response")
+        # Generate appropriate response
+        if action_response:
+            # Use specific action response
+            state["messages"].append(AIMessage(content=action_response))
+            print(f"[{get_timestamp()}] Generated action-specific response")
+        else:
+            # Use standard welcome response
+            welcome_message = """Kia ora! Welcome to BuildMate, your 24/7 PlaceMakers expert. I'm here to help with your building projects, product searches, or order needs. What can I do for you today?<br><br>Here are some things I can help you with:<br>• <strong>Find Products</strong> - Browse our range of building materials and products<br>• <strong>Get Project Advice</strong> - Get step-by-step guidance for your building projects<br>• <strong>Learn About Deals</strong> - Discover current offers and promotions"""
+            
+            state["messages"].append(AIMessage(content=welcome_message))
+            print(f"[{get_timestamp()}] Generated greeting response")
     
     return state
 
