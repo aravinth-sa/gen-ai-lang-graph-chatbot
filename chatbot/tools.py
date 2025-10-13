@@ -1,11 +1,13 @@
 """
-Tools for generating HTML content from product data.
+Tools for generating HTML content from product data and calling external APIs.
 """
 
 import re
 import json
-from typing import List, Any
+import requests
+from typing import List, Any, Dict, Optional
 from pathlib import Path
+from config import Config
 
 def get_product_image_from_json(product_code: str) -> str:
     """
@@ -140,3 +142,96 @@ def format_product_suggestions(documents: List[Any]) -> str:
         return result
     
     return ""
+
+
+def get_stock_information(sku: str, branch_id: str, bearer_token: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Fetches stock/inventory information from the third-party ERP API.
+    
+    Args:
+        sku: The product SKU to check stock for
+        branch_id: The branch ID to check stock at
+        bearer_token: Optional bearer token for authorization. If not provided, uses Config.STOCK_API_BEARER_TOKEN
+        
+    Returns:
+        Dict containing stock information or error details
+        
+    Example response:
+        {
+            "success": True,
+            "data": {
+                "TransactionId": "...",
+                "Branches": [{
+                    "BranchId": "485",
+                    "Products": [{
+                        "Sku": "2331023",
+                        "Description": "FENCE PALING RAD H3.2 RS  1.8M  150 X 25MM",
+                        "Quantity": "5654",
+                        "StockMessage": "Stock Available"
+                    }]
+                }]
+            }
+        }
+    """
+    try:
+        # Construct API URL
+        base_url = Config.STOCK_API_BASE_URL
+        endpoint = f"{base_url}/stock"
+        
+        # Prepare query parameters
+        params = {
+            "branches": branch_id,
+            "skus": sku
+        }
+        
+        # Prepare headers
+        token = bearer_token or Config.STOCK_API_BEARER_TOKEN
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}",
+            "client_id": Config.STOCK_API_CLIENT_ID,
+            "client_secret": Config.STOCK_API_CLIENT_SECRET,
+            "transactionSource": "RetailPortal"
+        }
+        
+        print(f"[STOCK API] Calling: {endpoint}")
+        print(f"[STOCK API] Params: branches={branch_id}, skus={sku}")
+        
+        # Make the API call
+        response = requests.get(endpoint, params=params, headers=headers, timeout=10)
+        
+        # Check response status
+        if response.status_code == 200:
+            data = response.json()
+            print(f"[STOCK API] Success: Retrieved stock data")
+            return {
+                "success": True,
+                "data": data
+            }
+        else:
+            print(f"[STOCK API] Error: Status {response.status_code}")
+            return {
+                "success": False,
+                "error": f"API returned status code {response.status_code}",
+                "status_code": response.status_code
+            }
+            
+    except requests.exceptions.Timeout:
+        print(f"[STOCK API] Error: Request timeout")
+        return {
+            "success": False,
+            "error": "Request timeout - API did not respond in time"
+        }
+    except requests.exceptions.RequestException as e:
+        print(f"[STOCK API] Error: {str(e)}")
+        return {
+            "success": False,
+            "error": f"Request failed: {str(e)}"
+        }
+    except Exception as e:
+        print(f"[STOCK API] Unexpected error: {str(e)}")
+        return {
+            "success": False,
+            "error": f"Unexpected error: {str(e)}"
+        }

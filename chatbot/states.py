@@ -131,11 +131,13 @@ class AgentState(TypedDict):
     context_summary: str  # To store summarized context from conversation as plain text
     category_slot: str  # To store the product category slot
     detected_category: str  # To store the detected product category
-    intent_type: str  # To store the intent type: 'project' or 'product'
+    intent_type: str  # To store the intent type: 'project', 'product', 'stock', etc.
     project_stages: List[Dict[str, str]]  # To store project stages with descriptions
     stage_products: Dict[str, List[Document]]  # To store products for each stage
     is_greeting: bool  # To store whether the message is a greeting
-    product_identifier: str
+    product_identifier: str  # To store product SKU or name
+    branch_id: str  # To store branch ID for stock queries
+    stock_data: Dict[str, any]  # To store stock/inventory information from API
 
 class AgentInput(TypedDict):
     """Input state structure for the agent"""
@@ -151,10 +153,14 @@ class IntentClassification(BaseModel):
         description="Is the question related to building materials? 'Yes' or 'No'"
     )
     intent_type: str = Field(
-        description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'product-metadata' for specific product information queries with SKU or product name, 'off_topic' for unrelated queries"
+        description="Type of intent: 'project' for project-based queries, 'product' for product/general queries, 'product-metadata' for specific product information queries with SKU or product name, 'stock' for stock/inventory queries, 'off_topic' for unrelated queries"
     )
     product_identifier: str = Field(
-        description="If intent_type is 'product-metadata', this field contains the identified product SKU or name. Empty string otherwise.",
+        description="If intent_type is 'product-metadata' or 'stock', this field contains the identified product SKU or name. Empty string otherwise.",
+        default=""
+    )
+    branch_id: str = Field(
+        description="If intent_type is 'stock', this field contains the branch ID or branch name mentioned in the query. Empty string otherwise.",
         default=""
     )
 

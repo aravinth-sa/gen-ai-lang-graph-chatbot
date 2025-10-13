@@ -16,7 +16,7 @@ from chatbot.nodes import (
     intent_classifier, intent_router, retrieve, retrieval_grader,
     generate_answer, refine_question, cannot_answer, proceed_router,
     project_stage_generator, project_stage_product_retrieval, generate_project_response,
-    product_metadata_retriever, format_product_response
+    product_metadata_retriever, format_product_response, stock_checker
 )
 
 class GraphConfig:
@@ -66,6 +66,9 @@ class GraphConfig:
         # Add product-metadata nodes
         workflow.add_node("product_metadata_retriever", product_metadata_retriever)
         workflow.add_node("format_product_response", format_product_response)
+        
+        # Add stock checker node
+        workflow.add_node("stock_checker", stock_checker)
 
         # Add conditional edges from greeting handler
         workflow.add_conditional_edges(
@@ -85,6 +88,7 @@ class GraphConfig:
                 "retrieve": "retrieve",
                 "project_stage_generator": "project_stage_generator",
                 "product_metadata_retriever": "product_metadata_retriever",
+                "stock_checker": "stock_checker",
                 "off_topic_response": "cannot_answer",
             },
         )
@@ -111,6 +115,9 @@ class GraphConfig:
         # Product metadata flow (new)
         workflow.add_edge("product_metadata_retriever", "format_product_response")
         workflow.add_edge("format_product_response", END)
+        
+        # Stock checker flow (new)
+        workflow.add_edge("stock_checker", END)
         
         # Common edges
         workflow.add_edge("cannot_answer", END)

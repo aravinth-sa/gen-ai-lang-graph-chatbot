@@ -16,3 +16,4 @@ qdrant-client
 networkx
 matplotlib
 IPython
+requests

@@ -173,10 +173,17 @@ def intent_classifier(state: AgentState):
         
         Your task is to:
         1. Determine if the question is related to building materials/construction
-        2. Classify the intent type as either 'project', 'product', or 'product-metadata'
-        3. If 'product-metadata', extract the product identifier (SKU or name)
+        2. Classify the intent type as either 'project', 'product', 'product-metadata', or 'stock'
+        3. Extract relevant identifiers (product SKU/name, branch ID)
         
         INTENT CLASSIFICATION:
+        
+        'stock' - Questions about:
+        - Stock availability or inventory levels (e.g., "is product X in stock?", "check stock for SKU 123")
+        - Quantity available at a specific branch/location
+        - Questions containing words like "stock", "inventory", "available", "quantity on hand"
+        - Questions asking "how many" of a product are available
+        - Example: "What's the stock of SKU 2331023 at Mt Wellington?", "Is there inventory for product 123?"
         
         'project' - Questions about:
         - Building or constructing something new (e.g., "I want to build a deck", "building a fence", "constructing a pergola")
@@ -188,7 +195,7 @@ def intent_classifier(state: AgentState):
         'product' - Questions about:
         - General product categories or materials (e.g., "what tiles do you have?", "show me decking boards")
         - Product specifications, features, or comparisons
-        - Pricing, availability, or ordering information
+        - Pricing or ordering information (NOT stock/inventory)
         - Installation instructions for a specific product
         - General product inquiries without specific product identifiers
         
@@ -196,6 +203,7 @@ def intent_classifier(state: AgentState):
         - Specific product by SKU number (e.g., "tell me about SKU 12345", "what is product 789ABC")
         - Specific product by exact name (e.g., "information about Taubmans Pure Performance paint")
         - Questions asking for details about a particular product that's clearly identified
+        - Does NOT include stock/inventory questions
         
         'off_topic' - Questions completely unrelated to building materials or construction
         
@@ -203,11 +211,12 @@ def intent_classifier(state: AgentState):
         - Answer 'Yes' if related to building materials/construction
         - Answer 'No' if completely unrelated (politics, sports, entertainment, etc.)
         
-        PRODUCT IDENTIFIER:
-        - If intent is 'product-metadata', extract the product SKU or name mentioned in the question
-        - Return empty string for other intent types
+        IDENTIFIER EXTRACTION:
+        - product_identifier: If intent is 'product-metadata' or 'stock', extract the product SKU or name mentioned
+        - branch_id: If intent is 'stock', extract the branch ID or branch name mentioned (e.g., "485", "Mt Wellington")
+        - Return empty string for fields not applicable
         
-        Return the topic relevance ('Yes' or 'No'), the intent type ('project', 'product', 'product-metadata', or 'off_topic'), and the product identifier if applicable."""
+        Return the topic relevance ('Yes' or 'No'), the intent type, product_identifier, and branch_id."""
     )
 
     # Prepare conversation context for classification
@@ -247,8 +256,9 @@ def intent_classifier(state: AgentState):
     state["on_topic"] = result.on_topic.strip()
     state["intent_type"] = result.intent_type.strip().lower()
     state["product_identifier"] = result.product_identifier.strip() if hasattr(result, "product_identifier") else ""
+    state["branch_id"] = "485"
     
-    print(f"intent_classifier: on_topic = {state['on_topic']}, intent_type = {state['intent_type']}, product_identifier = {state['product_identifier']} ##################################")
+    print(f"intent_classifier: on_topic = {state['on_topic']}, intent_type = {state['intent_type']}, product_identifier = {state['product_identifier']}, branch_id = {state['branch_id']} ##################################")
     
     # ==================== CONTEXT SUMMARIZER ====================
     # Generate context summary from conversation history
@@ -308,18 +318,22 @@ def intent_classifier(state: AgentState):
 # ==================== INTENT ROUTER ====================
 
 def intent_router(state: AgentState):
-    """Route based on intent type: project, product, or product-metadata"""
+    """Route based on intent type: project, product, product-metadata, or stock"""
     print(f"[{get_timestamp()}] Entering intent_router")
     
     on_topic = state.get("on_topic", "").strip().lower()
     intent_type = state.get("intent_type", "").strip().lower()
     product_identifier = state.get("product_identifier", "")
+    branch_id = state.get("branch_id", "")
     
     if on_topic != "yes":
         print("Routing to off_topic_response")
         return "off_topic_response"
     
-    if intent_type == "project":
+    if intent_type == "stock":
+        print(f"Routing to stock_checker with SKU: {product_identifier}, Branch: {branch_id}")
+        return "stock_checker"
+    elif intent_type == "project":
         print("Routing to project_stage_generator")
         return "project_stage_generator"
     elif intent_type == "product-metadata" and product_identifier:
@@ -439,6 +453,100 @@ def format_product_response(state: AgentState):
     state["messages"].append(AIMessage(content=response))
     print(f"[{get_timestamp()}] Finished format_product_response")
     return state
+
+
+# ==================== STOCK CHECKER NODE ====================
+
+def stock_checker(state: AgentState):
+    """Check stock/inventory for a specific product at a branch using the ERP API"""
+    print(f"[{get_timestamp()}] Entering stock_checker")
+    
+    if "messages" not in state or state["messages"] is None:
+        state["messages"] = []
+    
+    # Initialize stock_data if not present
+    if "stock_data" not in state:
+        state["stock_data"] = {}
+    
+    # Get product identifier and branch ID from state
+    sku = state.get("product_identifier", "")
+    branch_id = state.get("branch_id", "")
+    
+    # Validate we have the required information
+    if not sku:
+        response = "I need a product SKU or code to check stock availability. Please provide the product SKU."
+        state["messages"].append(AIMessage(content=response))
+        print(f"stock_checker: No SKU provided")
+        return state
+    
+    # If no branch ID is provided, use a default or ask the user
+    if not branch_id:
+        # Default to a common branch (485 = Mt Wellington from the example)
+        branch_id = "485"
+        print(f"stock_checker: No branch ID provided, using default: {branch_id}")
+    
+    # Call the stock API
+    from .tools import get_stock_information
+    stock_result = get_stock_information(sku, branch_id)
+    
+    # Store the result in state
+    state["stock_data"] = stock_result
+    
+    # Generate response based on API result
+    if stock_result.get("success"):
+        # Parse the API response
+        data = stock_result.get("data", {})
+        branches = data.get("Branches", [])
+        
+        if branches and len(branches) > 0:
+            branch = branches[0]
+            products = branch.get("Products", [])
+            
+            if products and len(products) > 0:
+                product = products[0]
+                product_sku = product.get("Sku", sku)
+                product_desc = product.get("Description", "Product")
+                quantity = product.get("Quantity", "0")
+                stock_message = product.get("StockMessage", "")
+                branch_name = branch.get("BranchId", branch_id)
+                
+                # Map common branch IDs to names (you can extend this mapping)
+                branch_names = {
+                    "485": "Mt Wellington",
+                    "362": "Auckland Branch",
+                    "545": "Another Branch"
+                }
+                branch_display = branch_names.get(branch_name, f"Branch {branch_name}")
+                
+                # Generate a friendly response
+                response = f"""**Stock Information for SKU {product_sku}**
+
+**Product:** {product_desc}
+
+**Location:** {branch_display}
+
+**Availability:** {quantity} units available
+
+**Status:** {stock_message}"""
+                
+                print(f"stock_checker: Successfully retrieved stock - {quantity} units at branch {branch_name}")
+            else:
+                response = f"No stock information found for SKU {sku} at the specified branch."
+                print(f"stock_checker: No products in API response")
+        else:
+            response = f"No branch information found for SKU {sku}. Please verify the branch ID."
+            print(f"stock_checker: No branches in API response")
+    else:
+        # API call failed
+        error = stock_result.get("error", "Unknown error")
+        response = f"I'm sorry, I couldn't retrieve stock information at this time. Error: {error}"
+        print(f"stock_checker: API call failed - {error}")
+    
+    # Add the response to messages
+    state["messages"].append(AIMessage(content=response))
+    print(f"[{get_timestamp()}] Finished stock_checker")
+    return state
+
 
 # ==================== RETRIEVAL NODE ====================
 
