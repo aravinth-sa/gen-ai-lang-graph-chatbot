@@ -4,6 +4,8 @@ from typing import Dict, Any, List
 import asyncio
 import streamlit as st
 import uuid
+from pathlib import Path
+import html
 
 # Create a singleton graph instance at module level
 _graph_config = GraphConfig()
@@ -103,6 +105,18 @@ def run_chatbot():
         if hasattr(last_message, "type") and last_message.type == "ai":
             print(f"Assistant: {last_message.content}")
 
+def load_css() -> str:
+    """Load CSS from external file."""
+    css_path = Path(__file__).parent / "static" / "styles.css"
+    with open(css_path, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def load_html_template() -> str:
+    """Load HTML template from external file."""
+    html_path = Path(__file__).parent / "static" / "chat_template.html"
+    with open(html_path, 'r', encoding='utf-8') as f:
+        return f.read()
+
 def run_streamlit_chatbot():
     """Run the chatbot with a Streamlit web interface."""
     st.set_page_config(
@@ -129,252 +143,36 @@ def run_streamlit_chatbot():
     if "is_thinking" not in st.session_state:
         st.session_state.is_thinking = False
     
-    # Custom CSS for the PlaceMakers design
-    st.markdown("""
-        <style>
-        /* Hide default Streamlit elements */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-        
-        /* Main container styling */
-        .stApp {
-            background-color: #e8eaed;
-        }
-        
-        /* Center the main content */
-        .main .block-container {
-            max-width: 750px !important;
-            padding-top: 50px;
-            padding-bottom: 50px;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-        
-        /* Wrapper for the entire chat UI */
-        .chat-wrapper {
-            max-width: 750px !important;
-            margin: 0 auto !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        /* Chat container */
-        .chat-container {
-            background-color: white;
-            border-radius: 8px 8px 0 0;
-            box-shadow: none;
-            overflow: hidden;
-            margin-bottom: 0 !important;
-            padding-bottom: 0 !important;
-            max-width: 750px !important;
-        }
-        
-        /* Header styling */
-        .chat-header {
-            background-color: #0d5a8f;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 500;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-        
-        /* Chat messages area */
-        .chat-messages {
-            min-height: 400px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding: 20px;
-            background-color: white;
-            margin-bottom: 0 !important;
-        }
-        
-        /* User message styling */
-        .user-message {
-            background-color: #0d5a8f;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 18px;
-            margin: 10px 0;
-            max-width: 70%;
-            margin-left: auto;
-            text-align: left;
-            word-wrap: break-word;
-            display: block;
-        }
-        
-        /* Assistant message styling */
-        .assistant-message {
-            background-color: #f1f3f4;
-            color: #202124;
-            padding: 12px 16px;
-            border-radius: 18px;
-            margin: 10px 0;
-            max-width: 70%;
-            margin-right: auto;
-            text-align: left;
-            word-wrap: break-word;
-            display: block;
-        }
-        
-        .assistant-label {
-            font-size: 12px;
-            color: #5f6368;
-            margin-bottom: 4px;
-            font-weight: 500;
-        }
-        
-        /* Input area inside container */
-        .input-container {
-            padding: 15px 20px;
-            border-top: 1px solid #e0e0e0;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .custom-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #dadce0;
-            border-radius: 24px;
-            font-size: 14px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            outline: none;
-            resize: none;
-            min-height: 20px;
-            max-height: 100px;
-        }
-        
-        .custom-input:focus {
-            border-color: #0d5a8f;
-        }
-        
-        .send-button {
-            background-color: #0d5a8f;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        
-        .send-button:hover {
-            background-color: #094a73;
-        }
-        
-        /* Hide the default chat input */
-        section[data-testid="stChatInput"] {
-            display: none !important;
-        }
-        
-        /* Style the form container */
-        .stForm {
-            border: none !important;
-            padding: 15px 20px !important;
-            background-color: white !important;
-            border-top: 1px solid #e0e0e0 !important;
-            margin-top: -8px !important;
-            border-radius: 0 0 8px 8px !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-            max-width: 750px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-        
-        /* Style form input */
-        .stTextInput > div > div > input {
-            border-radius: 24px !important;
-            border: 1px solid #dadce0 !important;
-            padding: 12px 16px !important;
-        }
-        
-        .stTextInput > div > div > input:focus {
-            border-color: #0d5a8f !important;
-            box-shadow: none !important;
-        }
-        
-        .stTextInput > label {
-            display: none !important;
-        }
-        
-        /* Style submit button */
-        .stFormSubmitButton > button {
-            background-color: #0d5a8f !important;
-            color: white !important;
-            border-radius: 50% !important;
-            width: 40px !important;
-            height: 40px !important;
-            min-height: 40px !important;
-            padding: 0 !important;
-            border: none !important;
-            font-size: 18px !important;
-        }
-        
-        .stFormSubmitButton > button:hover {
-            background-color: #094a73 !important;
-        }
-        
-        .stFormSubmitButton > button p {
-            font-size: 18px !important;
-        }
-        
-        /* Status message area */
-        .status-message {
-            padding: 10px 20px;
-            background-color: white;
-            border-top: 1px solid #e0e0e0;
-            color: #202124;
-            font-size: 14px;
-            font-style: italic;
-            text-align: center;
-            min-height: 20px;
-        }
-        
-        /* Hide default streamlit chat UI elements we don't want */
-        .stChatMessage {
-            background-color: transparent !important;
-            padding: 0 !important;
-        }
-        
-        div[data-testid="stChatMessageContent"] {
-            background-color: transparent !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
+    # Load and apply CSS from external file
+    css_content = load_css()
+    st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
     
     # Create a container for the chat UI
     chat_container = st.container()
     
     with chat_container:
-        # Build the entire chat UI as a single HTML block
-        chat_html = '<div class="chat-wrapper"><div class="chat-container"><div class="chat-header">PlaceMakers Shopping Assistant</div><div class="chat-messages" id="chat-messages">'
+        # Build messages HTML
+        messages_html = ""
+        if st.session_state.messages:
+            for message in st.session_state.messages:
+                # Escape user content to prevent HTML injection, but allow assistant HTML
+                content = message["content"]
+                if message["role"] == "user":
+                    content = html.escape(content)
+                    messages_html += f'<div class="user-message">{content}</div>'
+                else:
+                    # Assistant messages may contain HTML (like product cards), so don't escape
+                    messages_html += f'<div class="assistant-message"><div class="assistant-label">TFG</div><div>{content}</div></div>'
+        else:
+            # Show welcome message when no messages
+            messages_html = '<div style="text-align: center; padding: 40px; color: #5f6368;">👋 Hi! I\'m your PlaceMakers assistant. Ask me about building materials, products, or project guidance!</div>'
         
-        # Add messages
-        for message in st.session_state.messages:
-            if message["role"] == "user":
-                chat_html += f'<div class="user-message">{message["content"]}</div>'
-            else:
-                chat_html += f'<div class="assistant-message"><div class="assistant-label">TFG</div><div>{message["content"]}</div></div>'
-        
-        # Close chat messages and add status area
-        chat_html += '</div>'
-        
-        # Add status message area
+        # Get status text
         status_text = "TFG is thinking..." if st.session_state.is_thinking else ""
-        chat_html += f'<div class="status-message">{status_text}</div>'
         
-        # Close the HTML structure
-        chat_html += '</div></div>'
+        # Load HTML template and replace placeholders
+        html_template = load_html_template()
+        chat_html = html_template.format(messages=messages_html, status=status_text)
         
         # Render the complete HTML
         st.markdown(chat_html, unsafe_allow_html=True)

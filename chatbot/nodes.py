@@ -26,7 +26,7 @@ from .retriever import retriever
 
 def intent_classifier(state: AgentState):
     """Classify user intent as project-based or product-based query"""
-    print(f"[{get_timestamp()}] Entering intent_classifier##################################")
+    print(f"[{get_timestamp()}] Entering intent_classifier ##################################")
 
     # Initialize or use provided conversation history
     if "conversation_history" in state.get("question", {}):
@@ -215,7 +215,7 @@ def intent_classifier(state: AgentState):
         print(f"[{get_timestamp()}] No conversation history, initialized empty context summary")
     
     # ==================== END CONTEXT SUMMARIZER ====================
-    
+    print(f"[{get_timestamp()}] Finished Intent Classifier")
     return state
 
 
@@ -281,6 +281,7 @@ def retrieve(state: AgentState):
     # Retrieve documents using the enhanced query
     documents = retriever.get_retriever().invoke(query_to_use)
     print(f"retrieve: Retrieved {len(documents)} documents")
+    print(f"[{get_timestamp()}] Finished retrival ##################################")
     state["documents"] = documents
     return state
 
@@ -288,8 +289,7 @@ def retrieve(state: AgentState):
 # ==================== RETRIEVAL GRADER NODE ====================
 
 def retrieval_grader(state: AgentState):
-    print(f"[{get_timestamp()}] Entering retrieval_grader")
-    print("Entering retrieval_grader")
+    print(f"[{get_timestamp()}] Entering retrieval_grader ##################################")
     
     if not state["documents"]:
         state["proceed_to_generate"] = False
@@ -365,6 +365,7 @@ Be strict and precise in your evaluation. When in doubt, prefer 'No'."""
         state["relavant_documents"] = relevant_docs
         state["proceed_to_generate"] = len(relevant_docs) > 0
         print(f"retrieval_grader: {len(relevant_docs)} relevant documents found")
+        print(f"[{get_timestamp()}] Finished retrieval_grader ##################################")
         
     except Exception as e:
         print(f"Error in batch document grading: {str(e)}")
@@ -530,8 +531,8 @@ def generate_answer(state: AgentState):
     
     # Add the response to messages
     state["messages"].append(AIMessage(content=generation))
-    print(f"generate_answer: Generated response: {generation}")
-    print(f"[{get_timestamp()}] ENding  question_classifier")
+    #print(f"generate_answer: Generated response: {generation}")
+    print(f"[{get_timestamp()}] ENding  generate_answer ##################################")
     return state
 
 
