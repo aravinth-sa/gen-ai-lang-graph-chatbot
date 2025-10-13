@@ -6,6 +6,7 @@ import streamlit as st
 import uuid
 from pathlib import Path
 import html
+import base64
 
 # Create a singleton graph instance at module level
 _graph_config = GraphConfig()
@@ -111,6 +112,20 @@ def load_css() -> str:
     with open(css_path, 'r', encoding='utf-8') as f:
         return f.read()
 
+def load_logo_as_base64() -> str:
+    """Load logo SVG and convert to base64 data URI."""
+    logo_path = Path(__file__).parent / "static" / "placemakers-new-logo.svg"
+    with open(logo_path, 'rb') as f:
+        logo_data = base64.b64encode(f.read()).decode('utf-8')
+    return f"data:image/svg+xml;base64,{logo_data}"
+
+def load_favicon_as_base64() -> str:
+    """Load favicon and convert to base64 data URI."""
+    favicon_path = Path(__file__).parent / "static" / "placemakers-favicon.ico"
+    with open(favicon_path, 'rb') as f:
+        favicon_data = base64.b64encode(f.read()).decode('utf-8')
+    return f"data:image/x-icon;base64,{favicon_data}"
+
 def load_html_template() -> str:
     """Load HTML template from external file."""
     html_path = Path(__file__).parent / "static" / "chat_template.html"
@@ -119,9 +134,12 @@ def load_html_template() -> str:
 
 def run_streamlit_chatbot():
     """Run the chatbot with a Streamlit web interface."""
+    # Get the path to the favicon
+    favicon_path = Path(__file__).parent / "static" / "placemakers-favicon.ico"
+    
     st.set_page_config(
-        page_title="PlaceMakers Assistant", 
-        page_icon="🏗️",
+        page_title="BuildMate - PlaceMakers Assistant", 
+        page_icon=str(favicon_path),
         layout="centered"
     )
     
@@ -143,12 +161,19 @@ def run_streamlit_chatbot():
     if "is_thinking" not in st.session_state:
         st.session_state.is_thinking = False
     
+    # Initialize button click state
+    if "pending_action" not in st.session_state:
+        st.session_state.pending_action = None
+    
     # Load and apply CSS from external file
     css_content = load_css()
     st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
     
     # Create a container for the chat UI
     chat_container = st.container()
+    
+    # Load logo and favicon as base64
+    logo_base64 = load_logo_as_base64()
     
     with chat_container:
         # Build messages HTML
@@ -162,17 +187,24 @@ def run_streamlit_chatbot():
                     messages_html += f'<div class="user-message">{content}</div>'
                 else:
                     # Assistant messages may contain HTML (like product cards), so don't escape
-                    messages_html += f'<div class="assistant-message"><div class="assistant-label">TFG</div><div>{content}</div></div>'
+                    messages_html += f'<div class="assistant-message"><div class="assistant-label">BuildMate</div><div>{content}</div></div>'
         else:
             # Show welcome message when no messages
-            messages_html = '<div style="text-align: center; padding: 40px; color: #5f6368;">👋 Hi! I\'m your PlaceMakers assistant. Ask me about building materials, products, or project guidance!</div>'
+            from datetime import datetime
+            current_time = datetime.now().strftime("%H:%M")
+            messages_html = f'''<div class="welcome-container">
+<div class="welcome-message">
+Kia ora! Welcome to BuildMate, your 24/7 PlaceMakers expert. I'm here to help with your building projects, product searches, or order needs. What can I do for you today?
+<div class="welcome-timestamp">{current_time}</div>
+</div>
+</div>'''
         
         # Get status text
-        status_text = "TFG is thinking..." if st.session_state.is_thinking else ""
+        status_text = "BuildMate is thinking..." if st.session_state.is_thinking else ""
         
         # Load HTML template and replace placeholders
         html_template = load_html_template()
-        chat_html = html_template.format(messages=messages_html, status=status_text)
+        chat_html = html_template.format(messages=messages_html, status=status_text, favicon=logo_base64)
         
         # Render the complete HTML
         st.markdown(chat_html, unsafe_allow_html=True)
@@ -184,9 +216,34 @@ def run_streamlit_chatbot():
         with st.form(key="chat_form", clear_on_submit=True):
             col1, col2 = st.columns([6, 1])
             with col1:
-                prompt = st.text_input("", placeholder="Ask something...", label_visibility="collapsed", key="user_input")
+                prompt = st.text_input("", placeholder="Ask about any products or projects", label_visibility="collapsed", key="user_input")
             with col2:
-                submit = st.form_submit_button("➤", use_container_width=True)
+                submit = st.form_submit_button("➤", use_container_width=True, type="primary")
+    
+    # Show quick action buttons if no messages - positioned BELOW input form
+    if not st.session_state.messages:
+        button_container = st.container()
+        with button_container:
+            # Button 1: Find Products
+            if st.button("📦 Find Products", key="btn_find_products", use_container_width=True):
+                st.session_state.messages.append({"role": "user", "content": "Find Products"})
+                st.session_state.conversation_history.append({"role": "user", "content": "Find Products"})
+                st.session_state.is_thinking = True
+                st.rerun()
+            
+            # Button 2: Get Project Advice
+            if st.button("📘 Get Project Advice", key="btn_project_advice", use_container_width=True):
+                st.session_state.messages.append({"role": "user", "content": "Get Project Advice"})
+                st.session_state.conversation_history.append({"role": "user", "content": "Get Project Advice"})
+                st.session_state.is_thinking = True
+                st.rerun()
+            
+            # Button 3: Learn About Deals
+            if st.button("🏷️ Learn About Deals", key="btn_deals", use_container_width=True):
+                st.session_state.messages.append({"role": "user", "content": "Learn About Deals"})
+                st.session_state.conversation_history.append({"role": "user", "content": "Learn About Deals"})
+                st.session_state.is_thinking = True
+                st.rerun()
     
     if submit and prompt:
         # Add user message to chat

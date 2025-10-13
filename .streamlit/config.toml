@@ -1,0 +1,18 @@
+[theme]
+# Base theme - light theme for white inputs
+base = "light"
+
+# Primary color for interactive elements
+primaryColor = "#4fc3f7"
+
+# Background color of the app
+backgroundColor = "#e8eaed"
+
+# Background color used for input widgets - white
+secondaryBackgroundColor = "#ffffff"
+
+# Color used for text in input widgets - black for visibility on white background
+textColor = "#000000"
+
+# Font settings
+font = "sans-serif"

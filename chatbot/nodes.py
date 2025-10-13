@@ -22,6 +22,63 @@ from .chain import rag_chain
 from .retriever import retriever
 
 
+# ==================== GREETING HANDLER NODE ====================
+
+def greeting_handler(state: AgentState):
+    """Handle greeting messages from users with a standard welcome response"""
+    print(f"[{get_timestamp()}] Entering greeting_handler")
+    
+    # Get the current question
+    current_question = state["question"].content.lower().strip()
+    
+    # List of greeting patterns
+    greetings = [
+        "hi", "hello", "hey", "kia ora", "good morning", "good afternoon", 
+        "good evening", "greetings", "howdy", "sup", "yo", "hiya"
+    ]
+    
+    # Check if the message is a greeting (exact match or starts with greeting)
+    is_greeting = False
+    for greeting in greetings:
+        if current_question == greeting or current_question.startswith(greeting + " ") or current_question.startswith(greeting + "!"):
+            is_greeting = True
+            break
+    
+    # Store greeting detection result in state
+    state["is_greeting"] = is_greeting
+    
+    if is_greeting:
+        print(f"[{get_timestamp()}] Detected greeting, generating welcome response")
+        
+        # Initialize messages if not present
+        if "messages" not in state or state["messages"] is None:
+            state["messages"] = []
+        
+        # Add user question to messages if not already there
+        if state["question"] not in state["messages"]:
+            state["messages"].append(state["question"])
+        
+        # Generate welcome response
+        welcome_message = """Kia ora! Welcome to BuildMate, your 24/7 PlaceMakers expert. I'm here to help with your building projects, product searches, or order needs. What can I do for you today?<br><br>Here are some things I can help you with:<br>• <strong>Find Products</strong> - Browse our range of building materials and products<br>• <strong>Get Project Advice</strong> - Get step-by-step guidance for your building projects<br>• <strong>Learn About Deals</strong> - Discover current offers and promotions"""
+        
+        state["messages"].append(AIMessage(content=welcome_message))
+        print(f"[{get_timestamp()}] Generated greeting response")
+    
+    return state
+
+
+def greeting_router(state: AgentState):
+    """Route based on whether message is a greeting"""
+    print(f"[{get_timestamp()}] Entering greeting_router")
+    
+    if state.get("is_greeting", False):
+        print("Routing to END (greeting handled)")
+        return "end_greeting"
+    else:
+        print("Routing to intent_classifier (not a greeting)")
+        return "continue_flow"
+
+
 # ==================== INTENT CLASSIFICATION NODE ====================
 
 def intent_classifier(state: AgentState):

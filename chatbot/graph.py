@@ -12,6 +12,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
 from chatbot.states import AgentState, AgentInput
 from chatbot.nodes import (
+    greeting_handler, greeting_router,
     intent_classifier, intent_router, retrieve, retrieval_grader,
     generate_answer, refine_question, cannot_answer, proceed_router,
     project_stage_generator, project_stage_product_retrieval, generate_project_response
@@ -48,6 +49,7 @@ class GraphConfig:
         workflow = StateGraph(AgentState, AgentInput)
         
         # Add all nodes
+        workflow.add_node("greeting_handler", greeting_handler)
         workflow.add_node("intent_classifier", intent_classifier)
         workflow.add_node("retrieve", retrieve)
         workflow.add_node("retrieval_grader", retrieval_grader)
@@ -60,6 +62,16 @@ class GraphConfig:
         workflow.add_node("project_stage_product_retrieval", project_stage_product_retrieval)
         workflow.add_node("generate_project_response", generate_project_response)
 
+        # Add conditional edges from greeting handler
+        workflow.add_conditional_edges(
+            "greeting_handler",
+            greeting_router,
+            {
+                "end_greeting": END,
+                "continue_flow": "intent_classifier",
+            },
+        )
+        
         # Add conditional edges from intent classifier
         workflow.add_conditional_edges(
             "intent_classifier",
@@ -94,7 +106,7 @@ class GraphConfig:
         workflow.add_edge("cannot_answer", END)
         
         # Set entry point
-        workflow.set_entry_point("intent_classifier")
+        workflow.set_entry_point("greeting_handler")
         
         graph = workflow.compile(checkpointer=checkpointer) 
         return graph

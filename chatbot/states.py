@@ -134,6 +134,7 @@ class AgentState(TypedDict):
     intent_type: str  # To store the intent type: 'project' or 'product'
     project_stages: List[Dict[str, str]]  # To store project stages with descriptions
     stage_products: Dict[str, List[Document]]  # To store products for each stage
+    is_greeting: bool  # To store whether the message is a greeting
 
 
 class AgentInput(TypedDict):
