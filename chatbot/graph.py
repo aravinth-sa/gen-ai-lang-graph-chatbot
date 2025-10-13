@@ -10,13 +10,11 @@ To visualize this graph, use the graph_visualizer.py module.
 from typing import Any, Dict
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
-from chatbot.states import (
-    AgentState, AgentInput, question_rewriter, question_classifier, off_topic_response, 
-    retrieve, retrieval_grader, generate_answer, refine_question, cannot_answer, 
-    on_topic_router, proceed_router, category_detector, category_detector_router, 
-    category_router, category_slot_filler, slot_filler_router,
-    intent_classifier, intent_router, project_stage_generator, 
-    project_stage_product_retrieval, generate_project_response
+from chatbot.states import AgentState, AgentInput
+from chatbot.nodes import (
+    intent_classifier, intent_router, retrieve, retrieval_grader,
+    generate_answer, refine_question, cannot_answer, proceed_router,
+    project_stage_generator, project_stage_product_retrieval, generate_project_response
 )
 
 class GraphConfig:

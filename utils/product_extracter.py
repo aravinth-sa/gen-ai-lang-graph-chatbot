@@ -11,9 +11,9 @@ def extract_products():
     """
     # Define input and output paths
     current_dir = Path(__file__).parent
-    input_file = current_dir.parent / 'dataset' / 'input' / 'ConsumerProductCatalog_20250915.jsonl'
+    input_file = current_dir.parent / 'dataset' / 'input' / 'ConsumerProductCatalog_20251008.jsonl'
     output_dir = current_dir.parent / 'dataset' / 'output'
-    output_file = output_dir / 'product.json'
+    output_file = output_dir / 'product_metadata_v2.json'
     
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -51,6 +51,21 @@ def extract_products():
                         if filtered_categories:
                             categories.extend([cat.get('name') for cat in filtered_categories])
                     
+                    # Get discountPrice, fallback to views price if needed
+                    discount_price = attributes.get('discountPrice', '')
+                    
+                    # If discountPrice is <= 0 or empty, try to get price from views
+                    if not discount_price or (isinstance(discount_price, (int, float)) and discount_price <= 0):
+                        views = product_value.get('views', {})
+                        # Iterate through all views to find a valid price
+                        for view_id, view_data in views.items():
+                            if isinstance(view_data, dict):
+                                view_attributes = view_data.get('attributes', {})
+                                price = view_attributes.get('price', '')
+                                if price and (not isinstance(price, (int, float)) or price > 0):
+                                    discount_price = price
+                                    break
+                    
                     # Create transformed product
                     transformed_product = {
                         'code': code,
@@ -59,7 +74,11 @@ def extract_products():
                         'thumb_image': attributes.get('thumb_image', ''),
                         'url': attributes.get('url', ''),
                         'keywords': attributes.get('keywords', []),
-                        'category': categories
+                        'category': categories,
+                        'brand': attributes.get('brand', ''),
+                        'subBrand': attributes.get('subBrand', ''),
+                        'subClassName': attributes.get('subClassName', ''),
+                        'discountPrice': discount_price
                     }
                     
                     # Add to products list

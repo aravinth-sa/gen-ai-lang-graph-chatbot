@@ -26,20 +26,20 @@ def get_gemini_rag_llm():
     2. Ensure GOOGLE_API_KEY is set in your .env file
     """
     return ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-2.5-flash-lite",
         temperature=0.0,
         google_api_key=Config.GOOGLE_API_KEY,
         convert_system_message_to_human=True
     )
 
 # Set up LLM for RAG chain (now using Gemini 2.5 Flash)
-llm = get_rag_llm()  # Using Gemini 2.5 Flash
+llm = get_gemini_rag_llm()  # Using Gemini 2.5 Flash
 
-template = """You are an PlaceMakers Expert in New Zealand, Answer the question based on the following documents and the Chathistory. Especially take the latest question into consideration:
+template = """You are an PlaceMakers Expert in New Zealand, Answer the question based on the following documents and the conversation context summary.
 
-Chathistory: {history}
+Context Summary: {history}
 
-documents: {context}
+Documents: {context}
 
 Question: {question}
 """

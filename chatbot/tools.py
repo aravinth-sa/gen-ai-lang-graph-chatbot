@@ -111,7 +111,6 @@ def format_product_suggestions(documents: List[Any]) -> str:
     
     for doc in documents:
         try:
-            # Check if document has metadata and contains product information
             if hasattr(doc, 'metadata'):
                 metadata = doc.metadata
                 
@@ -120,8 +119,8 @@ def format_product_suggestions(documents: List[Any]) -> str:
                     # Get product code from metadata
                     product_code = metadata.get('product_id') or metadata.get('code') or metadata.get('sku', 'N/A')
                     
-                    # Fetch thumb_image from product.json file
-                    thumb_image = get_product_image_from_json(product_code) if product_code != 'N/A' else ''
+                    # Get thumb_image from metadata
+                    thumb_image = metadata.get('product_thumb_image', '')
                     
                     product_data = {
                         'code': product_code,
