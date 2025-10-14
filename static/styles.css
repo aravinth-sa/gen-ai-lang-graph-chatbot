@@ -262,22 +262,49 @@ input[type="text"] {
     -webkit-text-fill-color: #000000 !important; /* For webkit browsers */
 }
 
-/* Placeholder text styling */
+/* Placeholder text styling - ultra-specific to override all other rules */
 .stForm input[type="text"]::placeholder,
-input[type="text"]::placeholder {
-    color: #666666 !important;
+.stForm input[type="text"][data-testid="stTextInput-input"]::placeholder,
+.stForm input[type="text"][id*="text_input"]::placeholder,
+.stForm div[data-baseweb="input"] input::placeholder,
+input[type="text"]::placeholder,
+[data-baseweb="input"] input::placeholder,
+.stTextInput input::placeholder {
+    color: #9ca3af !important;
     opacity: 1 !important;
+    -webkit-text-fill-color: #9ca3af !important;
 }
 
 .stForm input[type="text"]::-webkit-input-placeholder,
-input[type="text"]::-webkit-input-placeholder {
-    color: #666666 !important;
+.stForm input[type="text"][data-testid="stTextInput-input"]::-webkit-input-placeholder,
+.stForm input[type="text"][id*="text_input"]::-webkit-input-placeholder,
+.stForm div[data-baseweb="input"] input::-webkit-input-placeholder,
+input[type="text"]::-webkit-input-placeholder,
+[data-baseweb="input"] input::-webkit-input-placeholder,
+.stTextInput input::-webkit-input-placeholder {
+    color: #9ca3af !important;
+    -webkit-text-fill-color: #9ca3af !important;
 }
 
 .stForm input[type="text"]::-moz-placeholder,
-input[type="text"]::-moz-placeholder {
-    color: #666666 !important;
+.stForm input[type="text"][data-testid="stTextInput-input"]::-moz-placeholder,
+.stForm input[type="text"][id*="text_input"]::-moz-placeholder,
+.stForm div[data-baseweb="input"] input::-moz-placeholder,
+input[type="text"]::-moz-placeholder,
+[data-baseweb="input"] input::-moz-placeholder,
+.stTextInput input::-moz-placeholder {
+    color: #9ca3af !important;
     opacity: 1 !important;
+}
+
+.stForm input[type="text"]::-ms-input-placeholder,
+.stForm input[type="text"][data-testid="stTextInput-input"]::-ms-input-placeholder,
+.stForm input[type="text"][id*="text_input"]::-ms-input-placeholder,
+.stForm div[data-baseweb="input"] input::-ms-input-placeholder,
+input[type="text"]::-ms-input-placeholder,
+[data-baseweb="input"] input::-ms-input-placeholder,
+.stTextInput input::-ms-input-placeholder {
+    color: #9ca3af !important;
 }
 
 .stTextInput > div > div > input:focus {

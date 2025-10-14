@@ -183,7 +183,7 @@ def intent_classifier(state: AgentState):
         - Quantity available at a specific branch/location
         - Questions containing words like "stock", "inventory", "available", "quantity on hand"
         - Questions asking "how many" of a product are available
-        - Example: "What's the stock of SKU 2331023 at Mt Wellington?", "Is there inventory for product 123?"
+        - Example: "What's the stock of SKU 2331023 at Mt Wellington?", "Is there inventory for product 123?", "What's the stock for produc Gib"
         
         'project' - Questions about:
         - Building or constructing something new (e.g., "I want to build a deck", "building a fence", "constructing a pergola")
@@ -380,6 +380,9 @@ def product_metadata_retriever(state: AgentState):
     
     # Use direct metadata filtering for SKU/product code if it looks like an SKU
     try:
+        # Initialize documents to empty list
+        documents = []
+        
         # First, try direct metadata filtering for exact matches if it's alphanumeric (likely a SKU)
         if re.match(r'^[A-Za-z0-9]+$', product_identifier):
             # Try direct SKU/product_id match with metadata filtering
@@ -387,7 +390,8 @@ def product_metadata_retriever(state: AgentState):
                 "$or": [
                     {"product_id": product_identifier},
                     {"code": product_identifier},
-                    {"sku": product_identifier}
+                    {"sku": product_identifier},
+                    {"product_title": product_identifier}
                 ]
             }
             documents = retriever.get_retriever(
@@ -480,14 +484,78 @@ def stock_checker(state: AgentState):
         state["stock_data"] = {}
     
     # Get product identifier and branch ID from state
-    sku = state.get("product_identifier", "")
+    product_identifier = state.get("product_identifier", "")
     branch_id = state.get("branch_id", "")
+    user_question = state["question"].content if hasattr(state.get("question"), "content") else str(state.get("question", ""))
     
-    # Validate we have the required information
-    if not sku:
-        response = "I need a product SKU or code to check stock availability. Please provide the product SKU."
+    # Always search for the product using metadata filtering to validate and get product_id
+    print(f"stock_checker: Searching for product with identifier: '{product_identifier}' from question: '{user_question}'")
+    
+    sku = None
+    product_name = None
+    documents = []
+    
+    try:
+        # Build metadata filter to get only product documents
+        filter_dict = {"doc_type": "product"}
+        
+        # If product_identifier looks like a SKU (alphanumeric without spaces), try exact match first
+        if product_identifier and re.match(r'^[A-Za-z0-9]+$', product_identifier):
+            print(f"stock_checker: Attempting exact SKU match for: {product_identifier}")
+            exact_filter = {
+                "$and": [
+                    {"doc_type": "product"},
+                    {
+                        "$or": [
+                            {"product_id": product_identifier},
+                            {"code": product_identifier},
+                            {"sku": product_identifier}
+                        ]
+                    }
+                ]
+            }
+            documents = retriever.get_retriever(
+                search_kwargs={"k": 3, "filter": exact_filter}
+            ).invoke("")
+            print(f"stock_checker: Exact SKU match retrieved {len(documents)} documents")
+        
+        # If no exact match or identifier is not SKU-like, use semantic search
+        if not documents:
+            search_query = product_identifier if product_identifier else user_question
+            print(f"stock_checker: Performing semantic search with query: '{search_query}'")
+            documents = retriever.get_retriever(
+                search_kwargs={"k": 3, "score_threshold": 0.7, "filter": filter_dict}
+            ).invoke(search_query)
+            print(f"stock_checker: Product metadata search retrieved {len(documents)} documents")
+        
+        # If still no documents found, try fallback without filter
+        if not documents:
+            search_query = product_identifier if product_identifier else user_question
+            documents = retriever.get_retriever(search_kwargs={"k": 5, "score_threshold": 0.7}).invoke(search_query)
+            print(f"stock_checker: Fallback semantic search retrieved {len(documents)} documents")
+            documents = [doc for doc in documents if doc.metadata.get('doc_type') == 'product']
+        
+        # Extract product_id from the best matching document
+        if documents:
+            sku = documents[0].metadata.get('product_id', '')
+            product_name = documents[0].metadata.get('product_title', '')
+            print(f"stock_checker: Found product '{product_name}' with SKU: {sku}")
+            
+            if not sku:
+                response = "I found a product matching your query, but couldn't retrieve its SKU. Please provide the product SKU directly."
+                state["messages"].append(AIMessage(content=response))
+                print(f"stock_checker: Product found but no SKU in metadata")
+                return state
+        else:
+            response = "I couldn't find a product matching your query. Please provide the product name or SKU more specifically."
+            state["messages"].append(AIMessage(content=response))
+            print(f"stock_checker: No product documents found")
+            return state
+            
+    except Exception as e:
+        response = f"I encountered an error while searching for the product. Please try again or provide more details. Error: {str(e)}"
         state["messages"].append(AIMessage(content=response))
-        print(f"stock_checker: No SKU provided")
+        print(f"stock_checker: Error searching for product - {str(e)}")
         return state
     
     # If no branch ID is provided, use a default or ask the user
@@ -804,7 +872,7 @@ def generate_answer(state: AgentState):
             all_products = False
     
     # If all documents are products and there are more than 2, skip LLM generation
-    if all_products and product_count > 2:
+    if all_products and product_count > 3:
         print(f"[{get_timestamp()}] Found {product_count} products (> 2), showing products without LLM generation")
         
         # Generate only product cards without LLM response
@@ -855,7 +923,7 @@ def generate_answer(state: AgentState):
                     if doc_type == 'content':
                         # Try to get URL and title from metadata
                         url = metadata.get('url') or metadata.get('source')
-                        title = metadata.get('title') or metadata.get('page_title', 'Content Page')
+                        title = metadata.get('heading') or metadata.get('page_name', 'Content Page')
                         
                         if url:
                             # Create a tuple (title, url) to avoid duplicates while keeping titles
