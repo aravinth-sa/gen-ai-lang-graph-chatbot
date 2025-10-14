@@ -149,14 +149,14 @@ def get_stock_information(sku: str, branch_id: str, bearer_token: Optional[str] 
     Fetches stock/inventory information from the third-party ERP API.
     
     Args:
-        sku: The product SKU to check stock for
+        sku: The product SKU(s) to check stock for. Can be a single SKU or comma-separated SKUs (e.g., "2331023" or "2331023,2331024,2331025")
         branch_id: The branch ID to check stock at
         bearer_token: Optional bearer token for authorization. If not provided, uses Config.STOCK_API_BEARER_TOKEN
         
     Returns:
         Dict containing stock information or error details
         
-    Example response:
+    Example response (single product):
         {
             "success": True,
             "data": {
@@ -169,6 +169,31 @@ def get_stock_information(sku: str, branch_id: str, bearer_token: Optional[str] 
                         "Quantity": "5654",
                         "StockMessage": "Stock Available"
                     }]
+                }]
+            }
+        }
+        
+    Example response (multiple products):
+        {
+            "success": True,
+            "data": {
+                "TransactionId": "...",
+                "Branches": [{
+                    "BranchId": "485",
+                    "Products": [
+                        {
+                            "Sku": "2331023",
+                            "Description": "FENCE PALING RAD H3.2 RS  1.8M  150 X 25MM",
+                            "Quantity": "5654",
+                            "StockMessage": "Stock Available"
+                        },
+                        {
+                            "Sku": "2331024",
+                            "Description": "Another Product",
+                            "Quantity": "1234",
+                            "StockMessage": "Stock Available"
+                        }
+                    ]
                 }]
             }
         }

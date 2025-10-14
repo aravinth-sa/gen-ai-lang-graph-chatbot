@@ -535,17 +535,31 @@ def stock_checker(state: AgentState):
             print(f"stock_checker: Fallback semantic search retrieved {len(documents)} documents")
             documents = [doc for doc in documents if doc.metadata.get('doc_type') == 'product']
         
-        # Extract product_id from the best matching document
+        # Extract product_ids from up to 3 best matching documents
         if documents:
-            sku = documents[0].metadata.get('product_id', '')
-            product_name = documents[0].metadata.get('product_title', '')
-            print(f"stock_checker: Found product '{product_name}' with SKU: {sku}")
+            # Limit to maximum 3 products
+            max_products = min(3, len(documents))
+            skus = []
+            product_names = []
             
-            if not sku:
-                response = "I found a product matching your query, but couldn't retrieve its SKU. Please provide the product SKU directly."
+            for i in range(max_products):
+                sku = documents[i].metadata.get('product_id', '')
+                product_name = documents[i].metadata.get('product_title', '')
+                
+                if sku:
+                    skus.append(sku)
+                    product_names.append(product_name)
+                    print(f"stock_checker: Found product {i+1} - '{product_name}' with SKU: {sku}")
+            
+            if not skus:
+                response = "I found products matching your query, but couldn't retrieve their SKUs. Please provide the product SKU directly."
                 state["messages"].append(AIMessage(content=response))
-                print(f"stock_checker: Product found but no SKU in metadata")
+                print(f"stock_checker: Products found but no SKUs in metadata")
                 return state
+            
+            # Join SKUs as comma-separated string
+            sku = ",".join(skus)
+            print(f"stock_checker: Checking stock for {len(skus)} product(s) with SKUs: {sku}")
         else:
             response = "I couldn't find a product matching your query. Please provide the product name or SKU more specifically."
             state["messages"].append(AIMessage(content=response))
@@ -582,11 +596,6 @@ def stock_checker(state: AgentState):
             products = branch.get("Products", [])
             
             if products and len(products) > 0:
-                product = products[0]
-                product_sku = product.get("Sku", sku)
-                product_desc = product.get("Description", "Product")
-                quantity = product.get("Quantity", "0")
-                stock_message = product.get("StockMessage", "")
                 branch_name = branch.get("BranchId", branch_id)
                 
                 # Map common branch IDs to names (you can extend this mapping)
@@ -597,8 +606,31 @@ def stock_checker(state: AgentState):
                 }
                 branch_display = branch_names.get(branch_name, f"Branch {branch_name}")
                 
-                # Generate a friendly response
-                response = f"""**Stock Information for SKU {product_sku}**
+                # Generate response for multiple products
+                if len(products) > 1:
+                    response = f"**Stock Information at {branch_display}**\n\n"
+                    for idx, product in enumerate(products, 1):
+                        product_sku = product.get("Sku", "")
+                        product_desc = product.get("Description", "Product")
+                        quantity = product.get("Quantity", "0")
+                        stock_message = product.get("StockMessage", "")
+                        
+                        response += f"""**{idx}. SKU {product_sku}**
+**Product:** {product_desc}
+**Availability:** {quantity} units available
+**Status:** {stock_message}
+
+"""
+                        print(f"stock_checker: Product {idx} - {quantity} units at branch {branch_name}")
+                else:
+                    # Single product response
+                    product = products[0]
+                    product_sku = product.get("Sku", sku)
+                    product_desc = product.get("Description", "Product")
+                    quantity = product.get("Quantity", "0")
+                    stock_message = product.get("StockMessage", "")
+                    
+                    response = f"""**Stock Information for SKU {product_sku}**
 
 **Product:** {product_desc}
 
@@ -607,13 +639,13 @@ def stock_checker(state: AgentState):
 **Availability:** {quantity} units available
 
 **Status:** {stock_message}"""
-                
-                print(f"stock_checker: Successfully retrieved stock - {quantity} units at branch {branch_name}")
+                    
+                    print(f"stock_checker: Successfully retrieved stock - {quantity} units at branch {branch_name}")
             else:
-                response = f"No stock information found for SKU {sku} at the specified branch."
+                response = f"No stock information found for the requested SKU(s) at the specified branch."
                 print(f"stock_checker: No products in API response")
         else:
-            response = f"No branch information found for SKU {sku}. Please verify the branch ID."
+            response = f"No branch information found for the requested SKU(s). Please verify the branch ID."
             print(f"stock_checker: No branches in API response")
     else:
         # API call failed
@@ -661,7 +693,7 @@ def retrieve(state: AgentState):
     elif intent_type == "product":
         # Product: retrieve 5 documents with doc_type='product' filter
         search_kwargs = {
-            "k": 5,
+            "k": 4,
             "filter": {"doc_type": "product"}
         }
         print(f"retrieve: Product intent - retrieving 5 documents with doc_type='product' filter")
@@ -706,6 +738,7 @@ A document should ONLY be marked as 'Yes' if:
 2. The information is factual and not just tangentially related
 3. The document provides more than just general background information
 4. The content is specific to the query and not too broad or generic
+5. The product document is as per the user's question
 
 Mark as 'No' if:
 - The document is only loosely related to the topic
