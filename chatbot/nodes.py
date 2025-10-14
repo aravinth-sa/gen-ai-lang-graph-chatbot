@@ -105,7 +105,7 @@ def greeting_router(state: AgentState):
 # ==================== INTENT CLASSIFICATION NODE ====================
 
 def intent_classifier(state: AgentState):
-    """Classify user intent as project-based, product-based, or product-metadata query"""
+    """Classify user intent as project-based, product-based, product-metadata, content, or stock query"""
     print(f"[{get_timestamp()}] Entering intent_classifier ##################################")
 
     # Initialize or use provided conversation history
@@ -173,7 +173,7 @@ def intent_classifier(state: AgentState):
         
         Your task is to:
         1. Determine if the question is related to building materials/construction
-        2. Classify the intent type as either 'project', 'product', 'product-metadata', or 'stock'
+        2. Classify the intent type as either 'project', 'product', 'product-metadata', 'content', or 'stock'
         3. Extract relevant identifiers (product SKU/name, branch ID)
         
         INTENT CLASSIFICATION:
@@ -191,6 +191,14 @@ def intent_classifier(state: AgentState):
         - DIY projects that involve multiple steps/stages
         - Questions asking for step-by-step guidance or project planning
         - Questions like "how do I build...", "what are the steps to...", "I'm planning to..."
+        
+        'content' - Questions about:
+        - Process-oriented information or procedures (e.g., "how to book a kitchen consultation", "how do I arrange delivery?")
+        - Service-related inquiries (e.g., "what services do you offer?", "how to get a quote?")
+        - Store policies, returns, warranties, or general business processes
+        - Questions about "how to" do something with the store/service (NOT about building/construction)
+        - Account management, ordering process, payment methods
+        - Example: "How do I book a consultation?", "What's your return policy?", "How to arrange a site visit?"
         
         'product' - Questions about:
         - General product categories or materials (e.g., "what tiles do you have?", "show me decking boards")
@@ -318,7 +326,7 @@ def intent_classifier(state: AgentState):
 # ==================== INTENT ROUTER ====================
 
 def intent_router(state: AgentState):
-    """Route based on intent type: project, product, product-metadata, or stock"""
+    """Route based on intent type: project, product, product-metadata, content, or stock"""
     print(f"[{get_timestamp()}] Entering intent_router")
     
     on_topic = state.get("on_topic", "").strip().lower()
@@ -339,6 +347,9 @@ def intent_router(state: AgentState):
     elif intent_type == "product-metadata" and product_identifier:
         print(f"Routing to product_metadata_retriever with identifier: {product_identifier}")
         return "product_metadata_retriever"
+    elif intent_type == "content":
+        print("Routing to retrieve (content query)")
+        return "retrieve"
     else:  # product or default
         print("Routing to retrieve")
         return "retrieve"
@@ -568,8 +579,31 @@ def retrieve(state: AgentState):
     else:
         print(f"retrieve: Using rephrased question only: {query_to_use}")
     
-    # Retrieve documents using the enhanced query
-    documents = retriever.get_retriever().invoke(query_to_use)
+    # Get intent type to apply appropriate filters
+    intent_type = state.get("intent_type", "").strip().lower()
+    
+    # Configure retrieval parameters based on intent type
+    if intent_type == "content":
+        # Content: retrieve 3 documents with doc_type='content' filter
+        search_kwargs = {
+            "k": 3,
+            "filter": {"doc_type": "content"}
+        }
+        print(f"retrieve: Content intent - retrieving 3 documents with doc_type='content' filter")
+    elif intent_type == "product":
+        # Product: retrieve 5 documents with doc_type='product' filter
+        search_kwargs = {
+            "k": 5,
+            "filter": {"doc_type": "product"}
+        }
+        print(f"retrieve: Product intent - retrieving 5 documents with doc_type='product' filter")
+    else:
+        # Default: no filter, retrieve 5 documents
+        search_kwargs = {"k": 5}
+        print(f"retrieve: Default intent ({intent_type}) - retrieving 5 documents without filter")
+    
+    # Retrieve documents using the enhanced query with intent-specific parameters
+    documents = retriever.get_retriever(search_kwargs=search_kwargs).invoke(query_to_use)
     print(f"retrieve: Retrieved {len(documents)} documents")
     print(f"[{get_timestamp()}] Finished retrieval ##################################")
     state["documents"] = documents
@@ -753,45 +787,96 @@ def generate_answer(state: AgentState):
     documents = state["relavant_documents"]
     rephrased_question = state["rephrased_question"]
     
-    # Use context summary directly
-    context_str = state.get("context_summary", "")
-    
-    # Generate response with RAG chain using natural language context
-    response = rag_chain.invoke(
-        {
-            "history": context_str,  # Using context summary in natural language format
-            "context": documents, 
-            "question": rephrased_question
-        }
-    )
-
-    # Get the base response
-    generation = response.content.strip()
-    
-    # Add SKU hyperlinks if any SKU is found
+    # Check if all documents are product type
     from .tools import add_sku_hyperlink, format_product_suggestions
-    generation = add_sku_hyperlink(generation)
     
-    # Add product cards if documents contain product information
-    product_suggestions = format_product_suggestions(documents)
-    if product_suggestions:
-        generation += product_suggestions
+    product_count = 0
+    all_products = True
     
-    # Add sources if available
-    if documents:
-        # Extract unique source URLs from documents
-        sources = set()
+    for doc in documents:
+        if hasattr(doc, 'metadata'):
+            doc_type = doc.metadata.get('doc_type')
+            if doc_type == 'product':
+                product_count += 1
+            else:
+                all_products = False
+        else:
+            all_products = False
+    
+    # If all documents are products and there are more than 2, skip LLM generation
+    if all_products and product_count > 2:
+        print(f"[{get_timestamp()}] Found {product_count} products (> 2), showing products without LLM generation")
+        
+        # Generate only product cards without LLM response
+        product_suggestions = format_product_suggestions(documents)
+        
+        if product_suggestions:
+            generation = f"I found {product_count} products that match your query:\n{product_suggestions}"
+        else:
+            generation = f"I found {product_count} products that match your query."
+    else:
+        # Use context summary directly
+        context_str = state.get("context_summary", "")
+        
+        # Generate response with RAG chain using natural language context
+        response = rag_chain.invoke(
+            {
+                "history": context_str,  # Using context summary in natural language format
+                "context": documents, 
+                "question": rephrased_question
+            }
+        )
+
+        # Get the base response
+        generation = response.content.strip()
+        
+        # Add SKU hyperlinks if any SKU is found
+        generation = add_sku_hyperlink(generation)
+        
+        # Add product cards if documents contain product information
+        product_suggestions = format_product_suggestions(documents)
+        if product_suggestions:
+            generation += product_suggestions
+    
+    # Add content page links as references if intent is 'content'
+    intent_type = state.get("intent_type", "").strip().lower()
+    if intent_type == "content" and documents:
+        print(f"[{get_timestamp()}] Adding content page links as references")
+        
+        # Extract unique content page URLs from documents
+        content_links = []
         for doc in documents:
             try:
-                # Try to get URL from different possible metadata fields
                 if hasattr(doc, 'metadata'):
                     metadata = doc.metadata
-                    # Check for URL in different possible metadata fields
-                    url = metadata.get('url') or metadata.get('source')
-                    if url:
-                        sources.add(url)
+                    doc_type = metadata.get('doc_type', '')
+                    
+                    # Only add links for content-type documents
+                    if doc_type == 'content':
+                        # Try to get URL and title from metadata
+                        url = metadata.get('url') or metadata.get('source')
+                        title = metadata.get('title') or metadata.get('page_title', 'Content Page')
+                        
+                        if url:
+                            # Create a tuple (title, url) to avoid duplicates while keeping titles
+                            content_links.append((title, url))
             except Exception as e:
                 print(f"Error processing document metadata: {e}")
+        
+        # Remove duplicates while preserving order
+        seen_urls = set()
+        unique_links = []
+        for title, url in content_links:
+            if url not in seen_urls:
+                seen_urls.add(url)
+                unique_links.append((title, url))
+        
+        # Add references section if we have content links
+        if unique_links:
+            generation += "\n\n---\n\n**📖 Related Content Pages:**\n"
+            for i, (title, url) in enumerate(unique_links, 1):
+                generation += f"{i}. [{title}]({url})\n"
+            print(f"[{get_timestamp()}] Added {len(unique_links)} content page references")
     
     # Keep conversation history to a reasonable size (last 10 exchanges)
     if len(state["conversation_history"]) > 10:
