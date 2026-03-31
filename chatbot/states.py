@@ -1,6 +1,6 @@
 from typing import TypedDict, List, Dict
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
-from langchain.schema import Document
+from langchain_core.documents import Document
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
