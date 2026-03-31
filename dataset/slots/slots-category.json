@@ -1,0 +1,283 @@
+{
+    "common_slots": {
+      "brand": {"type":"string","required":false},
+      "sku": {"type":"string","required":false},
+      "price": {"type":"float","units":"AUD","required":false},
+      "price_range": {"type":"string","example":"$100-$200","required":false},
+      "quantity": {"type":"integer","required":true},
+      "unit": {"type":"string","example":"bag/unit/m2/ton","required":false},
+      "delivery_date": {"type":"date","required":false},
+      "lead_time_days": {"type":"integer","required":false},
+      "stock_level": {"type":"integer","required":false},
+      "installation_required": {"type":"boolean","required":false},
+      "warranty_months": {"type":"integer","required":false},
+      "color": {"type":"string","required":false},
+      "finish": {"type":"string","required":false}
+    },
+  
+    "categories": {
+      "cement": {
+        "slots": {
+          "grade": {"type":"enum","values":["OPC 43","OPC 53","PPC","PSC"],"required":true},
+          "quantity_bags": {"type":"integer","required":true},
+          "bag_weight_kg": {"type":"float","units":"kg","required":true},
+          "delivery_date": {"type":"date","required":false},
+          "brand": {"type":"string","required":false}
+        }
+      },
+  
+      "bricks": {
+        "slots": {
+          "type": {"type":"enum","values":["clay","fly ash","concrete block","hollow block"],"required":true},
+          "size": {"type":"string","example":"230x110x76 mm","required":true},
+          "quantity_units": {"type":"integer","required":true},
+          "strength_grade": {"type":"string","required":false},
+          "delivery_date": {"type":"date","required":false}
+        }
+      },
+  
+      "tiles": {
+        "slots": {
+          "material": {"type":"enum","values":["ceramic","vitrified","porcelain","granite","marble"],"required":true},
+          "size": {"type":"string","example":"600x600 mm","required":true},
+          "finish": {"type":"enum","values":["matte","glossy","anti-skid"],"required":false},
+          "area_sq_m": {"type":"float","required":true},
+          "pack_coverage_m2": {"type":"float","required":false}
+        }
+      },
+  
+      "paint": {
+        "slots": {
+          "finish": {"type":"enum","values":["matte","gloss","satin"],"required":true},
+          "color": {"type":"string","required":true},
+          "volume_l": {"type":"float","required":true},
+          "sheen": {"type":"string","required":false},
+          "area_sq_m": {"type":"float","required":false}
+        }
+      },
+  
+      "steel": {
+        "slots": {
+          "grade": {"type":"enum","values":["Fe 250","Fe 500","Fe 550","Fe 600"],"required":true},
+          "type": {"type":"enum","values":["rebar","angle","channel","sheet","beam"],"required":true},
+          "length_meters": {"type":"float","required":false},
+          "quantity_tons": {"type":"float","required":true},
+          "delivery_date": {"type":"date","required":false}
+        }
+      },
+  
+      "doors_and_windows": {
+        "slots": {
+          "item_type": {"type":"enum","values":["door","window","sliding door","skylight"],"required":true},
+          "material": {"type":"enum","values":["wood","aluminium","uPVC","steel"],"required":true},
+          "size": {"type":"string","example":"2100x800 mm","required":true},
+          "finish": {"type":"string","required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      },
+  
+      "plumbing": {
+        "slots": {
+          "item": {"type":"enum","values":["pipe","fitting","tap","tank","valve"],"required":true},
+          "material": {"type":"enum","values":["PVC","CPVC","HDPE","GI","PEX"],"required":false},
+          "size": {"type":"string","example":"1/2 inch, DN50","required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      },
+  
+      "power_tools": {
+        "slots": {
+          "tool_type": {"type":"enum","values":["drill","impact driver","circular saw","angle grinder","sander","jigsaw","router"],"required":true},
+          "power_source": {"type":"enum","values":["corded","cordless","pneumatic","battery"],"required":true},
+          "battery_voltage": {"type":"string","example":"18V","required":false},
+          "battery_capacity_Ah": {"type":"float","units":"Ah","required":false},
+          "kit_includes_battery": {"type":"boolean","required":false},
+          "warranty_months": {"type":"integer","required":false}
+        }
+      },
+  
+      "decking": {
+        "slots": {
+          "material": {"type":"enum","values":["timber","composite","PVC","hardwood"],"required":true},
+          "board_width_mm": {"type":"integer","required":false},
+          "board_thickness_mm": {"type":"integer","required":false},
+          "area_sq_m": {"type":"float","required":true},
+          "joist_spacing_mm": {"type":"integer","required":false},
+          "fastener_type": {"type":"enum","values":["hidden","screw","clip"],"required":false}
+        }
+      },
+  
+      "timber": {
+        "slots": {
+          "species": {"type":"enum","values":["pine","treated pine","merbau","jarrah","oak","cedar"],"required":true},
+          "grade": {"type":"string","required":false},
+          "length_m": {"type":"float","required":true},
+          "thickness_mm": {"type":"integer","required":true},
+          "treatment": {"type":"enum","values":["untreated","treated","fire-retardant"],"required":false}
+        }
+      },
+  
+      "landscaping": {
+        "slots": {
+          "product_type": {"type":"enum","values":["pavers","turf","mulch","soil","edging","rockery"],"required":true},
+          "area_sq_m": {"type":"float","required":false},
+          "coverage_per_unit_m2": {"type":"float","required":false},
+          "color_or_style": {"type":"string","required":false},
+          "installation_service": {"type":"boolean","required":false}
+        }
+      },
+  
+      "bathroom": {
+        "slots": {
+          "item_type": {"type":"enum","values":["toilet","basin","vanity","shower_screen","bathtub","mixer","tap"],"required":true},
+          "mounting_type": {"type":"enum","values":["wall","floor","semi-recessed"],"required":false},
+          "dimensions": {"type":"string","example":"600x450 mm","required":false},
+          "water_efficiency_rating": {"type":"string","required":false},
+          "finish": {"type":"string","required":false}
+        }
+      },
+  
+      "heating_and_cooling": {
+        "slots": {
+          "system_type": {"type":"enum","values":["split","ducted","evaporative","gas_heater","electric_heater","heat_pump"],"required":true},
+          "capacity_kw": {"type":"float","required":false},
+          "capacity_btu": {"type":"integer","required":false},
+          "fuel_type": {"type":"enum","values":["electric","gas","diesel"],"required":false},
+          "energy_rating": {"type":"string","required":false},
+          "installation_required": {"type":"boolean","required":false}
+        }
+      },
+  
+      "flooring": {
+        "slots": {
+          "material": {"type":"enum","values":["hardwood","engineered_wood","laminate","vinyl","tile","carpet"],"required":true},
+          "plank_size": {"type":"string","example":"1200x190 mm","required":false},
+          "finish": {"type":"string","required":false},
+          "area_sq_m": {"type":"float","required":true},
+          "underlay_required": {"type":"boolean","required":false}
+        }
+      },
+  
+      "cladding": {
+        "slots": {
+          "material": {"type":"enum","values":["timber","metal","fiber_cement","vinyl","stone","brick_veneer"],"required":true},
+          "profile": {"type":"string","required":false},
+          "coverage_per_sheet_m2": {"type":"float","required":false},
+          "fire_rating": {"type":"string","required":false},
+          "thickness_mm": {"type":"integer","required":false}
+        }
+      },
+  
+      "electrical": {
+        "slots": {
+          "item_type": {"type":"enum","values":["cable","switch","socket","light_fixture","consumer_unit","circuit_breaker"],"required":true},
+          "voltage": {"type":"string","example":"230V","required":false},
+          "current_rating_amps": {"type":"integer","required":false},
+          "ip_rating": {"type":"string","required":false},
+          "length_m": {"type":"float","required":false}
+        }
+      },
+  
+      "insulation": {
+        "slots": {
+          "insulation_type": {"type":"enum","values":["batts","board","spray","loose-fill"],"required":true},
+          "material": {"type":"enum","values":["glasswool","rockwool","polystyrene","polyurethane"],"required":false},
+          "r_value": {"type":"float","required":false},
+          "thickness_mm": {"type":"integer","required":false},
+          "area_sq_m": {"type":"float","required":true}
+        }
+      },
+  
+      "roofing": {
+        "slots": {
+          "material": {"type":"enum","values":["metal_sheet","tile","asphalt_shingle","membrane","concrete_tile"],"required":true},
+          "roof_pitch": {"type":"string","required":false},
+          "coverage_area_m2": {"type":"float","required":true},
+          "underlayment_required": {"type":"boolean","required":false}
+        }
+      },
+  
+      "fasteners": {
+        "slots": {
+          "fastener_type": {"type":"enum","values":["screw","nail","anchor","bolt","rivet"],"required":true},
+          "material": {"type":"string","example":"stainless steel","required":false},
+          "length_mm": {"type":"integer","required":false},
+          "quantity_units": {"type":"integer","required":true},
+          "corrosion_resistant": {"type":"boolean","required":false}
+        }
+      },
+  
+      "adhesives_and_sealants": {
+        "slots": {
+          "type": {"type":"enum","values":["construction_adhesive","silicone","epoxy","tile_adhesive","sealant"],"required":true},
+          "pack_size_l_or_kg": {"type":"string","required":false},
+          "cure_time_hours": {"type":"float","required":false},
+          "temperature_range": {"type":"string","required":false}
+        }
+      },
+  
+      "concrete_products": {
+        "slots": {
+          "product_type": {"type":"enum","values":["paver","concrete_block","precast_panel","kerb","slab"],"required":true},
+          "size": {"type":"string","example":"400x200x100 mm","required":false},
+          "grade": {"type":"string","required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      },
+  
+      "waterproofing": {
+        "slots": {
+          "product_type": {"type":"enum","values":["membrane","coating","tape","sealant"],"required":true},
+          "substrate": {"type":"string","required":false},
+          "coverage_per_litre_m2": {"type":"float","required":false},
+          "cure_time_hours": {"type":"float","required":false}
+        }
+      },
+  
+      "glass_and_glazing": {
+        "slots": {
+          "glass_type": {"type":"enum","values":["float","tempered","laminated","double_glazed"],"required":true},
+          "thickness_mm": {"type":"float","required":true},
+          "u_value": {"type":"float","required":false},
+          "safety_standard": {"type":"string","required":false}
+        }
+      },
+  
+      "hardware": {
+        "slots": {
+          "item_type": {"type":"enum","values":["hinge","lock","handle","bolt","bracket"],"required":true},
+          "finish": {"type":"string","required":false},
+          "handing": {"type":"enum","values":["left","right","universal"],"required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      },
+  
+      "safety_equipment": {
+        "slots": {
+          "item_type": {"type":"enum","values":["helmet","gloves","hi-vis","respirator","harness","ear_protection"],"required":true},
+          "size": {"type":"string","required":false},
+          "standard_approval": {"type":"string","example":"AS/NZS 1801","required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      },
+  
+      "plant_hire": {
+        "slots": {
+          "equipment_type": {"type":"enum","values":["excavator","bobcat","scissor_lift","concrete_mixer","dump_truck"],"required":true},
+          "hire_duration_days": {"type":"integer","required":true},
+          "operator_included": {"type":"boolean","required":false},
+          "delivery_required": {"type":"boolean","required":false}
+        }
+      },
+  
+      "garden_supplies": {
+        "slots": {
+          "product_type": {"type":"enum","values":["mulch","compost","turf_roll","pots","fertiliser"],"required":true},
+          "bag_size_l": {"type":"float","required":false},
+          "coverage_per_unit_m2": {"type":"float","required":false},
+          "quantity_units": {"type":"integer","required":true}
+        }
+      }
+    }
+  }
+  

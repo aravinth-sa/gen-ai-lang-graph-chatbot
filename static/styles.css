@@ -1,0 +1,540 @@
+/* Hide default Streamlit elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Main container styling */
+.stApp {
+    background-color: #e8eaed;
+}
+
+/* Center the main content */
+.main .block-container {
+    max-width: 750px !important;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Wrapper for the entire chat UI */
+.chat-wrapper {
+    max-width: 750px !important;
+    margin: 0 auto !important;
+    box-shadow: none;
+    border-radius: 8px;
+    overflow: visible;
+}
+
+/* Chat container */
+.chat-container {
+    background-color: white;
+    border-radius: 8px 8px 0 0;
+    box-shadow: none;
+    overflow: visible;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 750px !important;
+}
+
+/* Header styling */
+.chat-header {
+    background: linear-gradient(135deg, #003d73 0%, #0056a3 100%);
+    color: white;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.95;
+    line-height: 1.3;
+}
+
+.header-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Chat messages area */
+.chat-messages {
+    min-height: 300px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-bottom: 0 !important;
+}
+
+/* User message styling */
+.user-message {
+    background-color: #003d73;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    margin: 10px 0;
+    max-width: 70%;
+    margin-left: auto;
+    text-align: left;
+    word-wrap: break-word;
+    display: block;
+}
+
+/* Assistant message styling */
+.assistant-message {
+    background-color: #f1f3f4;
+    color: #202124;
+    padding: 12px 16px;
+    border-radius: 18px;
+    margin: 10px 0;
+    max-width: 70%;
+    margin-right: auto;
+    text-align: left;
+    word-wrap: break-word;
+    display: block;
+}
+
+.assistant-label {
+    font-size: 12px;
+    color: #5f6368;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+/* Input area inside container */
+.input-container {
+    padding: 15px 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #dadce0;
+    border-radius: 24px;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    outline: none;
+    resize: none;
+    min-height: 20px;
+    max-height: 100px;
+}
+
+.custom-input:focus {
+    border-color: #0d5a8f;
+}
+
+.send-button {
+    background-color: #0d5a8f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.send-button:hover {
+    background-color: #094a73;
+}
+
+/* Hide the default chat input */
+section[data-testid="stChatInput"] {
+    display: none !important;
+}
+
+/* Style the form container */
+.stForm {
+    border: none !important;
+    padding: 20px !important;
+    background-color: white !important;
+    border-top: none !important;
+    margin-top: 0 !important;
+    border-radius: 0 0 8px 8px !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    max-width: 750px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Style form input */
+.stTextInput > div > div > input {
+    border-radius: 24px !important;
+    border: 1px solid #dadce0 !important;
+    padding: 12px 16px !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    caret-color: #000000 !important;
+}
+
+/* Also target the input by attribute selector for stronger specificity */
+input[aria-label] {
+    color: #000000 !important;
+    caret-color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Target Streamlit's base input styling */
+[data-baseweb="input"] input {
+    color: #000000 !important;
+    caret-color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Target all input elements within Streamlit forms */
+.stForm input[type="text"] {
+    color: #000000 !important;
+    caret-color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Nuclear option - target ALL text inputs */
+input[type="text"] {
+    color: #000000 !important;
+    caret-color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+/* Ultra-specific selector for the exact input element */
+.stForm input[type="text"][data-testid="stTextInput-input"],
+.stForm input[type="text"][id*="text_input"],
+.stForm div[data-baseweb="input"] input {
+    color: #000000 !important;
+    caret-color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important; /* For webkit browsers */
+}
+
+/* Placeholder text styling - ultra-specific to override all other rules */
+.stForm input[type="text"]::placeholder,
+.stForm input[type="text"][data-testid="stTextInput-input"]::placeholder,
+.stForm input[type="text"][id*="text_input"]::placeholder,
+.stForm div[data-baseweb="input"] input::placeholder,
+input[type="text"]::placeholder,
+[data-baseweb="input"] input::placeholder,
+.stTextInput input::placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #9ca3af !important;
+}
+
+.stForm input[type="text"]::-webkit-input-placeholder,
+.stForm input[type="text"][data-testid="stTextInput-input"]::-webkit-input-placeholder,
+.stForm input[type="text"][id*="text_input"]::-webkit-input-placeholder,
+.stForm div[data-baseweb="input"] input::-webkit-input-placeholder,
+input[type="text"]::-webkit-input-placeholder,
+[data-baseweb="input"] input::-webkit-input-placeholder,
+.stTextInput input::-webkit-input-placeholder {
+    color: #9ca3af !important;
+    -webkit-text-fill-color: #9ca3af !important;
+}
+
+.stForm input[type="text"]::-moz-placeholder,
+.stForm input[type="text"][data-testid="stTextInput-input"]::-moz-placeholder,
+.stForm input[type="text"][id*="text_input"]::-moz-placeholder,
+.stForm div[data-baseweb="input"] input::-moz-placeholder,
+input[type="text"]::-moz-placeholder,
+[data-baseweb="input"] input::-moz-placeholder,
+.stTextInput input::-moz-placeholder {
+    color: #9ca3af !important;
+    opacity: 1 !important;
+}
+
+.stForm input[type="text"]::-ms-input-placeholder,
+.stForm input[type="text"][data-testid="stTextInput-input"]::-ms-input-placeholder,
+.stForm input[type="text"][id*="text_input"]::-ms-input-placeholder,
+.stForm div[data-baseweb="input"] input::-ms-input-placeholder,
+input[type="text"]::-ms-input-placeholder,
+[data-baseweb="input"] input::-ms-input-placeholder,
+.stTextInput input::-ms-input-placeholder {
+    color: #9ca3af !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #0d5a8f !important;
+    box-shadow: none !important;
+}
+
+.stTextInput > label {
+    display: none !important;
+}
+
+/* Style submit button */
+.stFormSubmitButton > button {
+    background-color: #4fc3f7 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 18px !important;
+}
+
+.stFormSubmitButton > button:hover {
+    background-color: #29b6f6 !important;
+}
+
+.stFormSubmitButton > button p {
+    font-size: 18px !important;
+}
+
+/* Status message area */
+.status-message {
+    padding: 10px 20px;
+    background-color: white;
+    border-top: none;
+    color: #5f6368;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    min-height: 20px;
+}
+
+/* Hide default streamlit chat UI elements we don't want */
+.stChatMessage {
+    background-color: transparent !important;
+    padding: 0 !important;
+}
+
+div[data-testid="stChatMessageContent"] {
+    background-color: transparent !important;
+}
+
+/* Welcome message styling */
+.welcome-container {
+    padding: 20px;
+    margin: 0;
+}
+
+.welcome-message {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 0;
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.welcome-timestamp {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+}
+
+/* Quick action buttons */
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.action-btn {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer !important;
+    transition: all 0.2s;
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.action-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #003d73;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.action-icon {
+    width: 24px;
+    height: 24px;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.action-btn:hover .action-icon {
+    color: #003d73;
+}
+
+.action-btn span {
+    color: #333;
+    font-weight: 400;
+}
+
+.action-btn:hover span {
+    color: #003d73;
+}
+
+/* Target the container that appears right after chat wrapper with buttons */
+.chat-wrapper + div[data-testid="stVerticalBlock"] {
+    background-color: white !important;
+    padding: 0 20px 20px 20px !important;
+    max-width: 750px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    margin-top: -8px !important;
+}
+
+/* Style buttons that come after chat container */
+.chat-wrapper + div .stButton {
+    margin: 0 0 12px 0 !important;
+}
+
+.chat-wrapper + div .stButton:last-child {
+    margin-bottom: 0 !important;
+}
+
+.chat-wrapper + div .stButton > button {
+    background-color: white !important;
+    border: 1px solid #dadce0 !important;
+    border-radius: 24px !important;
+    padding: 14px 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    font-size: 15px !important;
+    color: #5f6368 !important;
+    text-align: center !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 48px !important;
+    font-weight: 400 !important;
+    box-shadow: none !important;
+}
+
+.chat-wrapper + div .stButton > button:hover {
+    background-color: #f8f9fa !important;
+    border-color: #dadce0 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+    color: #202124 !important;
+}
+
+.chat-wrapper + div .stButton > button:active {
+    transform: scale(0.98) !important;
+    background-color: #f1f3f4 !important;
+}
+
+/* Custom action buttons (legacy support) */
+.custom-action-btn {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    width: 100%;
+}
+
+.custom-action-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #003d73;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-action-btn .btn-icon {
+    width: 24px;
+    height: 24px;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.custom-action-btn:hover .btn-icon {
+    color: #003d73;
+}
+
+.custom-action-btn span {
+    color: #333;
+    font-weight: 400;
+}
+
+.custom-action-btn:hover span {
+    color: #003d73;
+}

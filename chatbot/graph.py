@@ -1,34 +1,99 @@
+"""
+Conversation flow graph definition for the chatbot.
 
-from typing import Any, Dict, TypedDict
+This module defines the conversation flow graph structure using LangGraph.
+It connects various nodes (states) and defines the routing logic between them.
+
+To visualize this graph, use the graph_visualizer.py module.
+"""
+
+from typing import Any, Dict
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
-from chatbot.states import AgentState, question_rewriter, question_classifier, off_topic_response, retrieve, retrieval_grader,generate_answer, refine_question, cannot_answer, on_topic_router, proceed_router 
+from chatbot.states import AgentState, AgentInput
+from chatbot.nodes import (
+    greeting_handler, greeting_router,
+    intent_classifier, intent_router, retrieve, retrieval_grader,
+    generate_answer, refine_question, cannot_answer, proceed_router,
+    project_stage_generator, project_stage_product_retrieval, generate_project_response,
+    product_metadata_retriever, format_product_response, stock_checker
+)
 
-class GraphConfig(TypedDict):
-
-    def create_graph(config: Dict[str, Any]) -> StateGraph:
+class GraphConfig:
+    """Configuration class for creating the conversation flow graph.
+    
+    This class is responsible for defining and creating the conversation flow graph
+    structure for the chatbot. It connects various nodes (states) and defines the
+    routing logic between them.
+    """
+    
+    def create_graph(self, config: Dict[str, Any] = None) -> StateGraph:
+        """Create and return the conversation flow graph.
+        
+        Args:
+            config: Optional configuration dictionary for the graph.
+            
+        Returns:
+            A compiled StateGraph instance representing the conversation flow.
+        """
+        # Set default config if none provided
+        if config is None:
+            config = {}
+            
+        # Get recursion limit from config or use default
+        recursion_limit = config.get("recursion_limit", 10)
+            
+        # Configure the memory saver with more robust persistence settings
         checkpointer = MemorySaver()
 
-        # Workflow
-        workflow = StateGraph(AgentState)
-        #workflow.add_node("question_rewriter", question_rewriter)
-        workflow.add_node("question_classifier", question_classifier)
-        workflow.add_node("off_topic_response", off_topic_response)
+        # Workflow - use AgentInput as the input type and AgentState as the state type
+        workflow = StateGraph(AgentState, AgentInput)
+        
+        # Add all nodes
+        workflow.add_node("greeting_handler", greeting_handler)
+        workflow.add_node("intent_classifier", intent_classifier)
         workflow.add_node("retrieve", retrieve)
         workflow.add_node("retrieval_grader", retrieval_grader)
         workflow.add_node("generate_answer", generate_answer)
         workflow.add_node("refine_question", refine_question)
         workflow.add_node("cannot_answer", cannot_answer)
+        
+        # Add project-based nodes
+        workflow.add_node("project_stage_generator", project_stage_generator)
+        workflow.add_node("project_stage_product_retrieval", project_stage_product_retrieval)
+        workflow.add_node("generate_project_response", generate_project_response)
+        
+        # Add product-metadata nodes
+        workflow.add_node("product_metadata_retriever", product_metadata_retriever)
+        workflow.add_node("format_product_response", format_product_response)
+        
+        # Add stock checker node
+        workflow.add_node("stock_checker", stock_checker)
 
-        #workflow.add_edge("question_rewriter", "question_classifier")
+        # Add conditional edges from greeting handler
         workflow.add_conditional_edges(
-            "question_classifier",
-            on_topic_router,
+            "greeting_handler",
+            greeting_router,
             {
-                "retrieve": "retrieve",
-                "off_topic_response": "off_topic_response",
+                "end_greeting": END,
+                "continue_flow": "intent_classifier",
             },
         )
+        
+        # Add conditional edges from intent classifier
+        workflow.add_conditional_edges(
+            "intent_classifier",
+            intent_router,
+            {
+                "retrieve": "retrieve",
+                "project_stage_generator": "project_stage_generator",
+                "product_metadata_retriever": "product_metadata_retriever",
+                "stock_checker": "stock_checker",
+                "off_topic_response": "cannot_answer",
+            },
+        )
+        
+        # Product flow (existing)
         workflow.add_edge("retrieve", "retrieval_grader")
         workflow.add_conditional_edges(
             "retrieval_grader",
@@ -41,8 +106,43 @@ class GraphConfig(TypedDict):
         )
         workflow.add_edge("refine_question", "retrieve")
         workflow.add_edge("generate_answer", END)
+        
+        # Project flow (new)
+        workflow.add_edge("project_stage_generator", "project_stage_product_retrieval")
+        workflow.add_edge("project_stage_product_retrieval", "generate_project_response")
+        workflow.add_edge("generate_project_response", END)
+        
+        # Product metadata flow (new)
+        workflow.add_edge("product_metadata_retriever", "format_product_response")
+        workflow.add_edge("format_product_response", END)
+        
+        # Stock checker flow (new)
+        workflow.add_edge("stock_checker", END)
+        
+        # Common edges
         workflow.add_edge("cannot_answer", END)
-        workflow.add_edge("off_topic_response", END)
-        workflow.set_entry_point("question_classifier")
+        
+        # Set entry point
+        workflow.set_entry_point("greeting_handler")
+        
         graph = workflow.compile(checkpointer=checkpointer) 
         return graph
+
+if __name__ == "__main__":
+    from IPython.display import Image, display
+    from langchain_core.runnables.graph import MermaidDrawMethod
+
+    # Create an instance of GraphConfig
+    graph_config = GraphConfig()
+    
+    # Create the graph
+    graph = graph_config.create_graph()
+    
+    # Display the graph
+    display(
+            Image(
+                graph.get_graph().draw_mermaid_png(
+                    draw_method=MermaidDrawMethod.API,
+                )
+            )
+    )

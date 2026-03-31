@@ -66,7 +66,7 @@ class PineconeRetriever:
         try:
             # Default search kwargs
             if search_kwargs is None:
-                search_kwargs = {"k": 3}  # Default to top 5 results
+                search_kwargs = {"k": 5,"score_threshold": 0.7}  # Default to top 5 results
             
             # Ensure we're using the correct embedding model that matches the index
             self.embeddings = OpenAIEmbeddings(
