@@ -32,8 +32,8 @@ def get_gemini_rag_llm():
         convert_system_message_to_human=True
     )
 
-# Set up LLM for RAG chain (now using Gemini 2.5 Flash)
-llm = get_gemini_rag_llm()  # Using Gemini 2.5 Flash
+# Set up LLM for RAG chain — use Gemini if key is available, else fall back to OpenAI
+llm = get_gemini_rag_llm() if Config.GOOGLE_API_KEY else get_rag_llm()
 
 template = """You are a PlaceMakers Expert in New Zealand. Answer the question based on the following documents and conversation context.
 
